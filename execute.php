@@ -2815,7 +2815,7 @@ if (($statoGioco==="in_pausa") && !$eccezione)
 //gli utenti non sono registrati nei file di contesto
 if (($statoGioco=="da_ripristinare") && !$eccezione)
 {
-	$msg = "il sistema è momentaneamente in pausa, riprova tra un po'...";
+	$msg = "_\/\ufe4b\\_\n(\u0482`_\u00b4)\n<,\ufe3b\u2566\u2564\u2500_\u0489_-_-__\n_\/\ufe4b\\_il sistema è momentaneamente in pausa, riprova tra un po'...";
 	$ch = curl_init();
 	$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($msg);
 	curl_setopt($ch, CURLOPT_URL, $myUrl); 
