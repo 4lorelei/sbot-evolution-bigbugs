@@ -37,7 +37,7 @@ if(!$update)
 //$token="738410474:AAHdHaQ0M3pOmMf1uU9boanIc4JtFy3V5ww";
 
 //BigBugs - (LaraLuu test - BigBugs evo)
-$token="327275867:AAG-9RXTwHv-TwOnHKQAktab6mEkkGbpJRc";
+$token="327275867:AAGGPjjKhYWMnvZEGDFnB3vvz4Vsqb4iNaw";
 
 $botUrl = "https://api.telegram.org/bot".$token."/sendPhoto";
 $botUrlVoice = "https://api.telegram.org/bot".$token."/sendVoice";

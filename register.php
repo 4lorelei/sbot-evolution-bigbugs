@@ -2,7 +2,7 @@
 
 // PARAMETRI DA MODIFICARE
 $WEBHOOK_URL = 'https://sbot-evolution-bigbugs.herokuapp.com/execute.php';
-$BOT_TOKEN = '327275867:AAG-9RXTwHv-TwOnHKQAktab6mEkkGbpJRc';
+$BOT_TOKEN = '327275867:AAGGPjjKhYWMnvZEGDFnB3vvz4Vsqb4iNaw';
 
 // NON APPORTARE MODIFICHE NEL CODICE SEGUENTE
 $API_URL = 'https://api.telegram.org/bot' . $BOT_TOKEN .'/';
