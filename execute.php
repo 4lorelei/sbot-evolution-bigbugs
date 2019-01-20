@@ -2983,6 +2983,7 @@ mylog("fine nuovo elenco nick", $path_log, $chatId);
 		$response = $response . " (" . (int)$myVarsArr[$chatId]['star'] . unichr($star_code) . ")";
 mylog("nick stampa", $path_log, $chatId);
 	$response =  $response . "\n<b>nickname:</b> " . $nickId . "\n<b>team:</b> " . $nometeam;
+mylog("resposnse", $path_log, $chatId);
 	$response =  $response . "\n<b>sei sul livello:</b> " . $livello . "\nraggiunto il: " . $myVarsArr[$chatId]["date"];
 	$response =  $response . $msg_prossimo_aiuto;
 	$response =  $response . "\n\n<b>numero di giocatori:</b> " . $tot . "\n    team: " . $numteam . "\n    giocatori singoli: " . $numsingle ;
