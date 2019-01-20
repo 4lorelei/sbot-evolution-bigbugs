@@ -220,6 +220,7 @@ $data_livello = isset($myVarsArr[$chatId]["date"]) ? $myVarsArr[$chatId]["date"]
 $nickId = isset($myVarsArr[$chatId]["nick"]) ? $myVarsArr[$chatId]["nick"] : "NICK non impostato";
 $teamId = isset($myVarsArr[$chatId]["team"]) ? $myVarsArr[$chatId]["team"] : "giocatore singolo";
 
+
 //lettura da file delle abilitazioni degli indizi per tutti i livelli
 //$abilitazione = array(0=>1, 1=>0, 2=>0);
 $myAblJson = file_get_contents($path_abl);
@@ -2874,7 +2875,6 @@ if(strcmp($text, '/stat') === 0)
 	$numsingle=0;
 	$tot=0;
 	$livello=(int)$myVarsArr[$chatId]['livello'];
-mylog("elenco nick", $path_log, $chatId);
 	foreach ($myVarsArr as $key => $value) 
 	{
 		if(isset($value['team']))
@@ -2899,7 +2899,6 @@ mylog("elenco nick", $path_log, $chatId);
 		}
 		$tot++;
 	}
-mylog("fine elenco nick", $path_log, $chatId);
 
 	$elenconometeam = array_keys($elencoteam);
 	$numteam=count($elenconometeam);
@@ -2916,7 +2915,6 @@ mylog("fine elenco nick", $path_log, $chatId);
 
 	$singoli_avanti=0;
 	$singoli_uguali=0;
-mylog("nuovo elenco nick", $path_log, $chatId);
 	foreach ($elencosingoli as $value) 
 	{
 		if( (int)$value > $livello ) 
@@ -2924,7 +2922,6 @@ mylog("nuovo elenco nick", $path_log, $chatId);
 		else if ( (int)$value == $livello ) 
 			$singoli_uguali++;
 	}
-mylog("fine nuovo elenco nick", $path_log, $chatId);
 	
 	$maxlivello = 0; 
 	foreach ($elencoteam as $key => $value) 
@@ -2973,17 +2970,28 @@ mylog("fine nuovo elenco nick", $path_log, $chatId);
 	else if (strlen($teamId)==0)
 		$nometeam = "<i>giocatore singolo</i>";
 	else
+	{
+		$search_sp = array('<', '>');
+		$replace_sp = array('&lt;', '&gt;'); 
+     
+        $nometeam = str_replace($search_sp, $replace_sp, $nometeam); 
+		
 		$nometeam = ($teamId == "giocatore singolo") ? "<i>giocatore singolo</i>" : $teamId;
 		//$nometeam = $teamId;
+	}
+		
 	
 	$response =  "<b>tabellino della gara</b>\n\n";
 	$response =  $response . "<b>Id:</b> " . $chatId;
 	
 	if ((int)$myVarsArr[$chatId]['star'] > 0)
 		$response = $response . " (" . (int)$myVarsArr[$chatId]['star'] . unichr($star_code) . ")";
-mylog("nick stampa", $path_log, $chatId);
+	
+	$search_sp = array('<', '>');
+	$replace_sp = array('&lt;', '&gt;'); 
+    $nickId = str_replace($search_sp, $replace_sp, $nickId); 
+	
 	$response =  $response . "\n<b>nickname:</b> " . $nickId . "\n<b>team:</b> " . $nometeam;
-mylog($response, $path_log, $chatId);
 	$response =  $response . "\n<b>sei sul livello:</b> " . $livello . "\nraggiunto il: " . $myVarsArr[$chatId]["date"];
 	$response =  $response . $msg_prossimo_aiuto;
 	$response =  $response . "\n\n<b>numero di giocatori:</b> " . $tot . "\n    team: " . $numteam . "\n    giocatori singoli: " . $numsingle ;
