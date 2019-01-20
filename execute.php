@@ -2894,7 +2894,6 @@ mylog("elenco nick", $path_log, $chatId);
 		else
 		{
 			$single=isset($value['nick']) ? $value['nick'] : $key;
-		mylog($single, $path_log, $chatId);
 			$elencosingoli[$single]=$value['livello']; 
 			$numsingle++;				
 		}
@@ -2917,6 +2916,7 @@ mylog("fine elenco nick", $path_log, $chatId);
 
 	$singoli_avanti=0;
 	$singoli_uguali=0;
+mylog("nuovo elenco nick", $path_log, $chatId);
 	foreach ($elencosingoli as $value) 
 	{
 		if( (int)$value > $livello ) 
@@ -2924,6 +2924,7 @@ mylog("fine elenco nick", $path_log, $chatId);
 		else if ( (int)$value == $livello ) 
 			$singoli_uguali++;
 	}
+mylog("fine nuovo elenco nick", $path_log, $chatId);
 	
 	$maxlivello = 0; 
 	foreach ($elencoteam as $key => $value) 
@@ -2980,7 +2981,7 @@ mylog("fine elenco nick", $path_log, $chatId);
 	
 	if ((int)$myVarsArr[$chatId]['star'] > 0)
 		$response = $response . " (" . (int)$myVarsArr[$chatId]['star'] . unichr($star_code) . ")";
-	
+mylog("nick stampa", $path_log, $chatId);
 	$response =  $response . "\n<b>nickname:</b> " . $nickId . "\n<b>team:</b> " . $nometeam;
 	$response =  $response . "\n<b>sei sul livello:</b> " . $livello . "\nraggiunto il: " . $myVarsArr[$chatId]["date"];
 	$response =  $response . $msg_prossimo_aiuto;
