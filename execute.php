@@ -2894,6 +2894,7 @@ if(strcmp($text, '/stat') === 0)
 		else
 		{
 			$single=isset($value['nick']) ? $value['nick'] : $key;
+		mylog("nick "&$key, $path_log, $chatId);
 			$elencosingoli[$single]=$value['livello']; 
 			$numsingle++;				
 		}
