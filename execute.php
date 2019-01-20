@@ -2874,7 +2874,7 @@ if(strcmp($text, '/stat') === 0)
 	$numsingle=0;
 	$tot=0;
 	$livello=(int)$myVarsArr[$chatId]['livello'];
-	
+mylog("elenco nick", $path_log, $chatId);
 	foreach ($myVarsArr as $key => $value) 
 	{
 		if(isset($value['team']))
@@ -2894,12 +2894,13 @@ if(strcmp($text, '/stat') === 0)
 		else
 		{
 			$single=isset($value['nick']) ? $value['nick'] : $key;
-		mylog("nick "&$key, $path_log, $chatId);
+		mylog($single, $path_log, $chatId);
 			$elencosingoli[$single]=$value['livello']; 
 			$numsingle++;				
 		}
 		$tot++;
 	}
+mylog("fine elenco nick", $path_log, $chatId);
 
 	$elenconometeam = array_keys($elencoteam);
 	$numteam=count($elenconometeam);
