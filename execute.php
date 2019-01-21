@@ -3455,7 +3455,9 @@ if(strpos($text, '/lteam') !== false)
 				$gstar = " (" . $value['star'] . unichr($star_code) . ")";
 			else
 				$gstar = "";
-			$response_gioc = $response_gioc . $emoji_esci . " ". $value['nick'] . $gstar . "\n";
+			
+			$nick_sp=str_replace($search_sp, $replace_sp, $value['nick']);
+			$response_gioc = $response_gioc . $emoji_esci . " ". $nick_sp . $gstar . "\n";
 			$tstar += $value['star'];
 		}
 	}
@@ -3479,7 +3481,6 @@ if(strpos($text, '/lteam') !== false)
 		$response = $response . $response_team . $response_star . $response_gioc;
 		$flag=false;
 	}
-mylog($response, $path_log, $id);
 	$ch = curl_init();
 	$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response)."&parse_mode=HTML";
 	curl_setopt($ch, CURLOPT_URL, $myUrl); 
