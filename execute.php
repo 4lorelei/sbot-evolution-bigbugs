@@ -3391,6 +3391,9 @@ if(strpos($text, '/ranking') !== false)
 //lteam iniziali
 if(strpos($text, '/lteam') !== false)
 {
+	$search_sp = array('<', '>');
+	$replace_sp = array('&lt;', '&gt;'); 
+	
 	$par  = explode(" ", $text);
 
 	foreach ($myVarsArr as $key => $value)
@@ -3440,7 +3443,10 @@ if(strpos($text, '/lteam') !== false)
 				$response = $response . $response_team . $response_star . $response_gioc;
 				$response_gioc = "";
 				$tstar = 0;
-				$response_team = "\n" . $emoji_team . "<b> ". $value['team'] . "</b>";
+				
+				$team_sp=str_replace($search_sp, $replace_sp, $value['team']);
+				
+				$response_team = "\n" . $emoji_team . "<b> ". $team_sp . "</b>";
 				$team_curr = $value['team'];
 				$flag = true;
 			}
