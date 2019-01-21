@@ -3334,9 +3334,9 @@ if(strpos($text, '/ranking') !== false)
 			foreach ($narr as $key => $value)
 			{
 				$nick_sp=str_replace($search_sp, $replace_sp, $value['nick']);
-				if (isset($value['nick']) && ((strlen($value['team'])<1) || !isset($value['team'])) && $value['star']>0 && ($value['livello']==$liv || (!isset($value['livello'] && $liv==0))
+				if (isset($value['nick']) && ((strlen($value['team'])<1) || !isset($value['team'])) && $value['star']>0 && ($value['livello']==$liv || (!isset($value['livello'] && $liv==0))))
 					$response=$response . "\n" . $emoji_esci. " " . $nick_sp . " (" . $narr[$key]['star'] . unichr($star_code) . ")";
-				elseif (isset($value['nick'])&& ((strlen($value['team'])<1) || !isset($value['team'])) && ($value['livello']==$liv || (!isset($value['livello'] && $liv==0))
+				elseif (isset($value['nick'])&& ((strlen($value['team'])<1) || !isset($value['team'])) && ($value['livello']==$liv || (!isset($value['livello'] && $liv==0))))
 					$response=$response . "\n" . $emoji_esci. " " . $nick_sp;
 			}
 			
