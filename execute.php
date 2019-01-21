@@ -3276,14 +3276,15 @@ if(strpos($text, '/ranking') !== false)
 			{
 				if(isset($value['team']))
 				{
-					if ((strlen($value['team'])>=1) && ($value['livello'] == $liv))  //giocatori nel team
+					if ((strlen($value['team'])>=1) && (($value['livello'] == $liv) || (!isset($value['livello']) && $liv==0)))  //giocatori nel team
 					{
 						$elencoteam[$value['team']]['num'] = (int)$elencoteam[$value['team']]['num']+1;
 						$elencoteam[$value['team']]['star'] = (int)$elencoteam[$value['team']]['star']+
 						                                      (int)$myVarsArr[$key]['star'];
 						$elencoteam[$value['team']]['team'] = $value['team'];
 					}
-					else if ($value['livello'] == $liv )   //giocatori con utenza sbloccata
+					else if (($value['livello'] == $liv) || (!isset($value['livello']) && $liv==0))   
+						                   //giocatori con utenza sbloccata
 					{
 						$single=isset($value['nick']) ? $value['nick'] : "anonimo";
 						if (isset($value['nick']))
@@ -3296,7 +3297,7 @@ if(strpos($text, '/ranking') !== false)
 					}
 					
 				}
-				else if ($value['livello'] == $liv)
+				else if (($value['livello'] == $liv) || (!isset($value['livello']) && $liv==0))
 				{
 					$single=isset($value['nick']) ? $value['nick'] : "anonimo";
 					if (isset($value['nick']))
