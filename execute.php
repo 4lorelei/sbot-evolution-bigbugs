@@ -3479,7 +3479,7 @@ if(strpos($text, '/lteam') !== false)
 		$response = $response . $response_team . $response_star . $response_gioc;
 		$flag=false;
 	}
-	
+mylog($response, $path_log, $id);
 	$ch = curl_init();
 	$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response)."&parse_mode=HTML";
 	curl_setopt($ch, CURLOPT_URL, $myUrl); 
