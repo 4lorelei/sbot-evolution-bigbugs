@@ -3071,6 +3071,9 @@ if(strpos($text, '/chat') !== false )
 //ranking
 if(strpos($text, '/ranking') !== false)
 {
+	$search_sp = array('<', '>');
+	$replace_sp = array('&lt;', '&gt;'); 
+		
 	$par  = explode(" ", $text);
 
 	if (!isset($par[1]) || $par[1]==='-V')
@@ -3178,7 +3181,8 @@ if(strpos($text, '/ranking') !== false)
 		
 		$narr = array_sort($elenco, "sort", $order=SORT_DESC);
 		
-			
+		
+		
 		$response="<b>classifica generale</b>\n";
 		$liv_curr = -1;
 		foreach ($narr as $key => $value) 
@@ -3189,7 +3193,10 @@ if(strpos($text, '/ranking') !== false)
 				$response_par = "\n──── <b>livello ". $value['livello'] . "</b>\n";
 				$liv_curr = $value['livello'];
 			}
-				
+			
+			
+			$key = str_replace($search_sp, $replace_sp, $key); 
+			
 			$response_par = $response_par . $key;
 			if ($value['star']>0)
 				$response_par = $response_par . " (".$value['star'].unichr($star_code).")";
