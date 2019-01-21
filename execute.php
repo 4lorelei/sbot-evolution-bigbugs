@@ -3190,7 +3190,7 @@ if(strpos($text, '/ranking') !== false)
 			if ($liv_curr != $value['livello'])
 			{
 				if (isset($value['livello']))
-					$val_livello=$value['livello']:
+					$val_livello=$value['livello'];
 				else
 					$val_livello=0;
 				$response_par = "\n──── <b>livello ". $val_livello . "</b>\n";
