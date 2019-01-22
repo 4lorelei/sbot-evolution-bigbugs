@@ -3754,7 +3754,7 @@ if(strpos($text, '/team') !== false)
 		$team = str_replace("\n", "_", $team);
 		$team = str_replace("@", "_", $team);
 			
-		if (strlen($team)> 28)
+		if (strlen($team)> 28 || strlen($team)==0)
 			$lunghezza_regolare=false;
 		else
 			$lunghezza_regolare=true;
@@ -3779,7 +3779,7 @@ if(strpos($text, '/team') !== false)
 		else if ($inuso === false)
 			$response = "nome del team già in uso";
 		else
-			$response = "nome del team troppo lungo";
+			$response = "nome del team non valido";
 	}
 	else if ($par[1]=="-l")
 	{
@@ -4042,7 +4042,7 @@ if(strpos($text, '/nick') !== false)
 			$nick = str_replace("\n", "_", $nick);
 			$nick = str_replace("@", "_", $nick);
 			
-			if (strlen($nick)> 28)
+			if (strlen($nick)> 28 || strlen($nick)==0)
 				$lunghezza_regolare=false;
 			else
 				$lunghezza_regolare=true;
@@ -4067,7 +4067,7 @@ if(strpos($text, '/nick') !== false)
 			else if ($inuso)
 				$response = "nickname già in uso";
 			else
-				$response = "nickname troppo lungo";
+				$response = "nickname non valido";
 		}
 	}
 	$parameters = array('chat_id' => $chatId, "text" => $response);
