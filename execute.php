@@ -3459,7 +3459,7 @@ if(strpos($text, '/lteam') !== false)
 			$tstar += $value['star'];
 		}
 	}
-	if ($flag)
+	if ($flag && false)
 	{
 		if ($tstar > 0)
 		{	
