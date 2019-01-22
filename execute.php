@@ -1405,6 +1405,7 @@ if(strpos($text, '/export') !== false && $utenteAdmin === true)
 //users
 if(strpos($text, '/users') !== false && $utenteAdmin === true) 
 {
+	$eccezione=false;
 	$par  = explode(" ", $text);
 
 	if (!isset($par[1]))
