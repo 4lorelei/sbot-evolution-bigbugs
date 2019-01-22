@@ -3751,8 +3751,8 @@ if(strpos($text, '/team') !== false)
 			$team  = substr($text, strpos($text, "-C ")+3);
 		
 		$team = str_replace(" ", "_", $team);
-		$team = str_replace("\n", "_", $nick);
-		$team = str_replace("@", "_", $nick);
+		$team = str_replace("\n", "_", $team);
+		$team = str_replace("@", "_", $team);
 			
 		if (strlen($team)> 28)
 			$lunghezza_regolare=false;
