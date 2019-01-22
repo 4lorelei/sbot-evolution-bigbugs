@@ -1776,7 +1776,7 @@ if(strpos($text, '/show') !== false && $utenteAdmin === true)
 		{
 			// consente all'admin di visualizzare la classifica anche durante
 			// le pause
-			$text = "/ranking -V";
+			$text = "/ranking -K";
 			$eccezione=true;
 		}
 		else
