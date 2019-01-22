@@ -2865,6 +2865,9 @@ if ($statoGioco==="da_avviare")
 //stat statistica dell'utente
 if(strcmp($text, '/stat') === 0)
 {
+	$search_sp = array('<', '>');
+	$replace_sp = array('&lt;', '&gt;'); 
+	
 	$precede=0;
 	$uguale=0;
 	$tot=0;
@@ -2971,12 +2974,9 @@ if(strcmp($text, '/stat') === 0)
 		$nometeam = "<i>giocatore singolo</i>";
 	else
 	{
-		$search_sp = array('<', '>');
-		$replace_sp = array('&lt;', '&gt;'); 
-     
-        $nometeam = str_replace($search_sp, $replace_sp, $nometeam); 
-		
 		$nometeam = ($teamId == "giocatore singolo") ? "<i>giocatore singolo</i>" : $teamId;
+		
+		$nometeam = str_replace($search_sp, $replace_sp, $nometeam); 
 		//$nometeam = $teamId;
 	}
 		
@@ -2986,9 +2986,7 @@ if(strcmp($text, '/stat') === 0)
 	
 	if ((int)$myVarsArr[$chatId]['star'] > 0)
 		$response = $response . " (" . (int)$myVarsArr[$chatId]['star'] . unichr($star_code) . ")";
-	
-	$search_sp = array('<', '>');
-	$replace_sp = array('&lt;', '&gt;'); 
+
     $nickId = str_replace($search_sp, $replace_sp, $nickId); 
 	
 	$response =  $response . "\n<b>nickname:</b> " . $nickId . "\n<b>team:</b> " . $nometeam;
