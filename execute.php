@@ -771,8 +771,6 @@ else
 	$text=estrai_cmd($push).$text;
 
 
-//********* comandi eseguibili come amministratore
-
 // Invio dei menu
 if(strcmp($text, '/start') === 0)
 {
@@ -789,6 +787,8 @@ if(strcmp($text, '/start') === 0)
 	$output = curl_exec($ch);
 	curl_close($ch);
 }
+
+//********* comandi eseguibili come amministratore
 
 //invio di un messaggio di benvenuto agli amministratori in caso di start o restart (dovuto a deployment dell'app)
 if(((strcmp($text, '/start') === 0) || $restart === true) && ($utenteAdmin === true))
@@ -1771,6 +1771,13 @@ if(strpos($text, '/show') !== false && $utenteAdmin === true)
 			$output = curl_exec($ch);
 			curl_close($ch);
 			exit();
+		}
+		elseif ($par[1] === "ranking")
+		{
+			// consente all'admin di visualizzare la classifica anche durante
+			// le pause
+			$text = "/ranking -V";
+			$eccezione=true;
 		}
 		else
 		{
