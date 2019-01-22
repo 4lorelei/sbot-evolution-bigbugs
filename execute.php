@@ -1540,9 +1540,6 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 		unset($elencosingoli);
 		foreach ($myVarsArr as $key => $value)
 		{
-			if ($key == "")
-				continue;
-			
 			if(isset($value['team']))
 			{
 				if ((strlen($value['team'])>=1) && (($value['livello']==$liv) ||
@@ -1550,9 +1547,9 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 				{
 					$elencoteam[$value['team']] = (int)$elencoteam[$value['team']]+1;
 				}
-				else if (($value['livello']==$liv) || ($liv==0 && $value['livello']==""))
+				else if (($value['livello']==$liv) || ($liv==0 && !isset($value['livello'])))
 				{
-						$single=isset($value['nick']) ? $value['nick'] : "anonimo";
+						$single=isset($value['nick']) ? $value['nick'] : "Anonimo";
 						$elencosingoli[$single]=(int)$elencosingoli[$single]+1;
 						$tot_single=$tot_single + 1;
 				}
