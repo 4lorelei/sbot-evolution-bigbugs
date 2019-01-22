@@ -3989,7 +3989,7 @@ if(strpos($text, '/register') !== false)
 	exit();
 }
 
-//nick imposta il nickname
+//nick visualizza o imposta il nickname
 if(strpos($text, '/nick') !== false)
 {
 	
@@ -4030,6 +4030,13 @@ if(strpos($text, '/nick') !== false)
 			$nick  = substr($text, strpos($text, " ")+1);
 			
 			$nick = str_replace(" ", "_", $nick);
+			$nick = str_replace("\n", "_", $nick);
+			$nick = str_replace("@", "_", $nick);
+			
+			if (strlen($nick)> 28)
+				$lunghezza_regolare=false;
+			else
+				$lunghezza_regolare=true;
 			
 			$inuso=false;
 			foreach ($myVarsArr as $key => $value)
@@ -4040,7 +4047,7 @@ if(strpos($text, '/nick') !== false)
 					break;
 				}
 			}
-			if ($inuso === false) 
+			if (($inuso === false) && ($lunghezza_regolare))
 			{
 				$myVarsArr[$chatId]["nick"]=$nick;
 				$myVarsJson = json_encode($myVarsArr);
@@ -4048,8 +4055,10 @@ if(strpos($text, '/nick') !== false)
 				
 				$response = "nickname impostato correttamente: ". $myVarsArr[$chatId]["nick"];
 			}
-			else
+			else if ($inuso)
 				$response = "nickname già in uso";
+			else
+				$response = "nickname troppo lungo";
 		}
 	}
 	$parameters = array('chat_id' => $chatId, "text" => $response);
