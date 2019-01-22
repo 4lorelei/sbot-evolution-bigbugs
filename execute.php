@@ -1546,7 +1546,7 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 			if(isset($value['team']))
 			{
 				if ((strlen($value['team'])>=1) && (($value['livello']==$liv) ||
-				   ($liv==0 && $value['livello']=="")))
+				   ($liv==0 && !isset($value['livello']))))
 				{
 					$elencoteam[$value['team']] = (int)$elencoteam[$value['team']]+1;
 				}
@@ -1558,7 +1558,7 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 				}
 
 			}
-			else if (($value['livello']==$liv) || ($liv==0 && $value['livello']==""))
+			else if (($value['livello']==$liv) || ($liv==0 && !isset($value['livello'])))
 			{
 				$single=isset($value['nick']) ? $value['nick'] : "Anonimo";
 				if (isset($value['nick']))
