@@ -824,7 +824,7 @@ if(strpos($text, '/list') !== false && $utenteAdmin === true)
 	$msg = $msg . "/sset:\n    /sset Id stelle\n       imposta le stelle di Id\n    /sset nick stelle\n       imposta le stelle di nick\n";
 	$msg = $msg . "/blacklist:\n    /blacklist Id insert\n    /blacklist Id delete\n    /blacklist list\n";
 	$msg = $msg . "/show:\n    /show count\n    /show autors [autore]\n    /show enigma numero\n    /show help numero\n    /show solution numero\n";
-	$msg = $msg . "/users:\n    /users numero\n    /users all\n";
+	$msg = $msg . "/users:\n    /users numero\n    /users all\n    /users ranking\n";
 	$msg = $msg . "/export\n    esporta classifica\n";
 	$msg = $msg . "/iam:\n    /iam [-s] Id comando\n       esegue comando come Id\n    /iam [-s] nick comando\n       esegue comando come nick\n";
 	$msg = $msg . "/monitor:\n    /monitor on\n    /monitor off\n    /monitor show\n";
@@ -1409,7 +1409,7 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 
 	if (!isset($par[1]))
 	{
-		$response = "uso del comando /users:\n/users numero\n     utenti del livello\n/users top\n     utenti del livello top\n/users all\n     tutti gli utenti\n";
+		$response = "uso del comando /users:\n/users numero\n     utenti del livello\n/users top\n     utenti del livello top\n/users all\n     tutti gli utenti\n/users ranking\n     classifica generale\n";
 	}
 	else if ($par[1] == "all")
 	{
@@ -1615,45 +1615,56 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 			}
 		}
 	}
+	else if ($par[1]=="ranking")
+	{
+		// consente all'admin di visualizzare la classifica anche durante
+		// le pause
+		$text = "/ranking -K";
+		$eccezione=true;	
+	}
 	else
 	{
-		$response = "uso del comando /users:\n/users numero\n     utenti del livello\n/users top\n     utenti del livello top\n/users all\n     tutti gli utenti\n";
+		$response = "uso del comando /users:\n/users numero\n     utenti del livello\n/users top\n     utenti del livello top\n/users all\n     tutti gli utenti\n/users all\n     tutti gli utenti\n/users ranking\n     classifica generale\n";
 	}
 	
-	
-	if (strlen($response)<4096)
+	// l'eccezione e' utilizzata per visualizzare la classifica da parte 
+	// di admin anche quando il sistema è in pausa
+	if (!eccezione)
 	{
-		$ch = curl_init();
-		$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response);
-		curl_setopt($ch, CURLOPT_URL, $myUrl); 
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+		if (strlen($response)<4096)
+		{
+			$ch = curl_init();
+			$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response);
+			curl_setopt($ch, CURLOPT_URL, $myUrl); 
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+			
+			// read curl response
+			$output = curl_exec($ch);
+			curl_close($ch);
+		}
+		else
+		{
+			file_put_contents($path_users, $response, LOCK_EX);
+
+			$postFields = array('chat_id' => $chatId, 'document' => new CURLFile($path_users));
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+			curl_setopt($ch, CURLOPT_URL, $botUrlDocument); 
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+
+			// read curl response
+			$output = curl_exec($ch);
+			curl_close($ch);
+		}
 		
-		// read curl response
-		$output = curl_exec($ch);
-		curl_close($ch);
+		/*
+		$parameters = array('chat_id' => $chatId, "text" => $response);
+		$parameters["method"] = "sendMessage";
+		echo json_encode($parameters);
+		*/
+		exit();
 	}
-	else
-	{
-		file_put_contents($path_users, $response, LOCK_EX);
-
-		$postFields = array('chat_id' => $chatId, 'document' => new CURLFile($path_users));
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
-		curl_setopt($ch, CURLOPT_URL, $botUrlDocument); 
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
-
-		// read curl response
-		$output = curl_exec($ch);
-		curl_close($ch);
-	}
-	
-	/*
-	$parameters = array('chat_id' => $chatId, "text" => $response);
-	$parameters["method"] = "sendMessage";
-	echo json_encode($parameters);
-	*/
-	exit();
 }
 
 //show 
@@ -1771,13 +1782,6 @@ if(strpos($text, '/show') !== false && $utenteAdmin === true)
 			$output = curl_exec($ch);
 			curl_close($ch);
 			exit();
-		}
-		elseif ($par[1] === "ranking")
-		{
-			// consente all'admin di visualizzare la classifica anche durante
-			// le pause
-			$text = "/ranking -K";
-			$eccezione=true;
 		}
 		else
 		{
