@@ -3751,6 +3751,13 @@ if(strpos($text, '/team') !== false)
 			$team  = substr($text, strpos($text, "-C ")+3);
 		
 		$team = str_replace(" ", "_", $team);
+		$team = str_replace("\n", "_", $nick);
+		$team = str_replace("@", "_", $nick);
+			
+		if (strlen($team)> 28)
+			$lunghezza_regolare=false;
+		else
+			$lunghezza_regolare=true;
 		
 		$inuso=false;
 		foreach ($myVarsArr as $key => $value)
@@ -3761,7 +3768,7 @@ if(strpos($text, '/team') !== false)
 				break;
 			}
 		}
-		if ($inuso === false) 
+		if (($inuso === false) && $lunghezza_regolare)
 		{
 			$myVarsArr[$chatId]["team"]=$team;
 			$myVarsJson = json_encode($myVarsArr);
@@ -3769,8 +3776,10 @@ if(strpos($text, '/team') !== false)
 			
 			$response = "team creato correttamente: ".$myVarsArr[$chatId]["team"];
 		}
-		else
+		else if ($inuso === false)
 			$response = "nome del team già in uso";
+		else
+			$response = "nome del team troppo lungo";
 	}
 	else if ($par[1]=="-l")
 	{
