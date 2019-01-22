@@ -1405,7 +1405,6 @@ if(strpos($text, '/export') !== false && $utenteAdmin === true)
 //users
 if(strpos($text, '/users') !== false && $utenteAdmin === true) 
 {
-	$eccezione=false;
 	$par  = explode(" ", $text);
 
 	if (!isset($par[1]))
@@ -1630,7 +1629,7 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 	
 	// l'eccezione e' utilizzata per visualizzare la classifica da parte 
 	// di admin anche quando il sistema è in pausa
-	if (!eccezione)
+	if (!$eccezione)
 	{
 		if (strlen($response)<4096)
 		{
