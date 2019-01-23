@@ -4288,7 +4288,7 @@ if(strpos($text, '/help') !== false)
 	
 	
 	// fornisce gli indizi per il livello corrente coerentemente con le abilitazioni
-	$response = $indizio[0];
+	$response = $response . $indizio[0];
 	if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] ))
 		$response = $response . "\n" . $indizio[1];
 	if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"] ))
