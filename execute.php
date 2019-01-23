@@ -4285,7 +4285,7 @@ if(strpos($text, '/help') !== false)
 	{
 		$response = "\xF0\x9F\x90\xB6" . " tornado: usa solo le parole giuste\n\n";
 	}
-	else
+	else if ($ACCURATEZZA_RISPOSTA == "elevata")
 		$response = "\xF0\x9F\x90\xB6" . "----------\n";
 	
 	
