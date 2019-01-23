@@ -1603,7 +1603,8 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 				continue;
 			
 			if(isset($value['nick']) && 
-			   ($value['livello']==$liv  && ((!isset($value['team'])) || strlen($value['team'])==0)))
+			   (($value['livello']==$liv) || ($liv==0 && !isset($value['livello']))) &&
+			   ((!isset($value['team'])) || strlen($value['team'])==0))
 			{
 				$response=$response . "\nId: " . $key;
 				if ($value['star'] > 0)
