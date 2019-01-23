@@ -833,7 +833,7 @@ if(strpos($text, '/list') !== false && $utenteAdmin === true)
 	$msg = $msg . "/lnext livello\n    avanza gli utenti del livello\n";
 	$msg = $msg . "/backup:\n    /backup 1   livelli\n    /backup 2   aiuti\n    /backup 3   admin\n    /backup 4   blacklist\n    /backup 5   anagrafica\n";
 	$msg = $msg . "/reset:\n    /reset game  [-n]\n     azzera livelli (nick)\n    /reset bot\n     azzera i file\n    /reset broadcast\n     abilita msg broadcast\n";
-	$msg = $msg . "/lset:\n    /lset Id livello\n      imposta livello di Id e team\n    /lset nick livello\n      imposta livello di nick e team\n";
+	$msg = $msg . "/lset:\n    /lset Id livello [data ora]\n      imposta livello di Id e team\n    /lset nick livello [data ora]\n      imposta livello di nick e team\n";
 	$msg = $msg . "/sset:\n    /sset Id stelle\n      imposta le stelle di Id\n    /sset nick stelle\n      imposta le stelle di nick\n";
 	$msg = $msg . "/blacklist:\n    /blacklist Id insert\n    /blacklist Id delete\n    /blacklist list\n";
 	$msg = $msg . "/show:\n    /show count\n    /show autors [autore]\n    /show enigma numero\n    /show help numero\n    /show solution numero\n";
@@ -2319,7 +2319,7 @@ if(strpos($text, '/lset') !== false && $utenteAdmin === true)
 	}
 	else
 	{
-		$response = "per impostare il livello per un utente e il suo team usa uno dei comandi\n/lset Id livello\n/lset nick livello";
+		$response = "per impostare il livello per un utente e il suo team usa uno dei comandi\n/lset Id livello [data ora]\n/lset nick livello [data ora]\n(gg/mm/aaaa hh:mm)";
 		$ch = curl_init();
 		$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response);
 		curl_setopt($ch, CURLOPT_URL, $myUrl); 
