@@ -380,6 +380,7 @@ $xml=simplexml_load_file("domande.xml") or die("Error: Cannot create object");
 $attesa_aiuto1 = isset($xml->domanda[$livello]->attesa1)?$xml->domanda[$livello]->attesa1 : 60;
 $attesa_aiuto2 = isset($xml->domanda[$livello]->attesa2)?$xml->domanda[$livello]->attesa2 : 120;
 $attesa_aiuto3 = isset($xml->domanda[$livello]->attesa3)?$xml->domanda[$livello]->attesa3 : 180;
+$accuratezza_risp__corr = isset($xml->domanda[$livello]->accuratezza)?$xml->domanda[$livello]->accuratezza : "approssimata";
 if (isset($abilitazione[$livello]["aiuto1"]))
 	$attesa_aiuto1 = $abilitazione[$livello]["aiuto1"];
 if (isset($abilitazione[$livello]["aiuto2"]))
@@ -4275,6 +4276,16 @@ if(strpos($text, '/help') !== false)
 		$output = curl_exec($ch);
 		curl_close($ch);
 	}
+	
+	if ($ACCURATEZZA_RISPOSTA == "elevata" && $accuratezza_risp_corr == "approssimata")
+	{
+		$response = "\xF0\x9F\x90\xB6" . " panoramica: puoi rispondere con una frase\n\n";
+	}
+	else if ($ACCURATEZZA_RISPOSTA == "elevata" && $accuratezza_risp_corr == "elevata")
+	{
+		$response = "\xF0\x9F\x90\xB6" . " tornado: usa solo le parole giuste\n\n";
+	}
+	
 	
 	// fornisce gli indizi per il livello corrente coerentemente con le abilitazioni
 	$response = $indizio[0];
