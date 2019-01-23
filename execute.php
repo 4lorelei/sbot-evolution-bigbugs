@@ -3086,15 +3086,17 @@ if(strcmp($text, '/stat') === 0)
 		$nometeam = "<i>giocatore singolo</i>";
 	else if (strlen($teamId)==0)
 		$nometeam = "<i>giocatore singolo</i>";
+	else if ($teamId == "giocatore singolo")
+	{
+		$nometeam = "<i>giocatore singolo</i>";
+	}
 	else
 	{
-		$nometeam = ($teamId == "giocatore singolo") ? "<i>giocatore singolo</i>" : $teamId;
-		
+		$nometeam = $teamId;
 		$nometeam = str_replace($search_sp, $replace_sp, $nometeam); 
-		//$nometeam = $teamId;
 	}
-		
-	
+
+
 	$response =  "<b>tabellino della gara</b>\n\n";
 	$response =  $response . "<b>Id:</b> " . $chatId;
 	
