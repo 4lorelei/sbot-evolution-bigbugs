@@ -269,13 +269,13 @@ else
 if (isset($amministratore['accuratezza_risposta'])=== false)
 	$ACCURATEZZA_RISPOSTA="approssimata";
 else
-	$ACCURATEZZA_RISPOSTA="elevata";
+	$ACCURATEZZA_RISPOSTA=$amministratore['accuratezza_risposta'];
 
 // imposta il tipo di gestione del clock
 if (isset($amministratore['clock'])=== false)
-	$CLOCK="senza_sospensione";
+	$CLOCK="non_si_sospende";
 else
-	$CLOCK="con_sospensione";
+	$CLOCK=$amministratore['clock'];
 
 //ottiene l'id di ADMIN e la data dell'ultimo backup
 foreach ($myVarsArr as $key => $value)
@@ -828,18 +828,18 @@ if(strpos($text, '/list') !== false && $utenteAdmin === true)
 	$msg = $msg . "/match:\n    /match start [-s]  (inizio gara)\n    /match go [-s]  (restart gara)\n    /match sleep [-s]  (in pausa)\n    /match end [-s]  (fine gara)\n    /match status   (statistiche)\n";
 	$msg = $msg . "    /match start -t [data ora]\n    /match go -t [data ora]\n    /match sleep -t [data ora]\n    /match end -t [data ora]\n";
 	$msg = $msg . "/config:\n    /config maxteam num\n    /config answer a|r\n    /config clock on|off\n";
-	$msg = $msg . "/enable:\n    /enable liv t1 t2 t3\n    /enable -liv t1 t2 t3\n    t1 t2 t3 tempi in min\n";
+	$msg = $msg . "/enable:\n    /enable liv t1 t2 t3\n    /enable -liv t1 t2 t3\n     t1 t2 t3 tempi in min\n";
 	$msg = $msg . "/identity Id | nick | team\n    identifica utente o team\n";
 	$msg = $msg . "/lnext livello\n    avanza gli utenti del livello\n";
 	$msg = $msg . "/backup:\n    /backup 1   livelli\n    /backup 2   aiuti\n    /backup 3   admin\n    /backup 4   blacklist\n    /backup 5   anagrafica\n";
-	$msg = $msg . "/reset:\n    /reset game  [-n]\n     azzera livelli (nick)\n    /reset bot\n      azzera i file\n    /reset broadcast\n     abilita msg broadcast\n";
-	$msg = $msg . "/lset:\n    /lset Id livello\n       imposta livello di Id e team\n    /lset nick livello\n       imposta livello di nick e team\n";
-	$msg = $msg . "/sset:\n    /sset Id stelle\n       imposta le stelle di Id\n    /sset nick stelle\n       imposta le stelle di nick\n";
+	$msg = $msg . "/reset:\n    /reset game  [-n]\n     azzera livelli (nick)\n    /reset bot\n     azzera i file\n    /reset broadcast\n     abilita msg broadcast\n";
+	$msg = $msg . "/lset:\n    /lset Id livello\n      imposta livello di Id e team\n    /lset nick livello\n      imposta livello di nick e team\n";
+	$msg = $msg . "/sset:\n    /sset Id stelle\n      imposta le stelle di Id\n    /sset nick stelle\n      imposta le stelle di nick\n";
 	$msg = $msg . "/blacklist:\n    /blacklist Id insert\n    /blacklist Id delete\n    /blacklist list\n";
 	$msg = $msg . "/show:\n    /show count\n    /show autors [autore]\n    /show enigma numero\n    /show help numero\n    /show solution numero\n";
 	$msg = $msg . "/users:\n    /users numero\n    /users all\n    /users ranking\n";
 	$msg = $msg . "/export\n    esporta classifica\n";
-	$msg = $msg . "/iam:\n    /iam [-s] Id comando\n       esegue comando come Id\n    /iam [-s] nick comando\n       esegue comando come nick\n";
+	$msg = $msg . "/iam:\n    /iam [-s] Id comando\n      esegue comando come Id\n    /iam [-s] nick comando\n      esegue comando come nick\n";
 	$msg = $msg . "/monitor:\n    /monitor on\n    /monitor off\n    /monitor show\n";
 	$ch = curl_init();
 	$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($msg);
@@ -1201,6 +1201,7 @@ if(strpos($text, '/match') !== false && $utenteAdmin === true)
 				$statoBroadcast="abilitato";
 			else
 				$statoBroadcast="non abilitato";
+			
 
 			// statistiche sui partecipanti
 			$tot=0;
@@ -1209,9 +1210,12 @@ if(strpos($text, '/match') !== false && $utenteAdmin === true)
 
 			foreach ($myVarsArr as $key => $value) 
 			{
-				if ($maxlivello < $value['livello'])
+				if (strlen($key) <= 1)
+				continue;
+			
+				if ($maxlivello < (int)$value['livello'])
 				{
-					$maxlivello = $value['livello'];
+					$maxlivello = (int)$value['livello'];
 				}
 				$tot++;
 			}
@@ -1231,6 +1235,11 @@ if(strpos($text, '/match') !== false && $utenteAdmin === true)
 			
 			$response = $response . $msg_cron;
 			$response = $response . "\n\nmax giocatori per team: " . $MAX_TEAM;
+			$response = $response . "\naccuratezza della risposta: " . $ACCURATEZZA_RISPOSTA;
+			
+			$gestione_clock = $CLOCK == "si_sospende" ? "gestita" : "non gestita";
+			
+			$response = $response . "\nsospensione del clock: " . $gestione_clock ;
 			$response = $response . "\n\n" . $tot . " giocatori partecipanti";
 			$response = $response . "\nlivello max raggiunto: " . $maxlivello;
 
@@ -1999,7 +2008,7 @@ if(strpos($text, '/admin') !== false && $utenteAdmin === true)
 }
 
 
-//maxteam (massimo numero di giocatori in un team)
+//config (imposta i parametri di configurazione)
 if(strpos($text, '/config') !== false && $utenteAdmin === true) 
 {	
 	if (strpos($text, " ")>0)
