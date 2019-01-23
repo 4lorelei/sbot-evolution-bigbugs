@@ -3105,7 +3105,7 @@ if(strcmp($text, '/stat') === 0)
 
     $nickId = str_replace($search_sp, $replace_sp, $nickId); 
 	
-	$response =  $response . "\n<b>nickname:</b> " . $nickId . "\n<b>team:</b> " . "<i>prova </i>" . $nometeam;
+	$response =  $response . "\n<b>nickname:</b> " . $nickId . "\n<b>team:</b> " . $nometeam;
 	$response =  $response . "\n<b>sei sul livello:</b> " . $livello . "\nraggiunto il: " . $myVarsArr[$chatId]["date"];
 	$response =  $response . $msg_prossimo_aiuto;
 	$response =  $response . "\n\n<b>numero di giocatori:</b> " . $tot . "\n    team: " . $numteam . "\n    giocatori singoli: " . $numsingle ;
