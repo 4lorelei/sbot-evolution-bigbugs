@@ -246,6 +246,7 @@ if (isset($amministratore['flag'])=== false)
 	$amministratore['flag'] = true;
 	$amministratore['stato_gioco'] = "da_avviare";
 	$amministratore['maxTeam'] = 7;
+	$amministratore['accuratezza_risposta'] = "approssimata";
 	$myAdminJson = json_encode($amministratore);
 	file_put_contents($path_admin, $myAdminJson, LOCK_EX);
 	$utenteAdmin=true;
@@ -263,6 +264,18 @@ if (isset($amministratore['maxTeam'])=== false)
 	$MAX_TEAM=7;
 else
 	$MAX_TEAM=$amministratore['maxTeam'];
+
+// imposta il tipo di gestione della risposta
+if (isset($amministratore['accuratezza_risposta'])=== false)
+	$ACCURATEZZA_RISPOSTA="approssimata";
+else
+	$ACCURATEZZA_RISPOSTA="elevata";
+
+// imposta il tipo di gestione del clock
+if (isset($amministratore['clock'])=== false)
+	$CLOCK="senza_sospensione";
+else
+	$CLOCK="con_sospensione";
 
 //ottiene l'id di ADMIN e la data dell'ultimo backup
 foreach ($myVarsArr as $key => $value)
@@ -814,7 +827,7 @@ if(strpos($text, '/list') !== false && $utenteAdmin === true)
 	$msg = $msg . "/admin Id\n    nuovo admin\n";
 	$msg = $msg . "/match:\n    /match start [-s]  (inizio gara)\n    /match go [-s]  (restart gara)\n    /match sleep [-s]  (in pausa)\n    /match end [-s]  (fine gara)\n    /match status   (statistiche)\n";
 	$msg = $msg . "    /match start -t [data ora]\n    /match go -t [data ora]\n    /match sleep -t [data ora]\n    /match end -t [data ora]\n";
-	$msg = $msg . "/maxteam num\n    max giocatori in team\n";
+	$msg = $msg . "/config:\n    /config maxteam num    max giocatori in team\n    /config answer a|r    risposta accurata o approssiamta\n    /config clock on|off    clock con sospensione\n";
 	$msg = $msg . "/enable:\n    /enable liv t1 t2 t3\n    /enable -liv t1 t2 t3\n    t1 t2 t3 tempi in min\n";
 	$msg = $msg . "/identity Id | nick | team\n    identifica utente o team\n";
 	$msg = $msg . "/lnext livello\n    avanza gli utenti del livello\n";
@@ -1985,23 +1998,74 @@ if(strpos($text, '/admin') !== false && $utenteAdmin === true)
 	exit();
 }
 
+
 //maxteam (massimo numero di giocatori in un team)
-if(strpos($text, '/maxteam') !== false && $utenteAdmin === true) 
+if(strpos($text, '/config') !== false && $utenteAdmin === true) 
 {	
 	if (strpos($text, " ")>0)
 	{
-		$num  = substr($text, strpos($text, " ") + 1);
-		if (is_numeric($num))
+		$abl  = explode(" ", $text);
+		
+		if ($abl[1] == "maxteam")
 		{
-			$amministratore['maxTeam'] = $num;
-			$myAdminJson = json_encode($amministratore);
-			file_put_contents($path_admin, $myAdminJson, LOCK_EX);
-			
-			$msg = "massimo numero di giocatori in team impostato correttamente";
+			if (is_numeric($abl[2]))
+			{
+				$amministratore['maxTeam'] = $num;
+				$myAdminJson = json_encode($amministratore);
+				file_put_contents($path_admin, $myAdminJson, LOCK_EX);
+				
+				$msg = "massimo numero di giocatori in team impostato correttamente";
+			}
+			else
+			{
+				$msg = "parametro errato\nuso del comando:\n/config maxteam num";
+			}
 		}
-		else
+		else if ($abl[1] == "answer")
 		{
-			$msg = "parametro errato\nuso del comando:\n/maxteam num";
+			if ($abl[2] == "a")
+			{
+				$amministratore['accuratezza_risposta'] = "elevata";
+				$myAdminJson = json_encode($amministratore);
+				file_put_contents($path_admin, $myAdminJson, LOCK_EX);
+				
+				$msg = "accuratezza della risposta impostata ad 'elevata'";
+			}
+			else if ($abl[2] == "r")
+			{
+				$amministratore['accuratezza_risposta'] = "approssimata";
+				$myAdminJson = json_encode($amministratore);
+				file_put_contents($path_admin, $myAdminJson, LOCK_EX);
+				
+				$msg = "accuratezza della risposta impostata ad 'approssimata'";
+			}
+			else
+			{
+				$msg = "parametro errato\nuso del comando:\n/config answer a|r";
+			}
+		}
+		else if ($abl[1] == "clock")
+		{
+			if ($abl[2] == "on")
+			{
+				$amministratore['clock'] = "si_sospende";
+				$myAdminJson = json_encode($amministratore);
+				file_put_contents($path_admin, $myAdminJson, LOCK_EX);
+				
+				$msg = "impostazione effettuata: il clock gestisce la sospensione della partita";
+			}
+			else if ($abl[2] == "r")
+			{
+				$amministratore['clock'] = "non_si_sospende";
+				$myAdminJson = json_encode($amministratore);
+				file_put_contents($path_admin, $myAdminJson, LOCK_EX);
+				
+				$msg = "impostazione effettuata: il clock non gestisce la sospensione della partita";
+			}
+			else
+			{
+				$msg = "parametro errato\nuso del comando:\n/config clock on|off";
+			}
 		}
 		
 		$ch = curl_init();
@@ -2015,7 +2079,10 @@ if(strpos($text, '/maxteam') !== false && $utenteAdmin === true)
 	}
 	else
 	{
-		$response = "per impostare il massimo numero di giocatori in team usa il comando\n/maxteam num";
+		
+	
+		$response = "uso del comando /config:\n    /config maxteam num (max giocatori in team)\n    /config answer a|r (risposta accurata o approssimata)\n    /config clock on|off  (sospensione del clock)\n";
+		
 		$ch = curl_init();
 		$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response);
 		curl_setopt($ch, CURLOPT_URL, $myUrl); 
