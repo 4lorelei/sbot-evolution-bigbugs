@@ -3103,7 +3103,7 @@ if(strcmp($text, '/stat') === 0)
 
     $nickId = str_replace($search_sp, $replace_sp, $nickId); 
 	
-	$response =  $response . "\n<b>nickname:</b> " . $nickId . "\n<b>team:</b> " . $nometeam;
+	$response =  $response . "\n<b>nickname:</b> " . $nickId . "\n<b>team:</b> " . "<i>prova </i>" . $nometeam;
 	$response =  $response . "\n<b>sei sul livello:</b> " . $livello . "\nraggiunto il: " . $myVarsArr[$chatId]["date"];
 	$response =  $response . $msg_prossimo_aiuto;
 	$response =  $response . "\n\n<b>numero di giocatori:</b> " . $tot . "\n    team: " . $numteam . "\n    giocatori singoli: " . $numsingle ;
@@ -3880,7 +3880,7 @@ if(strpos($text, '/team') !== false)
 		$team = str_replace("\n", "_", $team);
 		$team = str_replace("@", "_", $team);
 			
-		if (strlen($team)> 28 || strlen($team)==0)
+		if (strlen($team)> 36 || strlen($team)==0)
 			$lunghezza_regolare=false;
 		else
 			$lunghezza_regolare=true;
@@ -3902,7 +3902,7 @@ if(strpos($text, '/team') !== false)
 			
 			$response = "team creato correttamente: ".$myVarsArr[$chatId]["team"];
 		}
-		else if ($inuso === false)
+		else if ($inuso)
 			$response = "nome del team già in uso";
 		else
 			$response = "nome del team non valido";
@@ -4168,7 +4168,7 @@ if(strpos($text, '/nick') !== false)
 			$nick = str_replace("\n", "_", $nick);
 			$nick = str_replace("@", "_", $nick);
 			
-			if (strlen($nick)> 28 || strlen($nick)==0)
+			if (strlen($nick)> 36 || strlen($nick)==0)
 				$lunghezza_regolare=false;
 			else
 				$lunghezza_regolare=true;
