@@ -2237,7 +2237,7 @@ if(strpos($text, '/lset') !== false && $utenteAdmin === true)
 		
 		//utilizza la data corrente o quella ricevuta in input
 		if (isset($par[3]) && isset($par[4]))
-			$data_set=$par[3] . " " . $par[4]);
+			$data_set=$par[3] . " " . $par[4];
 		else
 			$data_set = $data_corrente;
 		
