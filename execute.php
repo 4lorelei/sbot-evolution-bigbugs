@@ -1581,7 +1581,7 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 			foreach ($myVarsArr as $key => $value)
 			{
 				if ($key == "")
-				continue;
+				   continue;
 				
 				if($value['team'] == $key_team)
 				{
@@ -1618,7 +1618,7 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 			$response=$response . "\n    <giocatori anonimi> (" . $tot_anonimi . ")";
 		foreach ($myVarsArr as $key => $value)
 		{
-			if ($key == "")
+			if (strlen($key) <= 1)
 				continue;
 			
 			if(!isset($value['nick']) && (($value['livello']==$liv) || ($liv==0 && !isset($value['livello']))))
