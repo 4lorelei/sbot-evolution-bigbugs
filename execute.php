@@ -2063,7 +2063,7 @@ if(strpos($text, '/config') !== false && $utenteAdmin === true)
 				
 				$msg = "impostazione effettuata: il clock gestisce la sospensione della partita";
 			}
-			else if ($abl[2] == "r")
+			else if ($abl[2] == "off")
 			{
 				$amministratore['clock'] = "non_si_sospende";
 				$myAdminJson = json_encode($amministratore);
@@ -2227,10 +2227,19 @@ if(strpos($text, '/lset') !== false && $utenteAdmin === true)
 	$par  = explode(" ", $text);
 	
 	// lset Id livello
-	if (strpos($text, " ")>0 && strpos(substr($text, strpos($text, " ")+1), " ")>0)
+    if (isset($par[1]) && isset($par[2]) && 
+	    ((!isset($par[3]) && !isset($par[4])) ||
+         (isset($par[3]) && isset($par[4]))))
+	//	if (strpos($text, " ")>0 && strpos(substr($text, strpos($text, " ")+1), " ")>0)
 	{
 		$id=(int)$par[1];
 		$nick  = $par[1];
+		
+		//utilizza la data corrente o quella ricevuta in input
+		if (isset($par[3]) && isset($par[4]))
+			$data_set=$par[3] . " " . $par[4]);
+		else
+			$data_set = $data_corrente;
 		
 		foreach ($myVarsArr as $key => $value)
 		{
@@ -2258,7 +2267,7 @@ if(strpos($text, '/lset') !== false && $utenteAdmin === true)
 			if (!isset($myVarsArr[(int)$id]['team']) || strlen($myVarsArr[$id]['team'])==0)
 			{
 				$myVarsArr[$id]['livello'] = $par[2];
-				$myVarsArr[$id]['date'] = $data_corrente;
+				$myVarsArr[$id]['date'] = $data_set;
 				
 				$msg = "il tuo livello è stato aggiornato!\ntocca il pulsante enigma per continuare";
 				$ch = curl_init();
@@ -2282,7 +2291,7 @@ if(strpos($text, '/lset') !== false && $utenteAdmin === true)
 					if ($myVarsArr[$key]["team"]===$team)
 					{
 						$myVarsArr[$key]["livello"]=$livello;
-						$myVarsArr[$key]["date"]=$data_corrente;
+						$myVarsArr[$key]["date"]=$data_set;
 						
 						$msg = "il tuo livello è stato aggiornato!\ntocca il pulsante enigma per continuare";
 						$ch = curl_init();
