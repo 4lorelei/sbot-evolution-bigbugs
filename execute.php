@@ -1235,7 +1235,7 @@ if(strpos($text, '/match') !== false && $utenteAdmin === true)
 			
 			$response = $response . $msg_cron;
 			$response = $response . "\n\nmax giocatori per team: " . $MAX_TEAM;
-			$response = $response . "\naccuratezza della risposta: " . $ACCURATEZZA_RISPOSTA;
+			$response = $response . "\naccuratezza risposta: " . $ACCURATEZZA_RISPOSTA;
 			
 			$gestione_clock = $CLOCK == "si_sospende" ? "gestita" : "non gestita";
 			
