@@ -1593,7 +1593,8 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 			$response=$response . "\n    <giocatori singoli> (" . $tot_single . ")";
 		foreach ($myVarsArr as $key => $value)
 		{
-			if(isset($value['nick']) && ($value['livello']==$liv  && ((!isset($value['team'])) || strlen($value['team'])==0))
+			if(isset($value['nick']) && 
+			   ($value['livello']==$liv  && ((!isset($value['team'])) || strlen($value['team'])==0)))
 			{
 				$response=$response . "\nId: " . $key;
 				if ($value['star'] > 0)
