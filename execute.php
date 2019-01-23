@@ -2906,24 +2906,27 @@ if(strcmp($text, '/stat') === 0)
 	$livello=(int)$myVarsArr[$chatId]['livello'];
 	foreach ($myVarsArr as $key => $value) 
 	{
+		if (strlen($key) <= 1)
+			continue;
+			   
 		if(isset($value['team']))
 		{
 			if (strlen($value['team'])>=1)
 			{
 				$elencoteam[$value['team']]['num'] = (int)$elencoteam[$value['team']]['num']+1;
-				$elencoteam[$value['team']]['livello']=$value['livello'];
+				$elencoteam[$value['team']]['livello']=(int)$value['livello'];
 			}
 			else
 			{
 				$single=isset($value['nick']) ? $value['nick'] : $key;
-				$elencosingoli[$single]=$value['livello']; 
+				$elencosingoli[$single]=(int)$value['livello']; 
 				$numsingle++;	
 			}
 		}
 		else
 		{
 			$single=isset($value['nick']) ? $value['nick'] : $key;
-			$elencosingoli[$single]=$value['livello']; 
+			$elencosingoli[$single]=(int)$value['livello']; 
 			$numsingle++;				
 		}
 		$tot++;
@@ -2938,7 +2941,7 @@ if(strcmp($text, '/stat') === 0)
 	{
 		if( (int)$elencoteam[$key]['livello'] > $livello )
 			$team_avanti++;
-		else if ( (int)$elencoteam[$key]['livello'] == $livello )
+		else if ( (int)$elencoteam[$key]['livello'] == (int)$livello )
 			$team_uguali++;
 	}
 
@@ -2948,7 +2951,7 @@ if(strcmp($text, '/stat') === 0)
 	{
 		if( (int)$value > $livello ) 
 			$singoli_avanti++;
-		else if ( (int)$value == $livello ) 
+		else if ( (int)$value == (int)$livello ) 
 			$singoli_uguali++;
 	}
 	
@@ -3105,6 +3108,9 @@ if(strpos($text, '/ranking') !== false)
 
 		foreach ($myVarsArr as $key => $value)
 		{
+			if (strlen($key) <= 1)
+				   continue;
+			   
 			if(isset($value['team']))
 			{
 				if (strlen($value['team'])>=1)
@@ -3162,6 +3168,9 @@ if(strpos($text, '/ranking') !== false)
 			
 		foreach ($myVarsArr as $key => $value)
 		{
+			if (strlen($key) <= 1)
+				   continue;
+			   
 			if(isset($value['team']))
 			{
 				if (strlen($value['team'])>=1)
@@ -3254,6 +3263,9 @@ if(strpos($text, '/ranking') !== false)
 			{
 				foreach ($myVarsArr as $key => $value)
 				{
+					if (strlen($key) <= 1)
+						continue;
+			   
 					if(isset($value['team']))
 					{
 						if (strlen($value['team'])>=1)
@@ -3302,6 +3314,9 @@ if(strpos($text, '/ranking') !== false)
 			unset($elencosingoli);
 			foreach ($myVarsArr as $key => $value)
 			{
+				if (strlen($key) <= 1)
+				   continue;
+			   
 				if(isset($value['team']))
 				{
 					if ((strlen($value['team'])>=1) && (($value['livello'] == $liv) || (!isset($value['livello']) && $liv==0)))  //giocatori nel team
