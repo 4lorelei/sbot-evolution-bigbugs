@@ -1540,7 +1540,7 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 		unset($elencosingoli);
 		foreach ($myVarsArr as $key => $value)
 		{
-			if ($key == "")
+			if (strlen($key) <= 1)
 				continue;
 			
 			if(isset($value['team']))
@@ -1580,7 +1580,7 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 		{	
 			foreach ($myVarsArr as $key => $value)
 			{
-				if ($key == "")
+				if (strlen($key) <= 1)
 				   continue;
 				
 				if($value['team'] == $key_team)
@@ -1599,7 +1599,7 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 			$response=$response . "\n    <giocatori singoli> (" . $tot_single . ")";
 		foreach ($myVarsArr as $key => $value)
 		{
-			if ($key == "")
+			if (strlen($key) <= 1)
 				continue;
 			
 			if(isset($value['nick']) && 
