@@ -4277,16 +4277,16 @@ if(strpos($text, '/help') !== false)
 		curl_close($ch);
 	}
 	
-	if ($ACCURATEZZA_RISPOSTA == "elevata" && $accuratezza_risp_corr == "approssimata")
+	if ($ACCURATEZZA_RISPOSTA == "elevata" && $accuratezza_risp_corr == "approssimata" && ($livello > 0) )
 	{
-		$response = "\xF0\x9F\x90\xB6" . " panoramica: puoi rispondere con una frase\n\n";
+		$response = "\xF0\x9F\x8E\xA1" . " panoramica: rispondi con una frase\n\n";
 	}
-	else if ($ACCURATEZZA_RISPOSTA == "elevata" && $accuratezza_risp_corr == "elevata")
+	else if ($ACCURATEZZA_RISPOSTA == "elevata" && $accuratezza_risp_corr == "elevata" && ($livello > 0) )
 	{
 		$response = "\xF0\x9F\x90\xB6" . " tornado: usa solo le parole giuste\n\n";
 	}
-	else if ($ACCURATEZZA_RISPOSTA == "elevata")
-		$response = "\xF0\x9F\x90\xB6" . $accuratezza_risp_corr . "----------\n";
+	else 
+		$response = "";
 	
 	
 	// fornisce gli indizi per il livello corrente coerentemente con le abilitazioni
