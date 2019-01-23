@@ -1540,6 +1540,9 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 		unset($elencosingoli);
 		foreach ($myVarsArr as $key => $value)
 		{
+			if ($key == "")
+				continue;
+			
 			if(isset($value['team']))
 			{
 				if ((strlen($value['team'])>=1) && (($value['livello']==$liv) ||
@@ -1577,6 +1580,9 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 		{	
 			foreach ($myVarsArr as $key => $value)
 			{
+				if ($key == "")
+				continue;
+				
 				if($value['team'] == $key_team)
 				{
 					$response=$response . "\nId: " . $key;
@@ -1593,6 +1599,9 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 			$response=$response . "\n    <giocatori singoli> (" . $tot_single . ")";
 		foreach ($myVarsArr as $key => $value)
 		{
+			if ($key == "")
+				continue;
+			
 			if(isset($value['nick']) && 
 			   ($value['livello']==$liv  && ((!isset($value['team'])) || strlen($value['team'])==0)))
 			{
@@ -1609,6 +1618,9 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 			$response=$response . "\n    <giocatori anonimi> (" . $tot_anonimi . ")";
 		foreach ($myVarsArr as $key => $value)
 		{
+			if ($key == "")
+				continue;
+			
 			if(!isset($value['nick']) && (($value['livello']==$liv) || ($liv==0 && !isset($value['livello']))))
 			{
 				$response=$response . "\nId: " . $key;
