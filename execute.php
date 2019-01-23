@@ -4279,11 +4279,11 @@ if(strpos($text, '/help') !== false)
 	
 	if ($ACCURATEZZA_RISPOSTA == "elevata" && $accuratezza_risp_corr == "approssimata" && ($livello > 0) )
 	{
-		$response = "\xF0\x9F\x8E\xA1" . " panoramica: rispondi con una frase\n\n";
+		$response = "\xF0\x9F\x8E\xA1" . " <b><i>panoramica: rispondi con una frase</i></b>\n\n";
 	}
 	else if ($ACCURATEZZA_RISPOSTA == "elevata" && $accuratezza_risp_corr == "elevata" && ($livello > 0) )
 	{
-		$response = "\xF0\x9F\x90\xB6" . " tornado: usa solo le parole giuste\n\n";
+		$response = "\xF0\x9F\x8E\xA2" . " <b><i>tornado: usa solo le parole giuste</i></b>\n\n";
 	}
 	else 
 		$response = "";
