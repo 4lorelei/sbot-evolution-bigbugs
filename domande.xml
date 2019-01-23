@@ -34,6 +34,7 @@ Tocca il pulsante "indizi" per continuare.
 		<tipo>immagine</tipo>
 		<risorsa>immagini/colibrì.jpg</risorsa>
 		<risposta>madre</risposta>
+		<accuratezza>approssimata</accuratezza>
 		<indizio0>nel nido su un albero vivono due colibrì, uno grande e l'altro piccolo: il più piccolo è il figlio del colibrì più grande, ma questo non è suo padre; chi è allora?</indizio0>
 		<indizio1>il colibrì è l'uccello più piccolo del mondo; ne è stato misurato uno di 5 cm di lunghezza per 1,6 grammi di peso</indizio1>
 		<indizio2>riesce a sostare immobile sospeso grazie a un battito d’ali velocissimo</indizio2>
@@ -48,6 +49,7 @@ Tocca il pulsante "indizi" per continuare.
 		<tipo>immagine</tipo>
 		<risorsa>immagini/rebus.png</risorsa>
 		<risposta>nobel peace prize</risposta>
+		<accuratezza>elevata</accuratezza>
 		<indizio0>risolvi il rebus in lingua inglese</indizio0>
 		<indizio1>usa parole inglesi per le immagini</indizio1>
 		<indizio2>sostituisci la lettera indicata</indizio2>
