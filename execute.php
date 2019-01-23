@@ -1582,7 +1582,7 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 					$response=$response . "\nId: " . $key;
 					if ($value['star'] > 0)
 						$response=$response . " (" . $value['star'] . unichr($star_code) . ")";
-				$response=$response	. "\n    nick: " . $value['nick'] . "\n    team: " . $value['team'];
+					$response=$response	. "\n    nick: " . $value['nick'] . "\n    team: " . $value['team'];
 				}
 			}
 		}
@@ -1593,7 +1593,7 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 			$response=$response . "\n    <giocatori singoli> (" . $tot_single . ")";
 		foreach ($myVarsArr as $key => $value)
 		{
-			if(isset($value['nick']) && $value['livello']==$liv  && ((!isset($value['team'])) || strlen($value['team'])==0))
+			if(isset($value['nick']) && ($value['livello']==$liv  && ((!isset($value['team'])) || strlen($value['team'])==0))
 			{
 				$response=$response . "\nId: " . $key;
 				if ($value['star'] > 0)
@@ -1608,7 +1608,7 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 			$response=$response . "\n    <giocatori anonimi> (" . $tot_anonimi . ")";
 		foreach ($myVarsArr as $key => $value)
 		{
-			if(!isset($value['nick']) && ($liv==0 && !isset($value['livello'])))
+			if(!isset($value['nick']) && (($value['livello']==$liv) || ($liv==0 && !isset($value['livello']))))
 			{
 				$response=$response . "\nId: " . $key;
 				if ($value['star'] > 0)
