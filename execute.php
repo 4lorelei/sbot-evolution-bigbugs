@@ -827,7 +827,7 @@ if(strpos($text, '/list') !== false && $utenteAdmin === true)
 	$msg = $msg . "/admin Id\n    nuovo admin\n";
 	$msg = $msg . "/match:\n    /match start [-s]  (inizio gara)\n    /match go [-s]  (restart gara)\n    /match sleep [-s]  (in pausa)\n    /match end [-s]  (fine gara)\n    /match status   (statistiche)\n";
 	$msg = $msg . "    /match start -t [data ora]\n    /match go -t [data ora]\n    /match sleep -t [data ora]\n    /match end -t [data ora]\n";
-	$msg = $msg . "/config:\n    /config maxteam num    max giocatori in team\n    /config answer a|r    risposta accurata o approssiamta\n    /config clock on|off    clock con sospensione\n";
+	$msg = $msg . "/config:\n    /config maxteam num\n    /config answer a|r\n    /config clock on|off\n";
 	$msg = $msg . "/enable:\n    /enable liv t1 t2 t3\n    /enable -liv t1 t2 t3\n    t1 t2 t3 tempi in min\n";
 	$msg = $msg . "/identity Id | nick | team\n    identifica utente o team\n";
 	$msg = $msg . "/lnext livello\n    avanza gli utenti del livello\n";
@@ -2010,7 +2010,7 @@ if(strpos($text, '/config') !== false && $utenteAdmin === true)
 		{
 			if (is_numeric($abl[2]))
 			{
-				$amministratore['maxTeam'] = $num;
+				$amministratore['maxTeam'] = (int)$abl[2];
 				$myAdminJson = json_encode($amministratore);
 				file_put_contents($path_admin, $myAdminJson, LOCK_EX);
 				
@@ -2081,7 +2081,7 @@ if(strpos($text, '/config') !== false && $utenteAdmin === true)
 	{
 		
 	
-		$response = "uso del comando /config:\n    /config maxteam num (max giocatori in team)\n    /config answer a|r (risposta accurata o approssimata)\n    /config clock on|off  (sospensione del clock)\n";
+		$response = "uso del comando /config:\n    /config maxteam num\n      (max giocatori in team)\n    /config answer a|r\n      (risposta accurata o approssimata)\n    /config clock on|off\n      (sospensione del clock)\n";
 		
 		$ch = curl_init();
 		$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response);
