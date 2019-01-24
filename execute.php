@@ -1256,7 +1256,7 @@ if(strpos($text, '/match') !== false && $utenteAdmin === true)
 			$gestione_clock = ($CLOCK == "si_sospende") ? "gestita" : "non gestita";
 			$response = $response . "\nsospensione del clock: " . $gestione_clock ;
 			
-			$gestione_team = ($VARIAZIONE_TEAM == -1) ? "sempre consentita" : "fino al liv ".$VARIAZIONE_TEAM . " incluso";
+			$gestione_team = ($VARIAZIONE_TEAM == -1) ? "sempre consentita" : "fino al liv ".$VARIAZIONE_TEAM . " incl";
 			$response = $response . "\ngestione del team: " . $gestione_team;
 			
 			$response = $response . "\ncomando zero: " . $COMANDO_ZERO;
@@ -3916,7 +3916,7 @@ if (($statoGioco=="terminato") && !$eccezione)
 if(strpos($text, '/team') !== false)
 {
 	
-	if ($VARIAZIONE_TEAM >= 0 && $liv_curr > $VARIAZIONE_TEAM)
+	if ($VARIAZIONE_TEAM >= 0 && $livello > $VARIAZIONE_TEAM)
 	{
 		$response = "la gestione del team non è consentita oltre il livello ". $VARIAZIONE_TEAM;
 	}
