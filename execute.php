@@ -2268,7 +2268,7 @@ if(strpos($text, '/lset') !== false && $utenteAdmin === true)
 		{
 			if (!isset($myVarsArr[(int)$id]['team']) || strlen($myVarsArr[$id]['team'])==0)
 			{
-				$myVarsArr[$id]['livello'] = $par[2];
+				$myVarsArr[$id]['livello'] = (string)$par[2];
 				$myVarsArr[$id]['date'] = $data_set;
 				
 				$msg = "il tuo livello è stato aggiornato!\ntocca il pulsante enigma per continuare";
@@ -2285,7 +2285,7 @@ if(strpos($text, '/lset') !== false && $utenteAdmin === true)
 			}
 			else
 			{
-				$livello=$par[2];
+				$livello=(string)$par[2];
 				$team=$myVarsArr[(int)$id]['team'];
 				
 				foreach ($myVarsArr as $key => $value)
@@ -2987,7 +2987,6 @@ if(strcmp($text, '/stat') === 0)
 	$nprimi=0;
 	$maxlivello=0;
 	$primo=$nickId;
-
 	$numsingle=0;
 	$tot=0;
 	$livello=(int)$myVarsArr[$chatId]['livello'];
@@ -3128,6 +3127,7 @@ if(strcmp($text, '/stat') === 0)
 		$response =  $response . "\nsul tuo livello " . $tot . " concorrente";
 	else
 		$response =  $response . "\nsul tuo livello " . $tot . " concorrenti";
+
 		
 	$ch = curl_init();
 	$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response)."&parse_mode=HTML";
@@ -4295,13 +4295,11 @@ if(strpos($text, '/help') !== false)
 	{
 		// fornisce gli indizi per il livello corrente coerentemente con le abilitazioni
 		if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] ))
-			$response = $response . "\n" . $indizio[1];
+			$response = $response . "\n" . $indizio[1]. "\n";
 		if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"] ))
-			$response = $response . "\n" . $indizio[2];
+			$response = $response . "\n" . $indizio[2]. "\n";
 		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] ))
-			$response = $response . "\n" . $indizio[3];
-		
-		$response = $response . "\n";
+			$response = $response . "\n" . $indizio[3]. "\n";
 	}
 
 			
