@@ -4293,6 +4293,8 @@ if(strpos($text, '/help') !== false)
 	
 	if ($tipo_risp_corr == "sequenza")
 	{
+		$risorsa = (String)($xml->domanda[$livello]->risorsa);
+		
 		if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] ))
 		{
 			$risorsa1=$risorsa & "-1";
