@@ -247,6 +247,8 @@ if (isset($amministratore['flag'])=== false)
 	$amministratore['stato_gioco'] = "da_avviare";
 	$amministratore['maxTeam'] = 7;
 	$amministratore['accuratezza_risposta'] = "approssimata";
+	$amministratore['variazione_team'] = -1; //sempre consentita
+	$amministratore['comando_zero'] = "abilitato";
 	$myAdminJson = json_encode($amministratore);
 	file_put_contents($path_admin, $myAdminJson, LOCK_EX);
 	$utenteAdmin=true;
@@ -276,6 +278,18 @@ if (isset($amministratore['clock'])=== false)
 	$CLOCK="non_si_sospende";
 else
 	$CLOCK=$amministratore['clock'];
+
+// imposta il tipo di gestione del comando /zero
+if (isset($amministratore['comando_zero'])=== false)
+	$COMANDO_ZERO="abilitato";
+else
+	$COMANDO_ZERO=$amministratore['comando_zero'];
+
+// impedisce di variare il team oltre un certo livello (-1 disabilitato)
+if (isset($amministratore['variazione_team'])=== false)
+	$VARIAZIONE_TEAM=-1;
+else
+	$VARIAZIONE_TEAM=$amministratore['variazione_team'];
 
 //ottiene l'id di ADMIN e la data dell'ultimo backup
 foreach ($myVarsArr as $key => $value)
@@ -829,7 +843,7 @@ if(strpos($text, '/list') !== false && $utenteAdmin === true)
 	$msg = $msg . "/admin Id\n    nuovo admin\n";
 	$msg = $msg . "/match:\n    /match start [-s]  (inizio gara)\n    /match go [-s]  (restart gara)\n    /match sleep [-s]  (in pausa)\n    /match end [-s]  (fine gara)\n    /match status   (statistiche)\n";
 	$msg = $msg . "    /match start -t [data ora]\n    /match go -t [data ora]\n    /match sleep -t [data ora]\n    /match end -t [data ora]\n";
-	$msg = $msg . "/config:\n    /config maxteam num\n    /config answer a|r\n    /config clock on|off\n";
+	$msg = $msg . "/config:\n    /config maxteam num\n    /config answer a|r\n    /config clock on|off\n    /config managetean liv\n    /config zerocmd on|off\n";
 	$msg = $msg . "/enable:\n    /enable liv t1 t2 t3\n    /enable -liv t1 t2 t3\n     t1 t2 t3 tempi in min\n";
 	$msg = $msg . "/identity Id | nick | team\n    identifica utente o team\n";
 	$msg = $msg . "/lnext livello\n    avanza gli utenti del livello\n";
@@ -2003,7 +2017,6 @@ if(strpos($text, '/admin') !== false && $utenteAdmin === true)
 		// read curl response
 		$output = curl_exec($ch);
 		curl_close($ch);
-		
 	}
 	
 	exit();
@@ -2078,6 +2091,54 @@ if(strpos($text, '/config') !== false && $utenteAdmin === true)
 				$msg = "parametro errato\nuso del comando:\n/config clock on|off";
 			}
 		}
+		else if ($abl[1] == "manageteam")
+		{
+			if (is_numeric($abl[2]))
+			{
+				// max livello in cui è consentita la variazione del team (-1 sempre)				
+				$amministratore['variazione_team'] = (int)$abl[2];
+				$myAdminJson = json_encode($amministratore);
+				file_put_contents($path_admin, $myAdminJson, LOCK_EX);
+				
+				if ((int)$abl[2] == -1)
+				   $msg = "impostazione effettuata: è possibile variare la composizione del team durante tutta la gara";
+			    else
+					$msg = "impostazione effettuata: è possibile variare la composizione del team fino al livello ".$abl[2]." compreso";
+			}
+			else
+			{
+				$msg = "parametro errato\nuso del comando:\n/config manageteam liv (-1 sempre)";
+			}
+		}
+		
+		else if ($abl[1] == "zerocmd")
+		{
+				
+			if ($abl[2] == "on")
+			{
+				$amministratore['comando_zero'] = "abilitato";
+				$myAdminJson = json_encode($amministratore);
+				file_put_contents($path_admin, $myAdminJson, LOCK_EX);
+				
+				$msg = "impostazione effettuata: il clock gestisce la sospensione della partita";
+			}
+			else if ($abl[2] == "off")
+			{
+				$amministratore['comando_zero'] = "disabilitato";
+				$myAdminJson = json_encode($amministratore);
+				file_put_contents($path_admin, $myAdminJson, LOCK_EX);
+				
+				$msg = "impostazione effettuata: il clock non gestisce la sospensione della partita";
+			}
+			else
+			{
+				$msg = "parametro errato\nuso del comando:\n/config zerocmd on|off";
+			}
+		}
+		else 
+		{
+			$msg = "parametro errato\n";
+		}
 		
 		$ch = curl_init();
 		$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($msg);
@@ -2092,7 +2153,7 @@ if(strpos($text, '/config') !== false && $utenteAdmin === true)
 	{
 		
 	
-		$response = "uso del comando /config:\n    /config maxteam num\n      (max giocatori in team)\n    /config answer a|r\n      (risposta accurata o approssimata)\n    /config clock on|off\n      (sospensione del clock)\n";
+		$response = "uso del comando /config:\n    /config maxteam num\n      (max giocatori in team)\n    /config answer a|r\n      (risposta accurata o approssimata)\n    /config clock on|off\n      (sospensione del clock)\n    /config manageteam liv\n      (variazione team; -1 sempre)\n    /config zerocmd on|off\n      (abilita comando zero)\n";
 		
 		$ch = curl_init();
 		$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response);
