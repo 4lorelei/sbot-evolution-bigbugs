@@ -2125,7 +2125,7 @@ if(strpos($text, '/config') !== false && $utenteAdmin === true)
 				$myAdminJson = json_encode($amministratore);
 				file_put_contents($path_admin, $myAdminJson, LOCK_EX);
 				
-				$msg = "impostazione effettuata: il clock gestisce la sospensione della partita";
+				$msg = "impostazione effettuata: il comando 'zero' è abilitato";
 			}
 			else if ($abl[2] == "off")
 			{
@@ -2133,7 +2133,7 @@ if(strpos($text, '/config') !== false && $utenteAdmin === true)
 				$myAdminJson = json_encode($amministratore);
 				file_put_contents($path_admin, $myAdminJson, LOCK_EX);
 				
-				$msg = "impostazione effettuata: il clock non gestisce la sospensione della partita";
+				$msg = "impostazione effettuata: il comando 'zero' è disabilitato";
 			}
 			else
 			{
@@ -3837,45 +3837,49 @@ if(strpos($text, '/menu') !== false)
 
 //zero (azzera i livelli dell'utente) ***********
 if(strpos($text, '/zero') !== false) 
-{	
-	$par  = explode(" ", $text);
-	
-	$myVarsArr[$chatId]["livello"]=0;
-	$myVarsArr[$chatId]["date"]=$data_corrente;
-	
-	$team = $myVarsArr[$chatId]["team"];
-	if (strlen($team)>=1)
+{
+	if ($COMANDO_ZERO == "abilitato")
 	{
-		foreach ($myVarsArr as $key => $value)
+		$par  = explode(" ", $text);
+		
+		$myVarsArr[$chatId]["livello"]=0;
+		$myVarsArr[$chatId]["date"]=$data_corrente;
+		
+		$team = $myVarsArr[$chatId]["team"];
+		if (strlen($team)>=1)
 		{
-			if ($myVarsArr[$key]["team"]===$team)
+			foreach ($myVarsArr as $key => $value)
 			{
-				if ($key !== $chatId)
+				if ($myVarsArr[$key]["team"]===$team)
 				{
-					$myVarsArr[$key]["livello"]=0;
-					$myVarsArr[$key]["date"]=$data_corrente;
-					
-					$msg = $nickId . " ha azzerato il livello di gioco del team";
-					$ch = curl_init();
-					$myUrl=$botUrlMessage . "?chat_id=" . $key . "&text=" . urlencode($msg);
-					curl_setopt($ch, CURLOPT_URL, $myUrl); 
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-					
-					// read curl response
-					$output = curl_exec($ch);
-					curl_close($ch);
+					if ($key !== $chatId)
+					{
+						$myVarsArr[$key]["livello"]=0;
+						$myVarsArr[$key]["date"]=$data_corrente;
+						
+						$msg = $nickId . " ha azzerato il livello di gioco del team";
+						$ch = curl_init();
+						$myUrl=$botUrlMessage . "?chat_id=" . $key . "&text=" . urlencode($msg);
+						curl_setopt($ch, CURLOPT_URL, $myUrl); 
+						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+						
+						// read curl response
+						$output = curl_exec($ch);
+						curl_close($ch);
+					}
 				}
 			}
+			$msg="il livello di gioco del tuo team è stato azzerato";
 		}
-		$msg="il livello di gioco del tuo team è stato azzerato";
+		else
+		{
+			$msg="il tuo livello di gioco è stato azzerato";
+		}
+		$myVarsJson = json_encode($myVarsArr);
+		file_put_contents($path, $myVarsJson, LOCK_EX);
 	}
 	else
-	{
-		$msg="il tuo livello di gioco è stato azzerato";
-	}
-	$myVarsJson = json_encode($myVarsArr);
-	file_put_contents($path, $myVarsJson, LOCK_EX);
-		
+		$msg="il comando 'zero' non è abilitato";
 
 	$ch = curl_init();
 	$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($msg);
