@@ -3919,11 +3919,8 @@ if (($statoGioco=="terminato") && !$eccezione)
 if(strpos($text, '/team') !== false)
 {
 	
-	if ($VARIAZIONE_TEAM >= 0 && $livello > $VARIAZIONE_TEAM)
-	{
-		$response = "la gestione del team non è consentita oltre il livello ". $VARIAZIONE_TEAM;
-	}
-	else if ($par[1]=="-l")
+	
+	if ($par[1]=="-l")
 	{
 		$team = $myVarsArr[$chatId]["team"]; 
 		if (!isset($team))
@@ -3949,6 +3946,10 @@ if(strpos($text, '/team') !== false)
 				}
 			}
 		}
+	}
+	else if ($VARIAZIONE_TEAM >= 0 && $livello > $VARIAZIONE_TEAM)
+	{
+		$response = "la gestione del team non è consentita oltre il livello ". $VARIAZIONE_TEAM;
 	}
 	else
 	{
