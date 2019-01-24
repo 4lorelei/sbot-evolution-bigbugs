@@ -2268,7 +2268,7 @@ if(strpos($text, '/lset') !== false && $utenteAdmin === true)
 		{
 			if (!isset($myVarsArr[(int)$id]['team']) || strlen($myVarsArr[$id]['team'])==0)
 			{
-				$myVarsArr[$id]['livello'] = (string)$par[2];
+				$myVarsArr[$id]['livello'] = (int)$par[2];
 				$myVarsArr[$id]['date'] = $data_set;
 				
 				$msg = "il tuo livello è stato aggiornato!\ntocca il pulsante enigma per continuare";
@@ -2285,7 +2285,7 @@ if(strpos($text, '/lset') !== false && $utenteAdmin === true)
 			}
 			else
 			{
-				$livello=(string)$par[2];
+				$livello=(int)$par[2];
 				$team=$myVarsArr[(int)$id]['team'];
 				
 				foreach ($myVarsArr as $key => $value)
