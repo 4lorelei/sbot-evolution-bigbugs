@@ -4290,55 +4290,7 @@ if(strpos($text, '/help') !== false)
 		$response = "";
 	
 	
-	
-	if ($tipo_risp_corr == "sequenza")
-	{
-		$risorsa = (String)($xml->domanda[$livello]->risorsa);
-		$risorsa1=str_replace(".", "-1.", $risorsa);
-		$risorsa2=str_replace(".", "-2.", $risorsa);
-		$risorsa3=str_replace(".", "-3.", $risorsa);
-		
-		if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] ))
-		{
-			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa1")));
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
-			curl_setopt($ch, CURLOPT_URL, $botUrl); 
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
-			
-			// read curl response
-			$output = curl_exec($ch);
-		}
-		if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"] ))
-		{
-			sleep(2);
-			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa2")));
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
-			curl_setopt($ch, CURLOPT_URL, $botUrl); 
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
-			
-			// read curl response
-			$output = curl_exec($ch);
-		}
-		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] ))
-		{
-			sleep(2);
-			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa3")));
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
-			curl_setopt($ch, CURLOPT_URL, $botUrl); 
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
-			
-			// read curl response
-			$output = curl_exec($ch);
-		}
-		
-	}
-	else
+	if (!($tipo_risp_corr == "sequenza"))
 	{
 		// fornisce gli indizi per il livello corrente coerentemente con le abilitazioni
 		$response = $response . $indizio[0];
@@ -4348,21 +4300,22 @@ if(strpos($text, '/help') !== false)
 			$response = $response . "\n" . $indizio[2];
 		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] ))
 			$response = $response . "\n" . $indizio[3];
+		
+		$response = $response . "\n\n";
 	}
 
 			
-	
 	//prossimo aiuto
 	if (($livello > 0) && ($statoGioco != "terminato"))
 	{
 		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"]))
-			$msg_prossimo_aiuto = "\n\n<i>tutti gli indizi del livello sono abilitati</i>";
+			$msg_prossimo_aiuto = "<i>tutti gli indizi del livello sono abilitati</i>";
 		else if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"]))
-			$msg_prossimo_aiuto = "\n\n<i>prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto3, $myVarsArr[$chatId]["date"]) . "</i>";
+			$msg_prossimo_aiuto = "<i>prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto3, $myVarsArr[$chatId]["date"]) . "</i>";
 		else if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"]))
-			$msg_prossimo_aiuto = "\n\n<i>prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto2, $myVarsArr[$chatId]["date"]). "</i>";
+			$msg_prossimo_aiuto = "<i>prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto2, $myVarsArr[$chatId]["date"]). "</i>";
 		else 
-			$msg_prossimo_aiuto = "\n\n<i>prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$chatId]["date"]). "</i>";
+			$msg_prossimo_aiuto = "<i>prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$chatId]["date"]). "</i>";
 	}
 	
 	$response = $response . $msg_prossimo_aiuto;
@@ -4376,6 +4329,56 @@ if(strpos($text, '/help') !== false)
 	// read curl response
 	$output = curl_exec($ch);
 	curl_close($ch);
+	
+	if ($tipo_risp_corr == "sequenza")
+	{
+		$risorsa = (String)($xml->domanda[$livello]->risorsa);
+		$risorsa1=str_replace(".", "-1.", $risorsa);
+		$risorsa2=str_replace(".", "-2.", $risorsa);
+		$risorsa3=str_replace(".", "-3.", $risorsa);
+		
+		if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] ))
+		{
+			sleep(1);
+			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa1")));
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+			curl_setopt($ch, CURLOPT_URL, $botUrl); 
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+			
+			// read curl response
+			$output = curl_exec($ch);
+		}
+		if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"] ))
+		{
+			sleep(1);
+			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa2")));
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+			curl_setopt($ch, CURLOPT_URL, $botUrl); 
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+			
+			// read curl response
+			$output = curl_exec($ch);
+		}
+		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] ))
+		{
+			sleep(1);
+			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa3")));
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+			curl_setopt($ch, CURLOPT_URL, $botUrl); 
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+			
+			// read curl response
+			$output = curl_exec($ch);
+		}
+		
+	}
+	
 	exit();
 		
 /*
