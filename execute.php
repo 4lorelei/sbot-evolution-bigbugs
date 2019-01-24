@@ -3193,8 +3193,11 @@ if(strcmp($text, '/stat') === 0)
 		$response =  $response . "\nsul tuo livello " . $tot . " concorrente";
 	else
 		$response =  $response . "\nsul tuo livello " . $tot . " concorrenti";
+	
+	if ($VARIAZIONE_TEAM >=0)
+		$response =  $response . "\n\nla gestione del team è possibile fino al livello " . $VARIAZIONE_TEAM . " incluso";
+	
 
-		
 	$ch = curl_init();
 	$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response)."&parse_mode=HTML";
 	curl_setopt($ch, CURLOPT_URL, $myUrl); 
@@ -3920,6 +3923,33 @@ if(strpos($text, '/team') !== false)
 	{
 		$response = "la gestione del team non è consentita oltre il livello ". $VARIAZIONE_TEAM;
 	}
+	else if ($par[1]=="-l")
+	{
+		$team = $myVarsArr[$chatId]["team"]; 
+		if (!isset($team))
+		{
+			$response = "gareggi come singolo giocatore";
+		}
+		else if (strlen($team)==0) 
+		{
+			$response = "non risulti associato a nessun team\nla tua utenza risulta sbloccata e può essere associata ad un team già esistente";
+		}
+		else 
+		{
+			$response = "sei associato al team " . $team . "\n\ncompisizione del team:\n";
+
+			foreach ($myVarsArr as $key => $value)
+			{
+				if ($myVarsArr[$key]["team"]==$team)
+				{
+					$response = $response . $myVarsArr[$key]["nick"];
+					if ((int)$myVarsArr[$key]['star'] > 0)
+						$response = $response . " (" . (int)$myVarsArr[$key]['star'] . unichr($star_code) . ")";
+					$response = $response . "\n";
+				}
+			}
+		}
+	}
 	else
 	{
 		// imposta il team
@@ -3988,33 +4018,7 @@ if(strpos($text, '/team') !== false)
 			else
 				$response = "nome del team non valido";
 		}
-		else if ($par[1]=="-l")
-		{
-			$team = $myVarsArr[$chatId]["team"]; 
-			if (!isset($team))
-			{
-				$response = "gareggi come singolo giocatore";
-			}
-			else if (strlen($team)==0) 
-			{
-				$response = "non risulti associato a nessun team\nla tua utenza risulta sbloccata e può essere associata ad un team già esistente";
-			}
-			else 
-			{
-				$response = "sei associato al team " . $team . "\n\ncompisizione del team:\n";
-
-				foreach ($myVarsArr as $key => $value)
-				{
-					if ($myVarsArr[$key]["team"]==$team)
-					{
-						$response = $response . $myVarsArr[$key]["nick"];
-						if ((int)$myVarsArr[$key]['star'] > 0)
-							$response = $response . " (" . (int)$myVarsArr[$key]['star'] . unichr($star_code) . ")";
-						$response = $response . "\n";
-					}
-				}
-			}
-		}
+		
 		else if ($par[1]=="-r" && !isset($myVarsArr[$chatId]["nick"]))
 		{	
 			$response = "per sbloccare l'utenza devi prima impostare il nickname";
