@@ -4295,6 +4295,7 @@ if(strpos($text, '/help') !== false)
 	{
 		if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] ))
 		{
+			$risorsa1=$risorsa & "-1";
 			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa1")));
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
@@ -4308,6 +4309,7 @@ if(strpos($text, '/help') !== false)
 		if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"] ))
 		{
 			sleep(2);
+			$risorsa2=$risorsa & "-2";
 			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa2")));
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
@@ -4321,6 +4323,7 @@ if(strpos($text, '/help') !== false)
 		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] ))
 		{
 			sleep(2);
+			$risorsa3=$risorsa & "-3";
 			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa3")));
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
