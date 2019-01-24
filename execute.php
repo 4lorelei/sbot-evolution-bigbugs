@@ -1256,7 +1256,7 @@ if(strpos($text, '/match') !== false && $utenteAdmin === true)
 			$gestione_clock = ($CLOCK == "si_sospende") ? "gestita" : "non gestita";
 			$response = $response . "\nsospensione del clock: " . $gestione_clock ;
 			
-			$gestione_team = ($VARIAZIONE_TEAM == -1) ? "sempre consentita" : "fino al livello ".$VARIAZIONE_TEAM . " incluso";
+			$gestione_team = ($VARIAZIONE_TEAM == -1) ? "sempre consentita" : "fino al liv ".$VARIAZIONE_TEAM . " incluso";
 			$response = $response . "\ngestione del team: " . $gestione_team;
 			
 			$response = $response . "\ncomando zero: " . $COMANDO_ZERO;
@@ -3915,214 +3915,192 @@ if (($statoGioco=="terminato") && !$eccezione)
 //team imposta il team
 if(strpos($text, '/team') !== false)
 {
-	// imposta il team
-	$par  = explode(" ", $text);
 	
-	if (!isset($par[1]))
+	if ($VARIAZIONE_TEAM >= 0 && $liv_curr > $VARIAZIONE_TEAM)
 	{
-		$response = "uso del comando /team\n    /team -l  (dettagli sul team)\n    /team -c mio-team  (crea il team)\n    /team -r  (per essere aggiunti in un team)\n    /team -s  (singolo giocatore)\n    /team -a nickname  (aggiunge al team)";
+		$response = "la gestione del team non è consentita oltre il livello ". $VARIAZIONE_TEAM;
 	}
-	else if (($par[1]=="-c") && strlen($myVarsArr[$chatId]["team"])>=1)
+	else
 	{
-		$response = "sei già associato ad un team\nper creare un nuovo team esegui prima /team -c";
-	}
-	else if (($par[1]=="-C") && strlen($myVarsArr[$chatId]["team"])>=1)
-	{
-		$response = "sei già associato ad un team\nper crearne uno, devi prima uscire dal tuo team";
-	}
-	else if ((($par[1]=="-C") || ($par[1]=="-C")) && isset($par[2]) && !isset($myVarsArr[$chatId]["nick"]))
-	{
-		$response = "per creare un team devi prima impostare il nickname";
-	}
-	else if ((($par[1]=="-c") || ($par[1]=="-C")) && (!isset($par[2])))
-	{
-		unset($myVarsArr[$chatId]["team"]);
-		$myVarsJson = json_encode($myVarsArr);
-		file_put_contents($path, $myVarsJson, LOCK_EX);
-		
-		$response = "gareggi come singolo giocatore";
-	}
-	else if (($par[1]=="-c")||($par[1]=="-C"))
-	{
-		
-		if ($par[1]=="-c")
-			$team  = substr($text, strpos($text, "-c ")+3);
-		else
-			$team  = substr($text, strpos($text, "-C ")+3);
-		
-		$team = str_replace(" ", "_", $team);
-		$team = str_replace("\n", "_", $team);
-		$team = str_replace("@", "_", $team);
-			
-		if (strlen($team)> 36 || strlen($team)==0)
-			$lunghezza_regolare=false;
-		else
-			$lunghezza_regolare=true;
-		
-		$inuso=false;
-		foreach ($myVarsArr as $key => $value)
+		// imposta il team
+		$par  = explode(" ", $text);
+	
+		if (!isset($par[1]))
 		{
-			if ($myVarsArr[$key]["team"]===$team)
-			{
-				$inuso = true;
-				break;
-			}
+			$response = "uso del comando /team\n    /team -l  (dettagli sul team)\n    /team -c mio-team  (crea il team)\n    /team -r  (per essere aggiunti in un team)\n    /team -s  (singolo giocatore)\n    /team -a nickname  (aggiunge al team)";
 		}
-		if (($inuso === false) && $lunghezza_regolare)
+		else if (($par[1]=="-c") && strlen($myVarsArr[$chatId]["team"])>=1)
 		{
-			$myVarsArr[$chatId]["team"]=$team;
+			$response = "sei già associato ad un team\nper creare un nuovo team esegui prima /team -c";
+		}
+		else if (($par[1]=="-C") && strlen($myVarsArr[$chatId]["team"])>=1)
+		{
+			$response = "sei già associato ad un team\nper crearne uno, devi prima uscire dal tuo team";
+		}
+		else if ((($par[1]=="-C") || ($par[1]=="-C")) && isset($par[2]) && !isset($myVarsArr[$chatId]["nick"]))
+		{
+			$response = "per creare un team devi prima impostare il nickname";
+		}
+		else if ((($par[1]=="-c") || ($par[1]=="-C")) && (!isset($par[2])))
+		{
+			unset($myVarsArr[$chatId]["team"]);
 			$myVarsJson = json_encode($myVarsArr);
 			file_put_contents($path, $myVarsJson, LOCK_EX);
 			
-			$response = "team creato correttamente: ".$myVarsArr[$chatId]["team"];
-		}
-		else if ($inuso)
-			$response = "nome del team già in uso";
-		else
-			$response = "nome del team non valido";
-	}
-	else if ($par[1]=="-l")
-	{
-		$team = $myVarsArr[$chatId]["team"]; 
-		if (!isset($team))
-		{
 			$response = "gareggi come singolo giocatore";
 		}
-		else if (strlen($team)==0) 
+		else if (($par[1]=="-c")||($par[1]=="-C"))
 		{
-			$response = "non risulti associato a nessun team\nla tua utenza risulta sbloccata e può essere associata ad un team già esistente";
-		}
-		else 
-		{
-			$response = "sei associato al team " . $team . "\n\ncompisizione del team:\n";
-
-			foreach ($myVarsArr as $key => $value)
-			{
-				if ($myVarsArr[$key]["team"]==$team)
-				{
-					$response = $response . $myVarsArr[$key]["nick"];
-					if ((int)$myVarsArr[$key]['star'] > 0)
-						$response = $response . " (" . (int)$myVarsArr[$key]['star'] . unichr($star_code) . ")";
-					$response = $response . "\n";
-				}
-			}
-		}
-	}
-	else if ($par[1]=="-r" && !isset($myVarsArr[$chatId]["nick"]))
-	{	
-		$response = "per sbloccare l'utenza devi prima impostare il nickname";
-	}
-	else if ($par[1]=="-r")
-	{
-		$myVarsArr[$chatId]["team"]="";
-		$myVarsJson = json_encode($myVarsArr);
-		file_put_contents($path, $myVarsJson, LOCK_EX);
-		
-		$response = "la tua utenza è sbloccata e può essere aggiunta ad un team già esistente";
-	}
-	else if ($par[1]=="-s")
-	{
-		unset($myVarsArr[$chatId]["team"]);
-		
-		$myVarsJson = json_encode($myVarsArr);
-		file_put_contents($path, $myVarsJson, LOCK_EX);
-		
-		$response = "gareggi come singolo giocatore";
-	}
-	else if ($par[1]==="-a" || $par[1]==="-A")  // opzione -A richiamabile solo da interfaccia a menu
-	{
-		if ($par[1]==="-a")
-			$nick=substr($text, strpos($text, "-a ")+3);
-		else
-			$nick=substr($text, strpos($text, "-A ")+3);
-				
-		$team = $myVarsArr[$chatId]["team"];
-		
-		if (!strlen($team)>=1)
-		{
-			if ($par[1]==="-a")
-				$response = "non appartieni a nessun team\nnon puoi associare altri giocatori\nusa prima il comando\n/team -c mio-team";
+			
+			if ($par[1]=="-c")
+				$team  = substr($text, strpos($text, "-c ")+3);
 			else
-				$response = "non appartieni a nessun team\nnon puoi associare altri giocatori";
-		}
-		else
-		{
-		    // conta il numero di giocatori nel team
-			$cont=0;
+				$team  = substr($text, strpos($text, "-C ")+3);
+			
+			$team = str_replace(" ", "_", $team);
+			$team = str_replace("\n", "_", $team);
+			$team = str_replace("@", "_", $team);
+				
+			if (strlen($team)> 36 || strlen($team)==0)
+				$lunghezza_regolare=false;
+			else
+				$lunghezza_regolare=true;
+			
+			$inuso=false;
 			foreach ($myVarsArr as $key => $value)
 			{
 				if ($myVarsArr[$key]["team"]===$team)
-					$cont++;
-			}
-			
-			if ($cont>=$MAX_TEAM)
-			{
-				$msg = "hai già raggiunto il numero massimo di giocatori ammessi in team\nnon puoi aggiungere altri giocatori";
-				$ch = curl_init();
-				$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($msg);
-				curl_setopt($ch, CURLOPT_URL, $myUrl); 
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-				
-				// read curl response
-				$output = curl_exec($ch);
-				curl_close($ch);
-				exit();
-			}
-       		
-			$nicktrovato=false;
-			foreach ($myVarsArr as $key => $value)
-			{
-				if ($myVarsArr[$key]["nick"]===$nick)
 				{
-					$nicktrovato = true;
-					if (!isset($myVarsArr[$key]["team"]))
-					{
-						if ($par[1]==="-a")
-							$response = $nick . " gareggia come singolo giocatore\n\n" . $nick . " deve eseguire il comando\n/team -r per poter essere associato ad un team";
-						else
-							$response = $nick . " gareggia come singolo giocatore\n\n" . $nick . " deve sbloccare la propria utenza per poter essere associato ad un team";
-					}
-					else if ((strlen($myVarsArr[$key]["team"])==0))
-					{
-						$myVarsArr[$key]["livello"]=$myVarsArr[$chatId]["livello"];
-						$myVarsArr[$key]["date"]=$myVarsArr[$chatId]["date"];
-						$myVarsArr[$key]["team"]=$team;
-						$myVarsArr[$key]["star"]=0;
-						$myVarsJson = json_encode($myVarsArr);
-						file_put_contents($path, $myVarsJson, LOCK_EX);
-				
-						$newId=$key;
-				
-						$msg = "sei stato inserito nel team " . $team . "\n\nsei ora allineato al livello di gioco del team";
-						$ch = curl_init();
-						$myUrl=$botUrlMessage . "?chat_id=" . $key . "&text=" . urlencode($msg);
-						curl_setopt($ch, CURLOPT_URL, $myUrl); 
-						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-						
-						// read curl response
-						$output = curl_exec($ch);
-						curl_close($ch);
-			
-						$response = $nick . " è stato aggiunto al team " . $team;
-					}
-					
-					else
-						$response = $nick . " è già associato ad un differente team";
-					
+					$inuso = true;
 					break;
 				}
 			}
-			if (!$nicktrovato)
-				$response = $nick . " non è stato trovato\n\nverifica di aver scritto correttamente il nickname";
+			if (($inuso === false) && $lunghezza_regolare)
+			{
+				$myVarsArr[$chatId]["team"]=$team;
+				$myVarsJson = json_encode($myVarsArr);
+				file_put_contents($path, $myVarsJson, LOCK_EX);
+				
+				$response = "team creato correttamente: ".$myVarsArr[$chatId]["team"];
+			}
+			else if ($inuso)
+				$response = "nome del team già in uso";
+			else
+				$response = "nome del team non valido";
+		}
+		else if ($par[1]=="-l")
+		{
+			$team = $myVarsArr[$chatId]["team"]; 
+			if (!isset($team))
+			{
+				$response = "gareggi come singolo giocatore";
+			}
+			else if (strlen($team)==0) 
+			{
+				$response = "non risulti associato a nessun team\nla tua utenza risulta sbloccata e può essere associata ad un team già esistente";
+			}
+			else 
+			{
+				$response = "sei associato al team " . $team . "\n\ncompisizione del team:\n";
+
+				foreach ($myVarsArr as $key => $value)
+				{
+					if ($myVarsArr[$key]["team"]==$team)
+					{
+						$response = $response . $myVarsArr[$key]["nick"];
+						if ((int)$myVarsArr[$key]['star'] > 0)
+							$response = $response . " (" . (int)$myVarsArr[$key]['star'] . unichr($star_code) . ")";
+						$response = $response . "\n";
+					}
+				}
+			}
+		}
+		else if ($par[1]=="-r" && !isset($myVarsArr[$chatId]["nick"]))
+		{	
+			$response = "per sbloccare l'utenza devi prima impostare il nickname";
+		}
+		else if ($par[1]=="-r")
+		{
+			$myVarsArr[$chatId]["team"]="";
+			$myVarsJson = json_encode($myVarsArr);
+			file_put_contents($path, $myVarsJson, LOCK_EX);
+			
+			$response = "la tua utenza è sbloccata e può essere aggiunta ad un team già esistente";
+		}
+		else if ($par[1]=="-s")
+		{
+			unset($myVarsArr[$chatId]["team"]);
+			
+			$myVarsJson = json_encode($myVarsArr);
+			file_put_contents($path, $myVarsJson, LOCK_EX);
+			
+			$response = "gareggi come singolo giocatore";
+		}
+		else if ($par[1]==="-a" || $par[1]==="-A")  // opzione -A richiamabile solo da interfaccia a menu
+		{
+			if ($par[1]==="-a")
+				$nick=substr($text, strpos($text, "-a ")+3);
+			else
+				$nick=substr($text, strpos($text, "-A ")+3);
+					
+			$team = $myVarsArr[$chatId]["team"];
+			
+			if (!strlen($team)>=1)
+			{
+				if ($par[1]==="-a")
+					$response = "non appartieni a nessun team\nnon puoi associare altri giocatori\nusa prima il comando\n/team -c mio-team";
+				else
+					$response = "non appartieni a nessun team\nnon puoi associare altri giocatori";
+			}
 			else
 			{
+				// conta il numero di giocatori nel team
+				$cont=0;
 				foreach ($myVarsArr as $key => $value)
 				{
 					if ($myVarsArr[$key]["team"]===$team)
+						$cont++;
+				}
+				
+				if ($cont>=$MAX_TEAM)
+				{
+					$msg = "hai già raggiunto il numero massimo di giocatori ammessi in team\nnon puoi aggiungere altri giocatori";
+					$ch = curl_init();
+					$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($msg);
+					curl_setopt($ch, CURLOPT_URL, $myUrl); 
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+					
+					// read curl response
+					$output = curl_exec($ch);
+					curl_close($ch);
+					exit();
+				}
+				
+				$nicktrovato=false;
+				foreach ($myVarsArr as $key => $value)
+				{
+					if ($myVarsArr[$key]["nick"]===$nick)
 					{
-						if (($key !== $newId) && ($key !== $chatId))
+						$nicktrovato = true;
+						if (!isset($myVarsArr[$key]["team"]))
 						{
-							$msg = $nick . " è stato aggiunto al team " . $team;
+							if ($par[1]==="-a")
+								$response = $nick . " gareggia come singolo giocatore\n\n" . $nick . " deve eseguire il comando\n/team -r per poter essere associato ad un team";
+							else
+								$response = $nick . " gareggia come singolo giocatore\n\n" . $nick . " deve sbloccare la propria utenza per poter essere associato ad un team";
+						}
+						else if ((strlen($myVarsArr[$key]["team"])==0))
+						{
+							$myVarsArr[$key]["livello"]=$myVarsArr[$chatId]["livello"];
+							$myVarsArr[$key]["date"]=$myVarsArr[$chatId]["date"];
+							$myVarsArr[$key]["team"]=$team;
+							$myVarsArr[$key]["star"]=0;
+							$myVarsJson = json_encode($myVarsArr);
+							file_put_contents($path, $myVarsJson, LOCK_EX);
+					
+							$newId=$key;
+					
+							$msg = "sei stato inserito nel team " . $team . "\n\nsei ora allineato al livello di gioco del team";
 							$ch = curl_init();
 							$myUrl=$botUrlMessage . "?chat_id=" . $key . "&text=" . urlencode($msg);
 							curl_setopt($ch, CURLOPT_URL, $myUrl); 
@@ -4131,18 +4109,47 @@ if(strpos($text, '/team') !== false)
 							// read curl response
 							$output = curl_exec($ch);
 							curl_close($ch);
+				
+							$response = $nick . " è stato aggiunto al team " . $team;
+						}
+						
+						else
+							$response = $nick . " è già associato ad un differente team";
+						
+						break;
+					}
+				}
+				if (!$nicktrovato)
+					$response = $nick . " non è stato trovato\n\nverifica di aver scritto correttamente il nickname";
+				else
+				{
+					foreach ($myVarsArr as $key => $value)
+					{
+						if ($myVarsArr[$key]["team"]===$team)
+						{
+							if (($key !== $newId) && ($key !== $chatId))
+							{
+								$msg = $nick . " è stato aggiunto al team " . $team;
+								$ch = curl_init();
+								$myUrl=$botUrlMessage . "?chat_id=" . $key . "&text=" . urlencode($msg);
+								curl_setopt($ch, CURLOPT_URL, $myUrl); 
+								curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+								
+								// read curl response
+								$output = curl_exec($ch);
+								curl_close($ch);
 
+							}
 						}
 					}
 				}
 			}
 		}
+		else
+		{
+			$response = "uso del comando /team\n    /team -l  (dettagli sul team)\n    /team -c mio-team  (crea il team)\n    /team -r  (per essere aggiunti in un team)\n    /team -s  (singolo giocatore)\n    /team -a nickname  (aggiunge al team)";
+		}
 	}
-	else
-	{
-		$response = "uso del comando /team\n    /team -l  (dettagli sul team)\n    /team -c mio-team  (crea il team)\n    /team -r  (per essere aggiunti in un team)\n    /team -s  (singolo giocatore)\n    /team -a nickname  (aggiunge al team)";
-	}
-	
 
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
