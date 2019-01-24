@@ -4022,6 +4022,10 @@ if(strpos($text, '/team') !== false)
 		{	
 			$response = "per sbloccare l'utenza devi prima impostare il nickname";
 		}
+		else if ($par[1]=="-r" && strlen($myVarsArr[$chatId]["team"])>=1)
+		{	
+			$response = "per sbloccare l'utenza devi prima uscire dal tuo attuale team";
+		}
 		else if ($par[1]=="-r")
 		{
 			$myVarsArr[$chatId]["team"]="";
