@@ -11,7 +11,7 @@ if(!$update)
 }
 
 //Versione
-//LaraLuu ver. 3.2 01/12/2018
+//LaraLuu ver. 3.2 evo 16/01/2019
 
 //Token
 
@@ -34,7 +34,10 @@ if(!$update)
 //$token="487143922:AAFRNOJ_fVVF1tQ4T_9KDSA1loMSPJZjycw";
 
 //Chestnut2019 - (LaraLuu31-Chestnut2019)
-$token="738410474:AAHdHaQ0M3pOmMf1uU9boanIc4JtFy3V5ww";
+//$token="738410474:AAHdHaQ0M3pOmMf1uU9boanIc4JtFy3V5ww";
+
+//BigBugs - (LaraLuu test - BigBugs evo)
+$token="327275867:AAGGPjjKhYWMnvZEGDFnB3vvz4Vsqb4iNaw";
 
 $botUrl = "https://api.telegram.org/bot".$token."/sendPhoto";
 $botUrlVoice = "https://api.telegram.org/bot".$token."/sendVoice";
@@ -217,6 +220,7 @@ $data_livello = isset($myVarsArr[$chatId]["date"]) ? $myVarsArr[$chatId]["date"]
 $nickId = isset($myVarsArr[$chatId]["nick"]) ? $myVarsArr[$chatId]["nick"] : "NICK non impostato";
 $teamId = isset($myVarsArr[$chatId]["team"]) ? $myVarsArr[$chatId]["team"] : "giocatore singolo";
 
+
 //lettura da file delle abilitazioni degli indizi per tutti i livelli
 //$abilitazione = array(0=>1, 1=>0, 2=>0);
 $myAblJson = file_get_contents($path_abl);
@@ -242,6 +246,7 @@ if (isset($amministratore['flag'])=== false)
 	$amministratore['flag'] = true;
 	$amministratore['stato_gioco'] = "da_avviare";
 	$amministratore['maxTeam'] = 7;
+	$amministratore['accuratezza_risposta'] = "approssimata";
 	$myAdminJson = json_encode($amministratore);
 	file_put_contents($path_admin, $myAdminJson, LOCK_EX);
 	$utenteAdmin=true;
@@ -259,6 +264,18 @@ if (isset($amministratore['maxTeam'])=== false)
 	$MAX_TEAM=7;
 else
 	$MAX_TEAM=$amministratore['maxTeam'];
+
+// imposta il tipo di gestione della risposta
+if (isset($amministratore['accuratezza_risposta'])=== false)
+	$ACCURATEZZA_RISPOSTA="approssimata";
+else
+	$ACCURATEZZA_RISPOSTA=$amministratore['accuratezza_risposta'];
+
+// imposta il tipo di gestione del clock
+if (isset($amministratore['clock'])=== false)
+	$CLOCK="non_si_sospende";
+else
+	$CLOCK=$amministratore['clock'];
 
 //ottiene l'id di ADMIN e la data dell'ultimo backup
 foreach ($myVarsArr as $key => $value)
@@ -363,6 +380,8 @@ $xml=simplexml_load_file("domande.xml") or die("Error: Cannot create object");
 $attesa_aiuto1 = isset($xml->domanda[$livello]->attesa1)?$xml->domanda[$livello]->attesa1 : 60;
 $attesa_aiuto2 = isset($xml->domanda[$livello]->attesa2)?$xml->domanda[$livello]->attesa2 : 120;
 $attesa_aiuto3 = isset($xml->domanda[$livello]->attesa3)?$xml->domanda[$livello]->attesa3 : 180;
+$accuratezza_risp_corr = isset($xml->domanda[$livello]->accuratezza)?$xml->domanda[$livello]->accuratezza : "approssimata";
+$tipo_risp_corr = (String)($xml->domanda[$livello]->tipo);
 if (isset($abilitazione[$livello]["aiuto1"]))
 	$attesa_aiuto1 = $abilitazione[$livello]["aiuto1"];
 if (isset($abilitazione[$livello]["aiuto2"]))
@@ -767,8 +786,6 @@ else
 	$text=estrai_cmd($push).$text;
 
 
-//********* comandi eseguibili come amministratore
-
 // Invio dei menu
 if(strcmp($text, '/start') === 0)
 {
@@ -785,6 +802,8 @@ if(strcmp($text, '/start') === 0)
 	$output = curl_exec($ch);
 	curl_close($ch);
 }
+
+//********* comandi eseguibili come amministratore
 
 //invio di un messaggio di benvenuto agli amministratori in caso di start o restart (dovuto a deployment dell'app)
 if(((strcmp($text, '/start') === 0) || $restart === true) && ($utenteAdmin === true))
@@ -810,19 +829,19 @@ if(strpos($text, '/list') !== false && $utenteAdmin === true)
 	$msg = $msg . "/admin Id\n    nuovo admin\n";
 	$msg = $msg . "/match:\n    /match start [-s]  (inizio gara)\n    /match go [-s]  (restart gara)\n    /match sleep [-s]  (in pausa)\n    /match end [-s]  (fine gara)\n    /match status   (statistiche)\n";
 	$msg = $msg . "    /match start -t [data ora]\n    /match go -t [data ora]\n    /match sleep -t [data ora]\n    /match end -t [data ora]\n";
-	$msg = $msg . "/maxteam num\n    max giocatori in team\n";
-	$msg = $msg . "/enable:\n    /enable liv t1 t2 t3\n    /enable -liv t1 t2 t3\n    t1 t2 t3 tempi in min\n";
+	$msg = $msg . "/config:\n    /config maxteam num\n    /config answer a|r\n    /config clock on|off\n";
+	$msg = $msg . "/enable:\n    /enable liv t1 t2 t3\n    /enable -liv t1 t2 t3\n     t1 t2 t3 tempi in min\n";
 	$msg = $msg . "/identity Id | nick | team\n    identifica utente o team\n";
 	$msg = $msg . "/lnext livello\n    avanza gli utenti del livello\n";
 	$msg = $msg . "/backup:\n    /backup 1   livelli\n    /backup 2   aiuti\n    /backup 3   admin\n    /backup 4   blacklist\n    /backup 5   anagrafica\n";
-	$msg = $msg . "/reset:\n    /reset game  [-n]\n     azzera livelli (nick)\n    /reset bot\n      azzera i file\n    /reset broadcast\n     abilita msg broadcast\n";
-	$msg = $msg . "/lset:\n    /lset Id livello\n       imposta livello di Id e team\n    /lset nick livello\n       imposta livello di nick e team\n";
-	$msg = $msg . "/sset:\n    /sset Id stelle\n       imposta le stelle di Id\n    /sset nick stelle\n       imposta le stelle di nick\n";
+	$msg = $msg . "/reset:\n    /reset game  [-n]\n     azzera livelli (nick)\n    /reset bot\n     azzera i file\n    /reset broadcast\n     abilita msg broadcast\n";
+	$msg = $msg . "/lset:\n    /lset Id livello [data ora]\n      imposta livello di Id e team\n    /lset nick livello [data ora]\n      imposta livello di nick e team\n";
+	$msg = $msg . "/sset:\n    /sset Id stelle\n      imposta le stelle di Id\n    /sset nick stelle\n      imposta le stelle di nick\n";
 	$msg = $msg . "/blacklist:\n    /blacklist Id insert\n    /blacklist Id delete\n    /blacklist list\n";
 	$msg = $msg . "/show:\n    /show count\n    /show autors [autore]\n    /show enigma numero\n    /show help numero\n    /show solution numero\n";
-	$msg = $msg . "/users:\n    /users numero\n    /users all\n";
+	$msg = $msg . "/users:\n    /users numero\n    /users all\n    /users ranking\n";
 	$msg = $msg . "/export\n    esporta classifica\n";
-	$msg = $msg . "/iam:\n    /iam [-s] Id comando\n       esegue comando come Id\n    /iam [-s] nick comando\n       esegue comando come nick\n";
+	$msg = $msg . "/iam:\n    /iam [-s] Id comando\n      esegue comando come Id\n    /iam [-s] nick comando\n      esegue comando come nick\n";
 	$msg = $msg . "/monitor:\n    /monitor on\n    /monitor off\n    /monitor show\n";
 	$ch = curl_init();
 	$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($msg);
@@ -1184,6 +1203,7 @@ if(strpos($text, '/match') !== false && $utenteAdmin === true)
 				$statoBroadcast="abilitato";
 			else
 				$statoBroadcast="non abilitato";
+			
 
 			// statistiche sui partecipanti
 			$tot=0;
@@ -1192,9 +1212,12 @@ if(strpos($text, '/match') !== false && $utenteAdmin === true)
 
 			foreach ($myVarsArr as $key => $value) 
 			{
-				if ($maxlivello < $value['livello'])
+				if (strlen($key) <= 1)
+				continue;
+			
+				if ($maxlivello < (int)$value['livello'])
 				{
-					$maxlivello = $value['livello'];
+					$maxlivello = (int)$value['livello'];
 				}
 				$tot++;
 			}
@@ -1214,6 +1237,11 @@ if(strpos($text, '/match') !== false && $utenteAdmin === true)
 			
 			$response = $response . $msg_cron;
 			$response = $response . "\n\nmax giocatori per team: " . $MAX_TEAM;
+			$response = $response . "\naccuratezza risposta: " . $ACCURATEZZA_RISPOSTA;
+			
+			$gestione_clock = $CLOCK == "si_sospende" ? "gestita" : "non gestita";
+			
+			$response = $response . "\nsospensione del clock: " . $gestione_clock ;
 			$response = $response . "\n\n" . $tot . " giocatori partecipanti";
 			$response = $response . "\nlivello max raggiunto: " . $maxlivello;
 
@@ -1405,7 +1433,7 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 
 	if (!isset($par[1]))
 	{
-		$response = "uso del comando /users:\n/users numero\n     utenti del livello\n/users top\n     utenti del livello top\n/users all\n     tutti gli utenti\n";
+		$response = "uso del comando /users:\n/users numero\n     utenti del livello\n/users top\n     utenti del livello top\n/users all\n     tutti gli utenti\n/users ranking\n     classifica generale\n";
 	}
 	else if ($par[1] == "all")
 	{
@@ -1536,23 +1564,27 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 		unset($elencosingoli);
 		foreach ($myVarsArr as $key => $value)
 		{
+			if (strlen($key) <= 1)
+				continue;
+			
 			if(isset($value['team']))
 			{
-				if ((strlen($value['team'])>=1) && ($value['livello'] == $liv))
+				if ((strlen($value['team'])>=1) && (($value['livello']==$liv) ||
+				   ($liv==0 && !isset($value['livello']))))
 				{
 					$elencoteam[$value['team']] = (int)$elencoteam[$value['team']]+1;
 				}
-				else if ($value['livello'] == $liv)
+				else if (($value['livello']==$liv) || ($liv==0 && !isset($value['livello'])))
 				{
-						$single=isset($value['nick']) ? $value['nick'] : "anonimo";
+						$single=isset($value['nick']) ? $value['nick'] : "Anonimo";
 						$elencosingoli[$single]=(int)$elencosingoli[$single]+1;
 						$tot_single=$tot_single + 1;
 				}
 
 			}
-			else if ($value['livello'] == $liv)
+			else if (($value['livello']==$liv) || ($liv==0 && !isset($value['livello'])))
 			{
-				$single=isset($value['nick']) ? $value['nick'] : "anonimo";
+				$single=isset($value['nick']) ? $value['nick'] : "Anonimo";
 				if (isset($value['nick']))
 				{
 					$elencosingoli[$single]=(int)$elencosingoli[$single]+1;
@@ -1572,12 +1604,15 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 		{	
 			foreach ($myVarsArr as $key => $value)
 			{
+				if (strlen($key) <= 1)
+				   continue;
+				
 				if($value['team'] == $key_team)
 				{
 					$response=$response . "\nId: " . $key;
 					if ($value['star'] > 0)
 						$response=$response . " (" . $value['star'] . unichr($star_code) . ")";
-				$response=$response	. "\n    nick: " . $value['nick'] . "\n    team: " . $value['team'];
+					$response=$response	. "\n    nick: " . $value['nick'] . "\n    team: " . $value['team'];
 				}
 			}
 		}
@@ -1588,7 +1623,12 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 			$response=$response . "\n    <giocatori singoli> (" . $tot_single . ")";
 		foreach ($myVarsArr as $key => $value)
 		{
-			if(isset($value['nick']) && $value['livello']==$liv  && ((!isset($value['team'])) || strlen($value['team'])==0))
+			if (strlen($key) <= 1)
+				continue;
+			
+			if(isset($value['nick']) && 
+			   (($value['livello']==$liv) || ($liv==0 && !isset($value['livello']))) &&
+			   ((!isset($value['team'])) || strlen($value['team'])==0))
 			{
 				$response=$response . "\nId: " . $key;
 				if ($value['star'] > 0)
@@ -1603,7 +1643,10 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 			$response=$response . "\n    <giocatori anonimi> (" . $tot_anonimi . ")";
 		foreach ($myVarsArr as $key => $value)
 		{
-			if(!isset($value['nick']) && $value['livello']==$liv)
+			if (strlen($key) <= 1)
+				continue;
+			
+			if(!isset($value['nick']) && (($value['livello']==$liv) || ($liv==0 && !isset($value['livello']))))
 			{
 				$response=$response . "\nId: " . $key;
 				if ($value['star'] > 0)
@@ -1611,45 +1654,56 @@ if(strpos($text, '/users') !== false && $utenteAdmin === true)
 			}
 		}
 	}
+	else if ($par[1]=="ranking")
+	{
+		// consente all'admin di visualizzare la classifica anche durante
+		// le pause
+		$text = "/ranking -K";
+		$eccezione=true;	
+	}
 	else
 	{
-		$response = "uso del comando /users:\n/users numero\n     utenti del livello\n/users top\n     utenti del livello top\n/users all\n     tutti gli utenti\n";
+		$response = "uso del comando /users:\n/users numero\n     utenti del livello\n/users top\n     utenti del livello top\n/users all\n     tutti gli utenti\n/users all\n     tutti gli utenti\n/users ranking\n     classifica generale\n";
 	}
 	
-	
-	if (strlen($response)<4096)
+	// l'eccezione e' utilizzata per visualizzare la classifica da parte 
+	// di admin anche quando il sistema è in pausa
+	if (!$eccezione)
 	{
-		$ch = curl_init();
-		$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response);
-		curl_setopt($ch, CURLOPT_URL, $myUrl); 
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+		if (strlen($response)<4096)
+		{
+			$ch = curl_init();
+			$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response);
+			curl_setopt($ch, CURLOPT_URL, $myUrl); 
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+			
+			// read curl response
+			$output = curl_exec($ch);
+			curl_close($ch);
+		}
+		else
+		{
+			file_put_contents($path_users, $response, LOCK_EX);
+
+			$postFields = array('chat_id' => $chatId, 'document' => new CURLFile($path_users));
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+			curl_setopt($ch, CURLOPT_URL, $botUrlDocument); 
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+
+			// read curl response
+			$output = curl_exec($ch);
+			curl_close($ch);
+		}
 		
-		// read curl response
-		$output = curl_exec($ch);
-		curl_close($ch);
+		/*
+		$parameters = array('chat_id' => $chatId, "text" => $response);
+		$parameters["method"] = "sendMessage";
+		echo json_encode($parameters);
+		*/
+		exit();
 	}
-	else
-	{
-		file_put_contents($path_users, $response, LOCK_EX);
-
-		$postFields = array('chat_id' => $chatId, 'document' => new CURLFile($path_users));
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
-		curl_setopt($ch, CURLOPT_URL, $botUrlDocument); 
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
-
-		// read curl response
-		$output = curl_exec($ch);
-		curl_close($ch);
-	}
-	
-	/*
-	$parameters = array('chat_id' => $chatId, "text" => $response);
-	$parameters["method"] = "sendMessage";
-	echo json_encode($parameters);
-	*/
-	exit();
 }
 
 //show 
@@ -1955,23 +2009,74 @@ if(strpos($text, '/admin') !== false && $utenteAdmin === true)
 	exit();
 }
 
-//maxteam (massimo numero di giocatori in un team)
-if(strpos($text, '/maxteam') !== false && $utenteAdmin === true) 
+
+//config (imposta i parametri di configurazione)
+if(strpos($text, '/config') !== false && $utenteAdmin === true) 
 {	
 	if (strpos($text, " ")>0)
 	{
-		$num  = substr($text, strpos($text, " ") + 1);
-		if (is_numeric($num))
+		$abl  = explode(" ", $text);
+		
+		if ($abl[1] == "maxteam")
 		{
-			$amministratore['maxTeam'] = $num;
-			$myAdminJson = json_encode($amministratore);
-			file_put_contents($path_admin, $myAdminJson, LOCK_EX);
-			
-			$msg = "massimo numero di giocatori in team impostato correttamente";
+			if (is_numeric($abl[2]))
+			{
+				$amministratore['maxTeam'] = (int)$abl[2];
+				$myAdminJson = json_encode($amministratore);
+				file_put_contents($path_admin, $myAdminJson, LOCK_EX);
+				
+				$msg = "massimo numero di giocatori in team impostato correttamente";
+			}
+			else
+			{
+				$msg = "parametro errato\nuso del comando:\n/config maxteam num";
+			}
 		}
-		else
+		else if ($abl[1] == "answer")
 		{
-			$msg = "parametro errato\nuso del comando:\n/maxteam num";
+			if ($abl[2] == "a")
+			{
+				$amministratore['accuratezza_risposta'] = "elevata";
+				$myAdminJson = json_encode($amministratore);
+				file_put_contents($path_admin, $myAdminJson, LOCK_EX);
+				
+				$msg = "accuratezza della risposta impostata ad 'elevata'";
+			}
+			else if ($abl[2] == "r")
+			{
+				$amministratore['accuratezza_risposta'] = "approssimata";
+				$myAdminJson = json_encode($amministratore);
+				file_put_contents($path_admin, $myAdminJson, LOCK_EX);
+				
+				$msg = "accuratezza della risposta impostata ad 'approssimata'";
+			}
+			else
+			{
+				$msg = "parametro errato\nuso del comando:\n/config answer a|r";
+			}
+		}
+		else if ($abl[1] == "clock")
+		{
+			if ($abl[2] == "on")
+			{
+				$amministratore['clock'] = "si_sospende";
+				$myAdminJson = json_encode($amministratore);
+				file_put_contents($path_admin, $myAdminJson, LOCK_EX);
+				
+				$msg = "impostazione effettuata: il clock gestisce la sospensione della partita";
+			}
+			else if ($abl[2] == "off")
+			{
+				$amministratore['clock'] = "non_si_sospende";
+				$myAdminJson = json_encode($amministratore);
+				file_put_contents($path_admin, $myAdminJson, LOCK_EX);
+				
+				$msg = "impostazione effettuata: il clock non gestisce la sospensione della partita";
+			}
+			else
+			{
+				$msg = "parametro errato\nuso del comando:\n/config clock on|off";
+			}
 		}
 		
 		$ch = curl_init();
@@ -1985,7 +2090,10 @@ if(strpos($text, '/maxteam') !== false && $utenteAdmin === true)
 	}
 	else
 	{
-		$response = "per impostare il massimo numero di giocatori in team usa il comando\n/maxteam num";
+		
+	
+		$response = "uso del comando /config:\n    /config maxteam num\n      (max giocatori in team)\n    /config answer a|r\n      (risposta accurata o approssimata)\n    /config clock on|off\n      (sospensione del clock)\n";
+		
 		$ch = curl_init();
 		$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response);
 		curl_setopt($ch, CURLOPT_URL, $myUrl); 
@@ -2121,10 +2229,19 @@ if(strpos($text, '/lset') !== false && $utenteAdmin === true)
 	$par  = explode(" ", $text);
 	
 	// lset Id livello
-	if (strpos($text, " ")>0 && strpos(substr($text, strpos($text, " ")+1), " ")>0)
+    if (isset($par[1]) && isset($par[2]) && 
+	    ((!isset($par[3]) && !isset($par[4])) ||
+         (isset($par[3]) && isset($par[4]))))
+	//	if (strpos($text, " ")>0 && strpos(substr($text, strpos($text, " ")+1), " ")>0)
 	{
 		$id=(int)$par[1];
 		$nick  = $par[1];
+		
+		//utilizza la data corrente o quella ricevuta in input
+		if (isset($par[3]) && isset($par[4]))
+			$data_set=$par[3] . " " . $par[4];
+		else
+			$data_set = $data_corrente;
 		
 		foreach ($myVarsArr as $key => $value)
 		{
@@ -2152,7 +2269,7 @@ if(strpos($text, '/lset') !== false && $utenteAdmin === true)
 			if (!isset($myVarsArr[(int)$id]['team']) || strlen($myVarsArr[$id]['team'])==0)
 			{
 				$myVarsArr[$id]['livello'] = $par[2];
-				$myVarsArr[$id]['date'] = $data_corrente;
+				$myVarsArr[$id]['date'] = $data_set;
 				
 				$msg = "il tuo livello è stato aggiornato!\ntocca il pulsante enigma per continuare";
 				$ch = curl_init();
@@ -2176,7 +2293,7 @@ if(strpos($text, '/lset') !== false && $utenteAdmin === true)
 					if ($myVarsArr[$key]["team"]===$team)
 					{
 						$myVarsArr[$key]["livello"]=$livello;
-						$myVarsArr[$key]["date"]=$data_corrente;
+						$myVarsArr[$key]["date"]=$data_set;
 						
 						$msg = "il tuo livello è stato aggiornato!\ntocca il pulsante enigma per continuare";
 						$ch = curl_init();
@@ -2204,7 +2321,7 @@ if(strpos($text, '/lset') !== false && $utenteAdmin === true)
 	}
 	else
 	{
-		$response = "per impostare il livello per un utente e il suo team usa uno dei comandi\n/lset Id livello\n/lset nick livello";
+		$response = "per impostare il livello per un utente e il suo team usa uno dei comandi\n/lset Id livello [data ora]\n/lset nick livello [data ora]\n(gg/mm/aaaa hh:mm)";
 		$ch = curl_init();
 		$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response);
 		curl_setopt($ch, CURLOPT_URL, $myUrl); 
@@ -2861,6 +2978,9 @@ if ($statoGioco==="da_avviare")
 //stat statistica dell'utente
 if(strcmp($text, '/stat') === 0)
 {
+	$search_sp = array('<', '>');
+	$replace_sp = array('&lt;', '&gt;'); 
+	
 	$precede=0;
 	$uguale=0;
 	$tot=0;
@@ -2871,27 +2991,29 @@ if(strcmp($text, '/stat') === 0)
 	$numsingle=0;
 	$tot=0;
 	$livello=(int)$myVarsArr[$chatId]['livello'];
-	
 	foreach ($myVarsArr as $key => $value) 
 	{
+		if (strlen($key) <= 1)
+			continue;
+			   
 		if(isset($value['team']))
 		{
 			if (strlen($value['team'])>=1)
 			{
 				$elencoteam[$value['team']]['num'] = (int)$elencoteam[$value['team']]['num']+1;
-				$elencoteam[$value['team']]['livello']=$value['livello'];
+				$elencoteam[$value['team']]['livello']=(int)$value['livello'];
 			}
 			else
 			{
 				$single=isset($value['nick']) ? $value['nick'] : $key;
-				$elencosingoli[$single]=$value['livello']; 
+				$elencosingoli[$single]=(int)$value['livello']; 
 				$numsingle++;	
 			}
 		}
 		else
 		{
 			$single=isset($value['nick']) ? $value['nick'] : $key;
-			$elencosingoli[$single]=$value['livello']; 
+			$elencosingoli[$single]=(int)$value['livello']; 
 			$numsingle++;				
 		}
 		$tot++;
@@ -2906,7 +3028,7 @@ if(strcmp($text, '/stat') === 0)
 	{
 		if( (int)$elencoteam[$key]['livello'] > $livello )
 			$team_avanti++;
-		else if ( (int)$elencoteam[$key]['livello'] == $livello )
+		else if ( (int)$elencoteam[$key]['livello'] == (int)$livello )
 			$team_uguali++;
 	}
 
@@ -2916,7 +3038,7 @@ if(strcmp($text, '/stat') === 0)
 	{
 		if( (int)$value > $livello ) 
 			$singoli_avanti++;
-		else if ( (int)$value == $livello ) 
+		else if ( (int)$value == (int)$livello ) 
 			$singoli_uguali++;
 	}
 	
@@ -2966,15 +3088,24 @@ if(strcmp($text, '/stat') === 0)
 		$nometeam = "<i>giocatore singolo</i>";
 	else if (strlen($teamId)==0)
 		$nometeam = "<i>giocatore singolo</i>";
+	else if ($teamId == "giocatore singolo")
+	{
+		$nometeam = "<i>giocatore singolo</i>";
+	}
 	else
-		$nometeam = ($teamId == "giocatore singolo") ? "<i>giocatore singolo</i>" : $teamId;
-		//$nometeam = $teamId;
-	
+	{
+		$nometeam = $teamId;
+		$nometeam = str_replace($search_sp, $replace_sp, $nometeam); 
+	}
+
+
 	$response =  "<b>tabellino della gara</b>\n\n";
 	$response =  $response . "<b>Id:</b> " . $chatId;
 	
 	if ((int)$myVarsArr[$chatId]['star'] > 0)
 		$response = $response . " (" . (int)$myVarsArr[$chatId]['star'] . unichr($star_code) . ")";
+
+    $nickId = str_replace($search_sp, $replace_sp, $nickId); 
 	
 	$response =  $response . "\n<b>nickname:</b> " . $nickId . "\n<b>team:</b> " . $nometeam;
 	$response =  $response . "\n<b>sei sul livello:</b> " . $livello . "\nraggiunto il: " . $myVarsArr[$chatId]["date"];
@@ -3056,6 +3187,9 @@ if(strpos($text, '/chat') !== false )
 //ranking
 if(strpos($text, '/ranking') !== false)
 {
+	$search_sp = array('<', '>');
+	$replace_sp = array('&lt;', '&gt;'); 
+		
 	$par  = explode(" ", $text);
 
 	if (!isset($par[1]) || $par[1]==='-V')
@@ -3063,6 +3197,9 @@ if(strpos($text, '/ranking') !== false)
 
 		foreach ($myVarsArr as $key => $value)
 		{
+			if (strlen($key) <= 1)
+				   continue;
+			   
 			if(isset($value['team']))
 			{
 				if (strlen($value['team'])>=1)
@@ -3120,6 +3257,9 @@ if(strpos($text, '/ranking') !== false)
 			
 		foreach ($myVarsArr as $key => $value)
 		{
+			if (strlen($key) <= 1)
+				   continue;
+			   
 			if(isset($value['team']))
 			{
 				if (strlen($value['team'])>=1)
@@ -3163,7 +3303,7 @@ if(strpos($text, '/ranking') !== false)
 		
 		$narr = array_sort($elenco, "sort", $order=SORT_DESC);
 		
-			
+
 		$response="<b>classifica generale</b>\n";
 		$liv_curr = -1;
 		foreach ($narr as $key => $value) 
@@ -3171,10 +3311,17 @@ if(strpos($text, '/ranking') !== false)
 			$response_par = "";
 			if ($liv_curr != $value['livello'])
 			{
-				$response_par = "\n──── <b>livello ". $value['livello'] . "</b>\n";
-				$liv_curr = $value['livello'];
+				if (isset($value['livello']))
+					$val_livello=$value['livello'];
+				else
+					$val_livello=0;
+				$response_par = "\n──── <b>livello ". $val_livello . "</b>\n";
+				$liv_curr = $val_livello;
 			}
-				
+			
+			
+			$key = str_replace($search_sp, $replace_sp, $key); 
+			
 			$response_par = $response_par . $key;
 			if ($value['star']>0)
 				$response_par = $response_par . " (".$value['star'].unichr($star_code).")";
@@ -3205,6 +3352,9 @@ if(strpos($text, '/ranking') !== false)
 			{
 				foreach ($myVarsArr as $key => $value)
 				{
+					if (strlen($key) <= 1)
+						continue;
+			   
 					if(isset($value['team']))
 					{
 						if (strlen($value['team'])>=1)
@@ -3253,16 +3403,20 @@ if(strpos($text, '/ranking') !== false)
 			unset($elencosingoli);
 			foreach ($myVarsArr as $key => $value)
 			{
+				if (strlen($key) <= 1)
+				   continue;
+			   
 				if(isset($value['team']))
 				{
-					if ((strlen($value['team'])>=1) && ($value['livello'] == $liv))  //giocatori nel team
+					if ((strlen($value['team'])>=1) && (($value['livello'] == $liv) || (!isset($value['livello']) && $liv==0)))  //giocatori nel team
 					{
 						$elencoteam[$value['team']]['num'] = (int)$elencoteam[$value['team']]['num']+1;
 						$elencoteam[$value['team']]['star'] = (int)$elencoteam[$value['team']]['star']+
 						                                      (int)$myVarsArr[$key]['star'];
 						$elencoteam[$value['team']]['team'] = $value['team'];
 					}
-					else if ($value['livello'] == $liv )   //giocatori con utenza sbloccata
+					else if (($value['livello'] == $liv) || (!isset($value['livello']) && $liv==0))   
+						                   //giocatori con utenza sbloccata
 					{
 						$single=isset($value['nick']) ? $value['nick'] : "anonimo";
 						if (isset($value['nick']))
@@ -3275,7 +3429,7 @@ if(strpos($text, '/ranking') !== false)
 					}
 					
 				}
-				else if ($value['livello'] == $liv)
+				else if (($value['livello'] == $liv) || (!isset($value['livello']) && $liv==0))
 				{
 					$single=isset($value['nick']) ? $value['nick'] : "anonimo";
 					if (isset($value['nick']))
@@ -3298,6 +3452,7 @@ if(strpos($text, '/ranking') !== false)
 			
 			foreach ($narr as $key => $value) 
 			{
+				$key = str_replace($search_sp, $replace_sp, $key); 	
 				if ((int)$value['star'] > 0)
 					$response=$response . "\n" . $emoji_team. " " . $key . " (" . (int)$value['star'] . unichr($star_code) . ")";
 				else
@@ -3311,10 +3466,11 @@ if(strpos($text, '/ranking') !== false)
 			
 			foreach ($narr as $key => $value)
 			{
-				if (isset($value['nick']) && ((strlen($value['team'])<1) || !isset($value['team'])) && $value['star']>0 && $value['livello']==$liv)
-					$response=$response . "\n" . $emoji_esci. " " . $value['nick'] . " (" . $narr[$key]['star'] . unichr($star_code) . ")";
-				elseif (isset($value['nick'])&& ((strlen($value['team'])<1) || !isset($value['team'])) && $value['livello']==$liv)
-					$response=$response . "\n" . $emoji_esci. " " . $value['nick'];
+				$nick_sp=str_replace($search_sp, $replace_sp, $value['nick']);
+				if (isset($value['nick']) && ((strlen($value['team'])<1) || !isset($value['team'])) && $value['star']>0 && ($value['livello']==$liv || (!isset($value['livello']) && $liv==0)))
+					$response=$response . "\n" . $emoji_esci. " " . $nick_sp . " (" . $narr[$key]['star'] . unichr($star_code) . ")";
+				elseif (isset($value['nick'])&& ((strlen($value['team'])<1) || !isset($value['team'])) && ($value['livello']==$liv || (!isset($value['livello']) && $liv==0)))
+					$response=$response . "\n" . $emoji_esci. " " . $nick_sp;
 			}
 			
 		/*	
@@ -3363,6 +3519,9 @@ if(strpos($text, '/ranking') !== false)
 //lteam iniziali
 if(strpos($text, '/lteam') !== false)
 {
+	$search_sp = array('<', '>');
+	$replace_sp = array('&lt;', '&gt;'); 
+	
 	$par  = explode(" ", $text);
 
 	foreach ($myVarsArr as $key => $value)
@@ -3412,7 +3571,10 @@ if(strpos($text, '/lteam') !== false)
 				$response = $response . $response_team . $response_star . $response_gioc;
 				$response_gioc = "";
 				$tstar = 0;
-				$response_team = "\n" . $emoji_team . "<b> ". $value['team'] . "</b>";
+				
+				$team_sp=str_replace($search_sp, $replace_sp, $value['team']);
+				
+				$response_team = "\n" . $emoji_team . "<b> ". $team_sp . "</b>";
 				$team_curr = $value['team'];
 				$flag = true;
 			}
@@ -3421,11 +3583,13 @@ if(strpos($text, '/lteam') !== false)
 				$gstar = " (" . $value['star'] . unichr($star_code) . ")";
 			else
 				$gstar = "";
-			$response_gioc = $response_gioc . $emoji_esci . " ". $value['nick'] . $gstar . "\n";
+			
+			$nick_sp=str_replace($search_sp, $replace_sp, $value['nick']);
+			$response_gioc = $response_gioc . $emoji_esci . " ". $nick_sp . $gstar . "\n";
 			$tstar += $value['star'];
 		}
 	}
-	if ($flag)
+	if ($flag && false)
 	{
 		if ($tstar > 0)
 		{	
@@ -3445,7 +3609,6 @@ if(strpos($text, '/lteam') !== false)
 		$response = $response . $response_team . $response_star . $response_gioc;
 		$flag=false;
 	}
-	
 	$ch = curl_init();
 	$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response)."&parse_mode=HTML";
 	curl_setopt($ch, CURLOPT_URL, $myUrl); 
@@ -3718,6 +3881,13 @@ if(strpos($text, '/team') !== false)
 			$team  = substr($text, strpos($text, "-C ")+3);
 		
 		$team = str_replace(" ", "_", $team);
+		$team = str_replace("\n", "_", $team);
+		$team = str_replace("@", "_", $team);
+			
+		if (strlen($team)> 36 || strlen($team)==0)
+			$lunghezza_regolare=false;
+		else
+			$lunghezza_regolare=true;
 		
 		$inuso=false;
 		foreach ($myVarsArr as $key => $value)
@@ -3728,7 +3898,7 @@ if(strpos($text, '/team') !== false)
 				break;
 			}
 		}
-		if ($inuso === false) 
+		if (($inuso === false) && $lunghezza_regolare)
 		{
 			$myVarsArr[$chatId]["team"]=$team;
 			$myVarsJson = json_encode($myVarsArr);
@@ -3736,8 +3906,10 @@ if(strpos($text, '/team') !== false)
 			
 			$response = "team creato correttamente: ".$myVarsArr[$chatId]["team"];
 		}
-		else
+		else if ($inuso)
 			$response = "nome del team già in uso";
+		else
+			$response = "nome del team non valido";
 	}
 	else if ($par[1]=="-l")
 	{
@@ -3956,7 +4128,7 @@ if(strpos($text, '/register') !== false)
 	exit();
 }
 
-//nick imposta il nickname
+//nick visualizza o imposta il nickname
 if(strpos($text, '/nick') !== false)
 {
 	
@@ -3997,6 +4169,13 @@ if(strpos($text, '/nick') !== false)
 			$nick  = substr($text, strpos($text, " ")+1);
 			
 			$nick = str_replace(" ", "_", $nick);
+			$nick = str_replace("\n", "_", $nick);
+			$nick = str_replace("@", "_", $nick);
+			
+			if (strlen($nick)> 36 || strlen($nick)==0)
+				$lunghezza_regolare=false;
+			else
+				$lunghezza_regolare=true;
 			
 			$inuso=false;
 			foreach ($myVarsArr as $key => $value)
@@ -4007,7 +4186,7 @@ if(strpos($text, '/nick') !== false)
 					break;
 				}
 			}
-			if ($inuso === false) 
+			if (($inuso === false) && ($lunghezza_regolare))
 			{
 				$myVarsArr[$chatId]["nick"]=$nick;
 				$myVarsJson = json_encode($myVarsArr);
@@ -4015,8 +4194,10 @@ if(strpos($text, '/nick') !== false)
 				
 				$response = "nickname impostato correttamente: ". $myVarsArr[$chatId]["nick"];
 			}
-			else
+			else if ($inuso)
 				$response = "nickname già in uso";
+			else
+				$response = "nickname non valido";
 		}
 	}
 	$parameters = array('chat_id' => $chatId, "text" => $response);
@@ -4097,15 +4278,79 @@ if(strpos($text, '/help') !== false)
 		curl_close($ch);
 	}
 	
-	// fornisce gli indizi per il livello corrente coerentemente con le abilitazioni
-	$response = $indizio[0];
-	if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] ))
-		$response = $response . "\n" . $indizio[1];
-	if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"] ))
-	    $response = $response . "\n" . $indizio[2];
-    if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] ))
-		$response = $response . "\n" . $indizio[3];
+	if ($ACCURATEZZA_RISPOSTA == "elevata" && $accuratezza_risp_corr == "approssimata" && ($livello > 0) )
+	{
+		$response = "\xF0\x9F\x8E\xA1" . " <i>panoramica: rispondi con una frase</i>\n\n";
+	}
+	else if ($ACCURATEZZA_RISPOSTA == "elevata" && $accuratezza_risp_corr == "elevata" && ($livello > 0) )
+	{
+		$response = "\xF0\x9F\x8E\xA2" . " <i>tornado: usa solo le parole giuste</i>\n\n";
+	}
+	else 
+		$response = "";
 	
+	
+	
+	if ($tipo_risp_corr == "sequenza")
+	{
+		$risorsa = (String)($xml->domanda[$livello]->risorsa);
+		$risorsa1=str_replace(".", "-1.", $risorsa);
+		$risorsa2=str_replace(".", "-2.", $risorsa);
+		$risorsa3=str_replace(".", "-3.", $risorsa);
+		
+		if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] ))
+		{
+			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa1")));
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+			curl_setopt($ch, CURLOPT_URL, $botUrl); 
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+			
+			// read curl response
+			$output = curl_exec($ch);
+		}
+		if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"] ))
+		{
+			sleep(2);
+			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa2")));
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+			curl_setopt($ch, CURLOPT_URL, $botUrl); 
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+			
+			// read curl response
+			$output = curl_exec($ch);
+		}
+		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] ))
+		{
+			sleep(2);
+			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa3")));
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+			curl_setopt($ch, CURLOPT_URL, $botUrl); 
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+			
+			// read curl response
+			$output = curl_exec($ch);
+		}
+		
+	}
+	else
+	{
+		// fornisce gli indizi per il livello corrente coerentemente con le abilitazioni
+		$response = $response . $indizio[0];
+		if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] ))
+			$response = $response . "\n" . $indizio[1];
+		if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"] ))
+			$response = $response . "\n" . $indizio[2];
+		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] ))
+			$response = $response . "\n" . $indizio[3];
+	}
+
+			
 	
 	//prossimo aiuto
 	if (($livello > 0) && ($statoGioco != "terminato"))
@@ -4147,18 +4392,6 @@ if(strpos($text, '/refresh') !== false)
 	$risEsatta=true;
 }
 
-// / comando errato
-/*
-if((strpos($text, '/') !== false) && !$eccezione)
-{
-	$response = "comando errato";
-
-	$parameters = array('chat_id' => $chatId, "text" => $response);
-	$parameters["method"] = "sendMessage";
-	echo json_encode($parameters);
-	exit();
-}
-*/
 
 //verifica se la risposta data è corretta e, se OK,  incrementa il livello
 //if((strcmp($text, strtolower($risposta)) === 0) && (!$eccezione))
@@ -4345,7 +4578,7 @@ if (risposta_esatta($text, $risposta) && (!$eccezione))
 	
 //gestisce la risposta corretta (allo start/restart si considera fittiziamente che la risposta è esatta)
 //mostrando la domanda del livello appena raggiunto
-//quando lo stato eccezione (su richiesta di admin) è imposato l'enigma è comunque visualizzato
+//quando lo stato eccezione (su richiesta di admin) è impostato l'enigma è comunque visualizzato
 if(($risEsatta==true)||($eccezione == true))
 {
 	if(strcmp($tipo, "immagine") === 0)
@@ -4372,12 +4605,14 @@ if(($risEsatta==true)||($eccezione == true))
 		
 		if (!$eccezione)
 		{
+			/*
 			if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] ))
 				$risorsa=$risorsa3;
 			elseif (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"] ))
 				$risorsa=$risorsa2;
 			elseif (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] ))
 				$risorsa=$risorsa1;
+			*/
 			
 			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa")));
 			$ch = curl_init();
