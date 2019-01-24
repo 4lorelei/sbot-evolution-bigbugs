@@ -381,6 +381,7 @@ $attesa_aiuto1 = isset($xml->domanda[$livello]->attesa1)?$xml->domanda[$livello]
 $attesa_aiuto2 = isset($xml->domanda[$livello]->attesa2)?$xml->domanda[$livello]->attesa2 : 120;
 $attesa_aiuto3 = isset($xml->domanda[$livello]->attesa3)?$xml->domanda[$livello]->attesa3 : 180;
 $accuratezza_risp_corr = isset($xml->domanda[$livello]->accuratezza)?$xml->domanda[$livello]->accuratezza : "approssimata";
+$tipo_risp_corr = (String)($xml->domanda[$livello]->tipo);
 if (isset($abilitazione[$livello]["aiuto1"]))
 	$attesa_aiuto1 = $abilitazione[$livello]["aiuto1"];
 if (isset($abilitazione[$livello]["aiuto2"]))
@@ -4289,15 +4290,62 @@ if(strpos($text, '/help') !== false)
 		$response = "";
 	
 	
-	// fornisce gli indizi per il livello corrente coerentemente con le abilitazioni
-	$response = $response . $indizio[0];
-	if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] ))
-		$response = $response . "\n" . $indizio[1];
-	if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"] ))
-	    $response = $response . "\n" . $indizio[2];
-    if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] ))
-		$response = $response . "\n" . $indizio[3];
 	
+	if ($tipo_risp_corr == "sequenza")
+	{
+		if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] ))
+		{
+			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa1")));
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+			curl_setopt($ch, CURLOPT_URL, $botUrl); 
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+			
+			// read curl response
+			$output = curl_exec($ch);
+		}
+		if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"] ))
+		{
+			sleep(2);
+			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa2")));
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+			curl_setopt($ch, CURLOPT_URL, $botUrl); 
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+			
+			// read curl response
+			$output = curl_exec($ch);
+		}
+		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] ))
+		{
+			sleep(2);
+			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa3")));
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+			curl_setopt($ch, CURLOPT_URL, $botUrl); 
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+			
+			// read curl response
+			$output = curl_exec($ch);
+		}
+		
+	}
+	else
+	{
+		// fornisce gli indizi per il livello corrente coerentemente con le abilitazioni
+		$response = $response . $indizio[0];
+		if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] ))
+			$response = $response . "\n" . $indizio[1];
+		if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"] ))
+			$response = $response . "\n" . $indizio[2];
+		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] ))
+			$response = $response . "\n" . $indizio[3];
+	}
+
+			
 	
 	//prossimo aiuto
 	if (($livello > 0) && ($statoGioco != "terminato"))
@@ -4339,18 +4387,6 @@ if(strpos($text, '/refresh') !== false)
 	$risEsatta=true;
 }
 
-// / comando errato
-/*
-if((strpos($text, '/') !== false) && !$eccezione)
-{
-	$response = "comando errato";
-
-	$parameters = array('chat_id' => $chatId, "text" => $response);
-	$parameters["method"] = "sendMessage";
-	echo json_encode($parameters);
-	exit();
-}
-*/
 
 //verifica se la risposta data è corretta e, se OK,  incrementa il livello
 //if((strcmp($text, strtolower($risposta)) === 0) && (!$eccezione))
@@ -4537,7 +4573,7 @@ if (risposta_esatta($text, $risposta) && (!$eccezione))
 	
 //gestisce la risposta corretta (allo start/restart si considera fittiziamente che la risposta è esatta)
 //mostrando la domanda del livello appena raggiunto
-//quando lo stato eccezione (su richiesta di admin) è imposato l'enigma è comunque visualizzato
+//quando lo stato eccezione (su richiesta di admin) è impostato l'enigma è comunque visualizzato
 if(($risEsatta==true)||($eccezione == true))
 {
 	if(strcmp($tipo, "immagine") === 0)
@@ -4564,12 +4600,14 @@ if(($risEsatta==true)||($eccezione == true))
 		
 		if (!$eccezione)
 		{
+			/*
 			if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] ))
 				$risorsa=$risorsa3;
 			elseif (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"] ))
 				$risorsa=$risorsa2;
 			elseif (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] ))
 				$risorsa=$risorsa1;
+			*/
 			
 			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa")));
 			$ch = curl_init();
