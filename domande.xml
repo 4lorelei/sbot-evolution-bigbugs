@@ -1112,6 +1112,7 @@ ed assai triste è il passato"</indizio1>
 		<tipo>sequenza</tipo>
 		<risorsa>immagini/jefferson.jpg</risorsa>
 		<risposta>pezzi di marmo</risposta>
+		<accuratezza>elevata</accuratezza>
 		<indizio0>ZPHCMMAYOTLV</indizio0>
 		<indizio1>fai il /refresh</indizio1>
 		<indizio2>fai il /refresh</indizio2>
@@ -1126,6 +1127,7 @@ ed assai triste è il passato"</indizio1>
 		<tipo>immagine</tipo>
 		<risorsa>immagini/paradiso.jpg</risorsa>
 		<risposta>prato</risposta>
+		<accuratezza>approssimata</accuratezza>
 		<indizio0>qual è la via per La Porta del Paradiso?</indizio0>
 		<indizio1>ponte Santa Trinità è una scorciatoia</indizio1>
 		<indizio2>siamo a Firenze</indizio2>
