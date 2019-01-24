@@ -3918,7 +3918,7 @@ if (($statoGioco=="terminato") && !$eccezione)
 //team imposta il team
 if(strpos($text, '/team') !== false)
 {
-	
+	$par  = explode(" ", $text);
 	
 	if ($par[1]=="-l")
 	{
@@ -3954,8 +3954,6 @@ if(strpos($text, '/team') !== false)
 	else
 	{
 		// imposta il team
-		$par  = explode(" ", $text);
-	
 		if (!isset($par[1]))
 		{
 			$response = "uso del comando /team\n    /team -l  (dettagli sul team)\n    /team -c mio-team  (crea il team)\n    /team -r  (per essere aggiunti in un team)\n    /team -s  (singolo giocatore)\n    /team -a nickname  (aggiunge al team)";
