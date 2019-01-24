@@ -4289,11 +4289,11 @@ if(strpos($text, '/help') !== false)
 	else 
 		$response = "";
 	
+	$response = $response . $indizio[0] . "\n";
 	
 	if (!($tipo_risp_corr == "sequenza"))
 	{
 		// fornisce gli indizi per il livello corrente coerentemente con le abilitazioni
-		$response = $response . $indizio[0];
 		if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] ))
 			$response = $response . "\n" . $indizio[1];
 		if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"] ))
@@ -4301,7 +4301,7 @@ if(strpos($text, '/help') !== false)
 		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] ))
 			$response = $response . "\n" . $indizio[3];
 		
-		$response = $response . "\n\n";
+		$response = $response . "\n";
 	}
 
 			
@@ -4318,7 +4318,7 @@ if(strpos($text, '/help') !== false)
 			$msg_prossimo_aiuto = "<i>prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$chatId]["date"]). "</i>";
 	}
 	
-	$response = $response . $msg_prossimo_aiuto;
+	$response = $response . "\n" . $msg_prossimo_aiuto;
 	
 	
 	$ch = curl_init();
