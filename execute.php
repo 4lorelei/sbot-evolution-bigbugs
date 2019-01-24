@@ -1253,9 +1253,14 @@ if(strpos($text, '/match') !== false && $utenteAdmin === true)
 			$response = $response . "\n\nmax giocatori per team: " . $MAX_TEAM;
 			$response = $response . "\naccuratezza risposta: " . $ACCURATEZZA_RISPOSTA;
 			
-			$gestione_clock = $CLOCK == "si_sospende" ? "gestita" : "non gestita";
-			
+			$gestione_clock = ($CLOCK == "si_sospende") ? "gestita" : "non gestita";
 			$response = $response . "\nsospensione del clock: " . $gestione_clock ;
+			
+			$gestione_team = ($VARIAZIONE_TEAM == -1) ? "sempre consentita" : "fino al livello ".$VARIAZIONE_TEAM . " incluso";
+			$response = $response . "\ngestione del team: " . $gestione_team;
+			
+			$response = $response . "\ncomando zero: " . $COMANDO_ZERO;
+			
 			$response = $response . "\n\n" . $tot . " giocatori partecipanti";
 			$response = $response . "\nlivello max raggiunto: " . $maxlivello;
 
