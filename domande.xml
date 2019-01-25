@@ -64,6 +64,7 @@ Tocca il pulsante "indizi" per continuare.
 		<tipo>immagine</tipo>
 		<risorsa>immagini/ingranaggio.jpg</risorsa>
 		<risposta>+346,5 -396</risposta>
+		<accuratezza>elevata</accuratezza>
 		<indizio0>la ruota dentata verde compie 99 giri in senso antiorario.
 quanti giri e frazioni di giro in senso antiorario compiono in totale le ruote dentate?
 e quanti giri in senso orario?
@@ -82,6 +83,7 @@ N.B. indicare con + i giri in senso orario e con - i giri in senso antiorario
         <tipo>audio</tipo>
         <risorsa>audio/eduardo_cra.mp3</risorsa>
         <risposta>luigi strada</risposta>
+		<accuratezza>elevata</accuratezza>
         <indizio0>l'autore della poesia</indizio0>
         <indizio1>è un personaggio della commedia</indizio1>
         <indizio2>... Ditegli sempre di sì</indizio2>
@@ -96,6 +98,7 @@ N.B. indicare con + i giri in senso orario e con - i giri in senso antiorario
 		<tipo>immagine</tipo>
 		<risorsa>immagini/parole-ch.JPG</risorsa>
 		<risposta>chiave</risposta>
+		<accuratezza>elevata</accuratezza>
 		<indizio0>quale parola collega questi vocaboli?</indizio0>
 		<indizio1>parola</indizio1>
 		<indizio2>porta</indizio2>
@@ -110,6 +113,7 @@ N.B. indicare con + i giri in senso orario e con - i giri in senso antiorario
 		<tipo>sequenza</tipo>
 		<risorsa>immagini/marchio_l.jpg</risorsa>
 		<risposta>lamborghini</risposta>
+		<accuratezza>elevata</accuratezza>
 		<indizio0>individua il marchio</indizio0>
 		<indizio1>fai il /refresh</indizio1>
 		<indizio2>fai il /refresh</indizio2>
@@ -124,6 +128,7 @@ N.B. indicare con + i giri in senso orario e con - i giri in senso antiorario
 		<tipo>immagine</tipo>
 		<risorsa>immagini/poeta_cinese.jpg</risorsa>
 		<risposta>cao cao</risposta>
+		<accuratezza>approssimata</accuratezza>
 		<indizio0>chi è l’uomo nel ritratto?</indizio0>
 		<indizio1>"Ecco il vino! Dunque si canti,
 perché breve è la vita
@@ -140,7 +145,8 @@ ed assai triste è il passato"</indizio1>
 	<domanda>
 		<tipo>testo</tipo>
 		<risorsa>una donna sta guardando un quadro che raffigura un autoritratto e afferma: "mia madre ha una sola figlia eppure la madre della donna qui ritratta è figlia di mia madre"</risorsa>
-		<risposta>figlia</risposta>
+		<risposta>figlia|la figlia</risposta>
+		<accuratezza>elevata</accuratezza>
 		<indizio0>chi è l'autore del quadro?</indizio0>
 		<indizio1>la figlia di mia madre sono io</indizio1>
 		<indizio2>la madre della donna qui ritratta sono io</indizio2>
@@ -154,7 +160,8 @@ ed assai triste è il passato"</indizio1>
 	<domanda>
 		<tipo>audio</tipo>
 		<risorsa>audio/president.mp3</risorsa>
-		<risposta>obama</risposta>
+		<risposta>obama|barack obama</risposta>
+		<accuratezza>elevata</accuratezza>
 		<indizio0>chi pronuncia questo discorso?</indizio0> 
 		<indizio1>anno 2016</indizio1>
 		<indizio2>ateneo del New Jersey</indizio2>
