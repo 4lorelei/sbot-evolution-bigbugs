@@ -4481,7 +4481,7 @@ if(strpos($text, '/refresh') !== false)
 //verifica se la risposta data è corretta e, se OK,  incrementa il livello
 //if((strcmp($text, strtolower($risposta)) === 0) && (!$eccezione))
 //if (risposta_esatta($text, $risposta) && (!$eccezione))
-if ($ACCURATEZZA_RISPOSTA="esatta")
+if ($ACCURATEZZA_RISPOSTA="elevata")
 	$accuratezza_r = $tipo_risp_corr;
 else
 	$accuratezza_r = "approssimata";
@@ -5127,7 +5127,7 @@ function risposta_esatta($risposta, $esatta, $accuratezza)
 		}
 		if (($accuratezza == "approssimata") && $corretto)
 			break;
-		else if (($accuratezza == "esatta") && ($corretto) && (($limite_corr - $limite_preced) == $tot_ris))
+		else if (($accuratezza == "elevata") && ($corretto) && (($limite_corr - $limite_preced) == $tot_ris))
 			break;
 		else
 			$corretto = false;
