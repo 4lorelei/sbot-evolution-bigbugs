@@ -4480,7 +4480,12 @@ if(strpos($text, '/refresh') !== false)
 
 //verifica se la risposta data è corretta e, se OK,  incrementa il livello
 //if((strcmp($text, strtolower($risposta)) === 0) && (!$eccezione))
-if (risposta_esatta($text, $risposta) && (!$eccezione))
+//if (risposta_esatta($text, $risposta) && (!$eccezione))
+if ($ACCURATEZZA_RISPOSTA="esatta")
+	$accuratezza_r = $tipo_risp_corr;
+else
+	$accuratezza_r = "approssimata";
+if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 {
 
 	$file = fopen($path_lock,"w+");
@@ -5023,10 +5028,10 @@ function prossimo_aiuto($tempo_attesa, $data_livello)
 		return date("H:i", $secondi + ($tempo_attesa * 60));
 }
 
-// il confronto è case unsensitive, l'accento e altri caratteri partcolari sono sostituiti con spazio
+// il confronto è case unsensitive, l'apostrofo e altri caratteri partcolari sono sostituiti con spazio
 // la risposta data deve contenere tutte le parole previste nelle risposta esatta
 // una risposta > 50 caratteri è considerata errata
-function risposta_esatta($risposta, $esatta)
+function risposta_esatta_old($risposta, $esatta)
 {
 	if (strlen($risposta)> 50)
 		return false;
@@ -5058,6 +5063,74 @@ function risposta_esatta($risposta, $esatta)
 		}
 		if (!$corretto)
 			break;
+	}
+	return $corretto;
+}
+
+function risposta_esatta($risposta, $esatta, $accuratezza)
+{
+	if (strlen($risposta)> 50)
+		return false;
+	
+	$esatta=str_replace("|", " | ", $esatta);
+	
+	$risposta = preg_replace('/[^a-zA-Z0-9-+*:><=.,èéàòùì]/', ' ', $risposta);
+    $esatta = preg_replace('/[^a-zA-Z0-9-+*:><=.,èéàòùì|]/', ' ', $esatta);
+	
+	$risposta = trim(preg_replace('/\s+/', ' ', $risposta));
+	$esatta = trim(preg_replace('/\s+/', ' ', $esatta));
+
+	$ris = explode(" ", strtolower($risposta));
+	$es = explode(" ", strtolower($esatta));
+	
+	$tot_ris = count($ris);
+	$tot_es = count($es);
+	
+	$limite_corr = 0;
+	$limite_preced = 0;
+	
+	while($limite_corr<$tot_es)
+	{
+		for ($k=$limite_corr+1; $k<$tot_es; $k++)
+		{
+			if ($es[$k] == "|")
+			{
+				if ($limite_corr > 0)
+					$limite_preced = $limite_corr+1;
+				$limite_corr = $k;
+				break;
+			}
+		}
+
+		if ($k == $tot_es)
+		{
+			
+			if ($limite_corr > 0)
+				$limite_preced = $limite_corr+1;
+			$limite_corr = $tot_es;
+		}
+			
+		for ($i=$limite_preced; $i<$limite_corr; $i++)
+		{
+			$corretto=false;
+			for ($j=0; $j<$tot_ris; $j++)
+			{
+				if ($es[$i]==$ris[$j])
+				{
+					$corretto=true;
+					break;
+				}
+					
+			}
+			if (!$corretto)
+				break;
+		}
+		if (($accuratezza == "approssimata") && $corretto)
+			break;
+		else if (($accuratezza == "esatta") && ($corretto) && (($limite_corr - $limite_preced) == $tot_ris))
+			break;
+		else
+			$corretto = false;
 	}
 	return $corretto;
 }
