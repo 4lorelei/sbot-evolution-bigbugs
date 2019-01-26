@@ -4482,7 +4482,10 @@ if(strpos($text, '/refresh') !== false)
 //if((strcmp($text, strtolower($risposta)) === 0) && (!$eccezione))
 //if (risposta_esatta($text, $risposta) && (!$eccezione))
 if ($ACCURATEZZA_RISPOSTA=="elevata")
-	$accuratezza_r = $tipo_risp_corr;
+	if ($accuratezza_risp_corr == "elevata")
+		$accuratezza_r = "elevata";
+	else 
+		$accuratezza_r = "approssimata";
 else
 	$accuratezza_r = "approssimata";
 if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
