@@ -389,6 +389,7 @@ if ($nuovoComando !== "nessuno")
 		
 		$data_corrente = date("d/m/Y H:i", (int)$cron[timestamp]);
 		$myVarsArr[$idADMIN]['data_sleep'] = $data_corrente;
+		$myVarsArr[$idADMIN]['data_go'] = "";
 		//aggiornamento su file
 		$myVarsJson = json_encode($myVarsArr);
 		file_put_contents($path, $myVarsJson, LOCK_EX);
@@ -1284,6 +1285,7 @@ if(strpos($text, '/match') !== false && $utenteAdmin === true)
 
 			$response = "ultimo riavvio: "  . $data_riavvio . "\nultimo backup: " . $data_ultimo_bck . "\nstato: " . $statoGioco ."\nmsg broadcast: " . $statoBroadcast;
 			
+			$response = $response . "sospensione del clock in:\n" . $data_break_sleep . " " . $data_break_go . "\n";
 			$response = $response . $msg_cron;
 			$response = $response . "\n\nmax giocatori per team: " . $MAX_TEAM;
 			$response = $response . "\naccuratezza risposta: " . $ACCURATEZZA_RISPOSTA;
@@ -2594,11 +2596,11 @@ if(strpos($text, '/identity') !== false && $utenteAdmin === true)
 				//prossimo aiuto
 				if ($level_team > 0)
 				{
-					if (abilitazione_livello($attesa_aiuto3, $date_team))
+					if (abilitazione_livello($attesa_aiuto3, $date_team, $data_break_sleep, $data_break_go))
 						$msg_prossimo_aiuto = "\n\ntutti gli aiuti sul livello sono abilitati";
-					else if (abilitazione_livello($attesa_aiuto2, $date_team))
+					else if (abilitazione_livello($attesa_aiuto2, $date_team, $data_break_sleep, $data_break_go))
 						$msg_prossimo_aiuto = "\n\nterzo aiuto alle " . prossimo_aiuto($attesa_aiuto3, $date_team);
-					else if (abilitazione_livello($attesa_aiuto1, $date_team))
+					else if (abilitazione_livello($attesa_aiuto1, $date_team, $data_break_sleep, $data_break_go))
 						$msg_prossimo_aiuto = "\n\nsecondo aiuto alle " . prossimo_aiuto($attesa_aiuto2, $date_team);
 					else 
 						$msg_prossimo_aiuto = "\n\nprimo aiuto alle " . prossimo_aiuto($attesa_aiuto1, $date_team);
@@ -5039,11 +5041,22 @@ function setBrd($flagBroadcast, $path_broadcast, $id)
 	return true;
 }
 
-function abilitazione_livello($tempo_attesa, $data_livello)
+function abilitazione_livello($tempo_attesa, $data_livello, $data_sleep, $data_go)
 {
 	$data_livello_new = str_replace("/", "-", $data_livello);
 	$secondi=strtotime($data_livello_new);
-	if ((time() - $secondi) > ($tempo_attesa*60))
+	
+	$secondi_sleep = str_replace("/", "-", $data_sleep);
+	$secondi_go = str_replace("/", "-", $data_go);
+	
+	// Se secondi_break è valido e il livello è stato raggiunto prima di data_sleep
+	if (($secondi_go - $secondi_sleep) > 0 && ($secondi_sleep > $secondi))
+	    $secondi_break = $secondi_go - $secondi_sleep;
+	else 
+	    $secondi_break = 0;
+	
+	
+	if ((time() - $secondi - $sedcondi_break) > ($tempo_attesa*60))
 		return true;
 	else
 		return false;
