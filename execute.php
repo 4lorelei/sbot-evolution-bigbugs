@@ -374,7 +374,8 @@ if ($nuovoComando !== "nessuno")
 	{
 		$text = "/match go -s";
 		
-		$myVarsArr[$idADMIN]['data_go'] = $cron["timestamp"];
+		$data_corrente = date("d/m/Y H:i", (int)$cron[timestamp]);
+		$myVarsArr[$idADMIN]['data_go'] = $data_corrente;
 		//aggiornamento su file
 		$myVarsJson = json_encode($myVarsArr);
 		file_put_contents($path, $myVarsJson, LOCK_EX);
@@ -384,7 +385,8 @@ if ($nuovoComando !== "nessuno")
 	{
 		$text = "/match sleep -s";
 		
-		$myVarsArr[$idADMIN]['data_sleep'] = $cron["timestamp"];
+		$data_corrente = date("d/m/Y H:i", (int)$cron[timestamp]);
+		$myVarsArr[$idADMIN]['data_sleep'] = $data_corrente;
 		//aggiornamento su file
 		$myVarsJson = json_encode($myVarsArr);
 		file_put_contents($path, $myVarsJson, LOCK_EX);
