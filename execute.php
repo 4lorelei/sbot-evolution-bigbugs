@@ -5135,6 +5135,7 @@ function risposta_esatta($risposta, $esatta, $accuratezza)
 	return $corretto;
 }
 
+
 function unichr($i) 
 {
     return iconv('UCS-4LE', 'UTF-8', pack('V', $i));
