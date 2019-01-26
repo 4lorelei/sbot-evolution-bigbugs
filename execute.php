@@ -298,6 +298,8 @@ foreach ($myVarsArr as $key => $value)
 	{
 		$data_ultimo_bck = $myVarsArr[$key]["backup"];
 		$idADMIN = $key;
+		$data_break_sleep = isset($myVarsArr[$key]["data_sleep"]) ? $myVarsArr[$key]["data_sleep"] : "";
+		$data_break_go = isset($myVarsArr[$key]["data_go"]) ? $myVarsArr[$key]["data_go"] : "";
 		break;
 	}
 }	
@@ -397,6 +399,25 @@ if ($nuovoComando !== "nessuno")
 		$text = "/match end -s";
 	}
 }
+
+// calcolo delta_break in secondi (per quanto tempo il sistema è stato in sleep)
+$abl = multiexplode(array("/"," ",":"),$data_break_sleep);
+$giorno = $abl[0];
+$mese = $abl[1];
+$anno = $abl[2];
+$ore = $abl[3];
+$minuti = $abl[4];
+$secondi_break_sleep = mktime($ore, $minuti, 0, $mese, $giorno, $anno);
+
+$abl = multiexplode(array("/"," ",":"),$data_break_go);
+$giorno = $abl[0];
+$mese = $abl[1];
+$anno = $abl[2];
+$ore = $abl[3];
+$minuti = $abl[4];
+$secondi_break_go = mktime($ore, $minuti, 0, $mese, $giorno, $anno);
+
+$delta_break = $secondi_break_go - $secondi_break_sleep;
 	
 //flag utilizzato per gestire comandi utente nello stato da_avviare o terminato se richiesti dall'admin
 $eccezione=false;
@@ -5367,6 +5388,13 @@ function monitor($path_monitor, $id, $action)
 	}
 		
 	return true;
+}
+
+function multiexplode ($delimiters,$string) {
+
+    $ready = str_replace($delimiters, $delimiters[0], $string);
+    $launch = explode($delimiters[0], $ready);
+    return  $launch;
 }
 
 function mylog($trace, $path_log, $id)
