@@ -373,10 +373,22 @@ if ($nuovoComando !== "nessuno")
 	else if ($nuovoComando == "go")
 	{
 		$text = "/match go -s";
+		
+		$myVarsArr[$idADMIN]['data_go'] = $cron["timestamp"];
+		//aggiornamento su file
+		$myVarsJson = json_encode($myVarsArr);
+		file_put_contents($path, $myVarsJson, LOCK_EX);
+		
 	}
 	else if ($nuovoComando == "sleep")
 	{
 		$text = "/match sleep -s";
+		
+		$myVarsArr[$idADMIN]['data_sleep'] = $cron["timestamp"];
+		//aggiornamento su file
+		$myVarsJson = json_encode($myVarsArr);
+		file_put_contents($path, $myVarsJson, LOCK_EX);
+		
 	}
 	else if ($nuovoComando == "end")
 	{
