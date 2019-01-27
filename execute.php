@@ -5078,7 +5078,6 @@ function setBrd($flagBroadcast, $path_broadcast, $id)
 
 function abilitazione_livello($tempo_attesa, $data_livello, $data_sleep, $data_go, $gestione_clock, $bonus)
 {
-{
 	$data_livello_new = str_replace("/", "-", $data_livello);
 	$secondi=strtotime($data_livello_new);
 	
@@ -5474,7 +5473,8 @@ function monitor($path_monitor, $id, $action)
 	return true;
 }
 
-function multiexplode ($delimiters,$string) {
+function multiexplode ($delimiters,$string) 
+{
 
     $ready = str_replace($delimiters, $delimiters[0], $string);
     $launch = explode($delimiters[0], $ready);
