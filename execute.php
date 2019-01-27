@@ -1285,7 +1285,8 @@ if(strpos($text, '/match') !== false && $utenteAdmin === true)
 
 			$response = "ultimo riavvio: "  . $data_riavvio . "\nultimo backup: " . $data_ultimo_bck . "\nstato: " . $statoGioco ."\nmsg broadcast: " . $statoBroadcast;
 			
-			$response = $response . "sospensione del clock in:\n" . $data_break_sleep . " " . $data_break_go . "\n";
+			$msg_break = $data_break_sleep == "" ? "<non impostato>" : $data_break_sleep . "-" . $data_break_go
+			$response = $response . "intervallo di sospensione:\n" . $msg_break . "\n";
 			$response = $response . $msg_cron;
 			$response = $response . "\n\nmax giocatori per team: " . $MAX_TEAM;
 			$response = $response . "\naccuratezza risposta: " . $ACCURATEZZA_RISPOSTA;
