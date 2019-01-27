@@ -5090,7 +5090,7 @@ function abilitazione_livello($tempo_attesa, $data_livello, $data_sleep, $data_g
 	    $secondi_break = 0;
 	
 	
-	if ((time() - $secondi - $sedcondi_break) > ($tempo_attesa*60))
+	if ((time() - $secondi - $secondi_break) > ($tempo_attesa*60))
 		return true;
 	else
 		return false;
