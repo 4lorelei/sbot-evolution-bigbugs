@@ -2014,34 +2014,6 @@ if(strpos($text, '/reset') !== false && $utenteAdmin === true)
 			$parameters["method"] = "sendMessage";
 			echo json_encode($parameters);
 		}
-	}
-	else
-	{
-		$response = "per impostare il livello per un utente e il suo team usa uno dei comandi\n/lset Id livello [data ora]\n/lset nick livello [data ora]\n(gg/mm/aaaa hh:mm)";
-		$ch = curl_init();
-		$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response);
-		curl_setopt($ch, CURLOPT_URL, $myUrl); 
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-		
-		// read curl response
-		$output = curl_exec($ch);
-		curl_close($ch);
-	}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		}
 		else
 		{
 			$msg = "uso del comando \n/reset game [-n]\n     reimposta a 0 livelli e aiuti (opzionalmente nick e team)\n/reset bot\n     reinizializza il bot\n/reset broadcast\n     abilita msg broadcast\n/reset clock\n     reimposta int sleeping";
@@ -2058,7 +2030,7 @@ if(strpos($text, '/reset') !== false && $utenteAdmin === true)
 	}
 	else
 	{
-		$response = "uso del comando \n/reset game [-n]\n     reimposta a 0 livelli e aiuti (opzionalmente nick e team)\n/reset bot\n     reinizializza il bot\n/reset broadcast\n     abilita msg broadcast";
+		$response = "uso del comando \n/reset game [-n]\n     reimposta a 0 livelli e aiuti (opzionalmente nick e team)\n/reset bot\n     reinizializza il bot\n/reset broadcast\n     abilita msg broadcast\n/reset clock\n     reimposta int sleeping";
 		$ch = curl_init();
 		$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response);
 		curl_setopt($ch, CURLOPT_URL, $myUrl); 
