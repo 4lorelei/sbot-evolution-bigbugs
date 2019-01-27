@@ -884,7 +884,7 @@ if(strpos($text, '/list') !== false && $utenteAdmin === true)
 	$msg = $msg . "/identity Id | nick | team\n    identifica utente o team\n";
 	$msg = $msg . "/lnext livello\n    avanza gli utenti del livello\n";
 	$msg = $msg . "/backup:\n    /backup 1   livelli\n    /backup 2   aiuti\n    /backup 3   admin\n    /backup 4   blacklist\n    /backup 5   anagrafica\n";
-	$msg = $msg . "/reset:\n    /reset game  [-n]\n     azzera livelli (nick)\n    /reset bot\n     azzera i file\n    /reset broadcast\n     abilita msg broadcast\n";
+	$msg = $msg . "/reset:\n    /reset game  [-n]\n     azzera livelli (nick)\n    /reset bot\n     azzera i file\n    /reset broadcast\n     abilita msg broadcast\n    /reset clock [data ora data ora]\n     interv sleeping\n";
 	$msg = $msg . "/lset:\n    /lset Id livello [data ora]\n      imposta livello di Id e team\n    /lset nick livello [data ora]\n      imposta livello di nick e team\n";
 	$msg = $msg . "/sset:\n    /sset Id stelle\n      imposta le stelle di Id\n    /sset nick stelle\n      imposta le stelle di nick\n";
 	$msg = $msg . "/blacklist:\n    /blacklist Id insert\n    /blacklist Id delete\n    /blacklist list\n";
@@ -1981,9 +1981,70 @@ if(strpos($text, '/reset') !== false && $utenteAdmin === true)
 			
 			$msg = "abilitazione invio messaggio broadcast effettuato con successo";
 		}
+		elseif ((($tipo[1] === "clock") && (!isset($tipo[2]))) || 
+		         (($tipo[1] === "clock") && (isset($tipo[2])) && (isset($tipo[3])) && 
+				  (isset($tipo[4])) && (isset($tipo[5]))))
+		{
+			if (!isset($tipo[2])
+			{
+				$myVarsArr[$idADMIN]['data_sleep'] = "";
+				$myVarsArr[$idADMIN]['data_go'] = "";
+				//aggiornamento su file
+				$myVarsJson = json_encode($myVarsArr);
+				file_put_contents($path, $myVarsJson, LOCK_EX);
+				
+				$response = "l'intervallo di sleeping è stato azzerato ";
+			}
+			else
+			{
+				$myVarsArr[$idADMIN]['data_sleep'] = $tipo[2] . " " . $tipo[3];
+				$myVarsArr[$idADMIN]['data_go'] = $tipo[4] . " " . $tipo[5];
+				
+				$response = "l'intervallo di sleeping è stato aggiornato a: " . $tipo[2] . " " . $tipo[3] ." - " . $tipo[4] . " " . $tipo[5];
+				//aggiornamento su file
+				$myVarsJson = json_encode($myVarsArr);
+				file_put_contents($path, $myVarsJson, LOCK_EX);
+			}
+				
+			//aggiornamento su file
+			$myVarsJson = json_encode($myVarsArr);
+			file_put_contents($path, $myVarsJson, LOCK_EX);
+
+			$parameters = array('chat_id' => $chatId, "text" => $response);
+			$parameters["method"] = "sendMessage";
+			echo json_encode($parameters);
+		}
+	}
+	else
+	{
+		$response = "per impostare il livello per un utente e il suo team usa uno dei comandi\n/lset Id livello [data ora]\n/lset nick livello [data ora]\n(gg/mm/aaaa hh:mm)";
+		$ch = curl_init();
+		$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response);
+		curl_setopt($ch, CURLOPT_URL, $myUrl); 
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+		
+		// read curl response
+		$output = curl_exec($ch);
+		curl_close($ch);
+	}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}
 		else
 		{
-			$msg = "uso del comando \n/reset game [-n]\n     reimposta a 0 livelli e aiuti (opzionalmente nick e team)\n/reset bot\n     reinizializza il bot\n/reset broadcast\n     abilita msg broadcast";
+			$msg = "uso del comando \n/reset game [-n]\n     reimposta a 0 livelli e aiuti (opzionalmente nick e team)\n/reset bot\n     reinizializza il bot\n/reset broadcast\n     abilita msg broadcast\n/reset clock\n     reimposta int sleeping";
 		}
 
 		$ch = curl_init();
