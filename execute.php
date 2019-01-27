@@ -1285,8 +1285,8 @@ if(strpos($text, '/match') !== false && $utenteAdmin === true)
 
 			$response = "ultimo riavvio: "  . $data_riavvio . "\nultimo backup: " . $data_ultimo_bck . "\nstato: " . $statoGioco ."\nmsg broadcast: " . $statoBroadcast;
 			
-			$msg_break = ($data_break_sleep == "") ? "<non impostato>" : $data_break_sleep . "-" . $data_break_go;
-			$response = $response . "\nintervallo di sospensione:\n" . $msg_break . "\n";
+			$msg_break = ($data_break_sleep == "") ? "<non impostato>" : $data_break_sleep . " - " . $data_break_go;
+			$response = $response . "\nintervallo di sospensione:\n" . $msg_break;
 			$response = $response . $msg_cron;
 			$response = $response . "\n\nmax giocatori per team: " . $MAX_TEAM;
 			$response = $response . "\naccuratezza risposta: " . $ACCURATEZZA_RISPOSTA;
@@ -2650,11 +2650,11 @@ if(strpos($text, '/identity') !== false && $utenteAdmin === true)
 				if ($ulevel > 0)
 				{
 					
-					if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$id]["date"]))
+					if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$id]["date"], $data_break_sleep, $data_break_go))
 						$msg_prossimo_aiuto = "\n\ntutti gli aiuti sul livello sono abilitati";
-					else if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$id]["date"]))
+					else if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$id]["date"], $data_break_sleep, $data_break_go))
 						$msg_prossimo_aiuto = "\n\nterzo aiuto alle " . prossimo_aiuto($attesa_aiuto3, $myVarsArr[$id]["date"]);
-					else if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$id]["date"]))
+					else if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$id]["date"], $data_break_sleep, $data_break_go))
 						$msg_prossimo_aiuto = "\n\nsecondo aiuto alle " . prossimo_aiuto($attesa_aiuto2, $myVarsArr[$id]["date"]);
 					else 
 						$msg_prossimo_aiuto = "\n\nprimo aiuto alle " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$id]["date"]);
@@ -3172,11 +3172,11 @@ if(strcmp($text, '/stat') === 0)
 	if (($livello > 0) && ($statoGioco != "terminato"))
 	{
 		
-		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"]))
+		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go))
 			$msg_prossimo_aiuto = "\n\n<b>tutti gli indizi del livello sono abilitati</b>";
-		else if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"]))
+		else if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go))
 			$msg_prossimo_aiuto = "\n\n<b>prossimo indizio alle:<b> " . prossimo_aiuto($attesa_aiuto3, $myVarsArr[$chatId]["date"]);
-		else if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"]))
+		else if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go))
 			$msg_prossimo_aiuto = "\n\n<b>prossimo indizio alle:</b> " . prossimo_aiuto($attesa_aiuto2, $myVarsArr[$chatId]["date"]);
 		else 
 			$msg_prossimo_aiuto = "\n\n<b>prossimo indizio alle:</b> " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$chatId]["date"]);
@@ -4416,11 +4416,11 @@ if(strpos($text, '/help') !== false)
 	if (!($tipo_risp_corr == "sequenza"))
 	{
 		// fornisce gli indizi per il livello corrente coerentemente con le abilitazioni
-		if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] ))
+		if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] , $data_break_sleep, $data_break_go))
 			$response = $response . "\n" . $indizio[1]. "\n";
-		if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"] ))
+		if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"] , $data_break_sleep, $data_break_go))
 			$response = $response . "\n" . $indizio[2]. "\n";
-		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] ))
+		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] , $data_break_sleep, $data_break_go))
 			$response = $response . "\n" . $indizio[3]. "\n";
 	}
 
@@ -4428,11 +4428,11 @@ if(strpos($text, '/help') !== false)
 	//prossimo aiuto
 	if (($livello > 0) && ($statoGioco != "terminato"))
 	{
-		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"]))
+		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go))
 			$msg_prossimo_aiuto = "<i>tutti gli indizi del livello sono abilitati</i>";
-		else if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"]))
+		else if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go))
 			$msg_prossimo_aiuto = "<i>prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto3, $myVarsArr[$chatId]["date"]) . "</i>";
-		else if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"]))
+		else if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go))
 			$msg_prossimo_aiuto = "<i>prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto2, $myVarsArr[$chatId]["date"]). "</i>";
 		else 
 			$msg_prossimo_aiuto = "<i>prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$chatId]["date"]). "</i>";
@@ -4457,7 +4457,7 @@ if(strpos($text, '/help') !== false)
 		$risorsa2=str_replace(".", "-2.", $risorsa);
 		$risorsa3=str_replace(".", "-3.", $risorsa);
 		
-		if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] ))
+		if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] , $data_break_sleep, $data_break_go))
 		{
 			sleep(1);
 			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa1")));
@@ -4470,7 +4470,7 @@ if(strpos($text, '/help') !== false)
 			// read curl response
 			$output = curl_exec($ch);
 		}
-		if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"] ))
+		if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"] , $data_break_sleep, $data_break_go))
 		{
 			sleep(1);
 			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa2")));
@@ -4483,7 +4483,7 @@ if(strpos($text, '/help') !== false)
 			// read curl response
 			$output = curl_exec($ch);
 		}
-		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] ))
+		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] , $data_break_sleep, $data_break_go))
 		{
 			sleep(1);
 			$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("$risorsa3")));
