@@ -2600,11 +2600,11 @@ if(strpos($text, '/identity') !== false && $utenteAdmin === true)
 					if (abilitazione_livello($attesa_aiuto3, $date_team, $data_break_sleep, $data_break_go))
 						$msg_prossimo_aiuto = "\n\ntutti gli aiuti sul livello sono abilitati";
 					else if (abilitazione_livello($attesa_aiuto2, $date_team, $data_break_sleep, $data_break_go))
-						$msg_prossimo_aiuto = "\n\nterzo aiuto alle " . prossimo_aiuto($attesa_aiuto3, $date_team);
+						$msg_prossimo_aiuto = "\n\nterzo aiuto alle " . prossimo_aiuto($attesa_aiuto3, $date_team, $data_break_sleep, $data_break_go);
 					else if (abilitazione_livello($attesa_aiuto1, $date_team, $data_break_sleep, $data_break_go))
-						$msg_prossimo_aiuto = "\n\nsecondo aiuto alle " . prossimo_aiuto($attesa_aiuto2, $date_team);
+						$msg_prossimo_aiuto = "\n\nsecondo aiuto alle " . prossimo_aiuto($attesa_aiuto2, $date_team, $data_break_sleep, $data_break_go);
 					else 
-						$msg_prossimo_aiuto = "\n\nprimo aiuto alle " . prossimo_aiuto($attesa_aiuto1, $date_team);
+						$msg_prossimo_aiuto = "\n\nprimo aiuto alle " . prossimo_aiuto($attesa_aiuto1, $date_team, $data_break_sleep, $data_break_go);
 				}
 				else
 				{
@@ -2653,11 +2653,11 @@ if(strpos($text, '/identity') !== false && $utenteAdmin === true)
 					if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$id]["date"], $data_break_sleep, $data_break_go))
 						$msg_prossimo_aiuto = "\n\ntutti gli aiuti sul livello sono abilitati";
 					else if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$id]["date"], $data_break_sleep, $data_break_go))
-						$msg_prossimo_aiuto = "\n\nterzo aiuto alle " . prossimo_aiuto($attesa_aiuto3, $myVarsArr[$id]["date"]);
+						$msg_prossimo_aiuto = "\n\nterzo aiuto alle " . prossimo_aiuto($attesa_aiuto3, $myVarsArr[$id]["date"], $data_break_sleep, $data_break_go);
 					else if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$id]["date"], $data_break_sleep, $data_break_go))
-						$msg_prossimo_aiuto = "\n\nsecondo aiuto alle " . prossimo_aiuto($attesa_aiuto2, $myVarsArr[$id]["date"]);
+						$msg_prossimo_aiuto = "\n\nsecondo aiuto alle " . prossimo_aiuto($attesa_aiuto2, $myVarsArr[$id]["date"], $data_break_sleep, $data_break_go);
 					else 
-						$msg_prossimo_aiuto = "\n\nprimo aiuto alle " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$id]["date"]);
+						$msg_prossimo_aiuto = "\n\nprimo aiuto alle " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$id]["date"], $data_break_sleep, $data_break_go);
 				}
 				else
 					$msg_prossimo_aiuto = "";
@@ -3175,11 +3175,11 @@ if(strcmp($text, '/stat') === 0)
 		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go))
 			$msg_prossimo_aiuto = "\n\n<b>tutti gli indizi del livello sono abilitati</b>";
 		else if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go))
-			$msg_prossimo_aiuto = "\n\n<b>prossimo indizio alle:<b> " . prossimo_aiuto($attesa_aiuto3, $myVarsArr[$chatId]["date"]);
+			$msg_prossimo_aiuto = "\n\n<b>prossimo indizio alle:<b> " . prossimo_aiuto($attesa_aiuto3, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go);
 		else if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go))
-			$msg_prossimo_aiuto = "\n\n<b>prossimo indizio alle:</b> " . prossimo_aiuto($attesa_aiuto2, $myVarsArr[$chatId]["date"]);
+			$msg_prossimo_aiuto = "\n\n<b>prossimo indizio alle:</b> " . prossimo_aiuto($attesa_aiuto2, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go);
 		else 
-			$msg_prossimo_aiuto = "\n\n<b>prossimo indizio alle:</b> " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$chatId]["date"]);
+			$msg_prossimo_aiuto = "\n\n<b>prossimo indizio alle:</b> " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go);
 	}
 	else if ($statoGioco == "terminato")
 		$msg_prossimo_aiuto = "\n\n<b>la gara è terminata!</b>\n";
@@ -4431,11 +4431,11 @@ if(strpos($text, '/help') !== false)
 		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go))
 			$msg_prossimo_aiuto = "<i>tutti gli indizi del livello sono abilitati</i>";
 		else if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go))
-			$msg_prossimo_aiuto = "<i>prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto3, $myVarsArr[$chatId]["date"]) . "</i>";
+			$msg_prossimo_aiuto = "<i>prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto3, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go) . "</i>";
 		else if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go))
-			$msg_prossimo_aiuto = "<i>prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto2, $myVarsArr[$chatId]["date"]). "</i>";
+			$msg_prossimo_aiuto = "<i>prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto2, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go). "</i>";
 		else 
-			$msg_prossimo_aiuto = "<i>prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$chatId]["date"]). "</i>";
+			$msg_prossimo_aiuto = "<i>prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go). "</i>";
 	}
 	
 	$response = $response . "\n" . $msg_prossimo_aiuto;
@@ -5047,8 +5047,8 @@ function abilitazione_livello($tempo_attesa, $data_livello, $data_sleep, $data_g
 	$data_livello_new = str_replace("/", "-", $data_livello);
 	$secondi=strtotime($data_livello_new);
 	
-	$secondi_sleep = str_replace("/", "-", $data_sleep);
-	$secondi_go = str_replace("/", "-", $data_go);
+	$secondi_sleep = strtotime(str_replace("/", "-", $data_sleep));
+	$secondi_go = strtotime(str_replace("/", "-", $data_go));
 	
 	// Se secondi_break è valido e il livello è stato raggiunto prima di data_sleep
 	if (($secondi_go - $secondi_sleep) > 0 && ($secondi_sleep > $secondi))
@@ -5063,16 +5063,25 @@ function abilitazione_livello($tempo_attesa, $data_livello, $data_sleep, $data_g
 		return false;
 }
 
-function prossimo_aiuto($tempo_attesa, $data_livello)
+function prossimo_aiuto($tempo_attesa, $data_livello, $data_sleep, $data_go))
 {
 	$data_livello_new = str_replace("/", "-", $data_livello);
 	$secondi=strtotime($data_livello_new);
+	
+	$secondi_sleep = strtotime(str_replace("/", "-", $data_sleep));
+	$secondi_go = strtotime(str_replace("/", "-", $data_go));
 	
 	$data_corrente = date("d/m/Y H:i");
 	$data_corr_new=str_replace("/", "-", $data_corrente);
 	$secondi_corr=strtotime($data_corr_new);	
 	
-	$diff=$secondi + ($tempo_attesa * 60) - $secondi_corr;
+	// Se secondi_break è valido e il livello è stato raggiunto prima di data_sleep
+	if (($secondi_go - $secondi_sleep) > 0 && ($secondi_sleep > $secondi_corr))
+	    $secondi_break = $secondi_go - $secondi_sleep;
+	else 
+	    $secondi_break = 0;
+	
+	$diff=$secondi + ($tempo_attesa * 60) - $secondi_corr + $secondi_break;
 	
 	if ($diff>=(3600*24))
 		return "n.d.";
