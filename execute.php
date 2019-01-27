@@ -1985,7 +1985,7 @@ if(strpos($text, '/reset') !== false && $utenteAdmin === true)
 		         (($tipo[1] === "clock") && (isset($tipo[2])) && (isset($tipo[3])) && 
 				  (isset($tipo[4])) && (isset($tipo[5]))))
 		{
-			if (!isset($tipo[2])
+			if (!isset($tipo[2]))
 			{
 				$myVarsArr[$idADMIN]['data_sleep'] = "";
 				$myVarsArr[$idADMIN]['data_go'] = "";
