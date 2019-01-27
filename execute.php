@@ -5063,7 +5063,7 @@ function abilitazione_livello($tempo_attesa, $data_livello, $data_sleep, $data_g
 		return false;
 }
 
-function prossimo_aiuto($tempo_attesa, $data_livello, $data_sleep, $data_go))
+function prossimo_aiuto($tempo_attesa, $data_livello, $data_sleep, $data_go)
 {
 	$data_livello_new = str_replace("/", "-", $data_livello);
 	$secondi=strtotime($data_livello_new);
