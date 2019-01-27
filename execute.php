@@ -5096,7 +5096,7 @@ function abilitazione_livello($tempo_attesa, $data_livello, $data_sleep, $data_g
 		return false;
 }
 
-function prossimo_aiuto($tempo_attesa, $data_livello, $data_sleep, $data_go)
+function prossimo_aiuto_old($tempo_attesa, $data_livello, $data_sleep, $data_go)
 {
 	$data_livello_new = str_replace("/", "-", $data_livello);
 	$secondi=strtotime($data_livello_new);
@@ -5120,6 +5120,32 @@ function prossimo_aiuto($tempo_attesa, $data_livello, $data_sleep, $data_go)
 		return "n.d.";
 	else
 		return date("H:i", $secondi + ($tempo_attesa * 60));
+}
+
+function prossimo_aiuto($tempo_attesa, $data_livello, $data_sleep, $data_go)
+{
+	$data_livello_new = str_replace("/", "-", $data_livello);
+	$secondi=strtotime($data_livello_new);
+	
+	$secondi_sleep = strtotime(str_replace("/", "-", $data_sleep));
+	$secondi_go = strtotime(str_replace("/", "-", $data_go));
+	
+	$data_corrente = date("d/m/Y H:i");
+	$data_corr_new=str_replace("/", "-", $data_corrente);
+	$secondi_corr=strtotime($data_corr_new);	
+	
+	// Se secondi_break è valido e il livello è stato raggiunto prima di data_sleep
+	if (($secondi_go - $secondi_sleep) > 0 && ($secondi_sleep > $secondi))
+	    $secondi_break = $secondi_go - $secondi_sleep;
+	else 
+	    $secondi_break = 0;
+	
+	$diff=$secondi_corr - ($secondi + ($tempo_attesa * 60) + $secondi_break);
+	
+	if ($diff>=(3600*24))
+		return "n.d.";
+	else
+		return date("H:i",($secondi + ($tempo_attesa * 60) + $secondi_break));
 }
 
 // il confronto è case unsensitive, l'apostrofo e altri caratteri partcolari sono sostituiti con spazio
