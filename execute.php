@@ -175,7 +175,6 @@ $data_corrente = date("d/m/Y H:i");
 $data_livello = isset($myVarsArr[$chatId]["date"]) ? $myVarsArr[$chatId]["date"] : $data_corrente;
 $nickId = isset($myVarsArr[$chatId]["nick"]) ? $myVarsArr[$chatId]["nick"] : "NICK non impostato";
 $teamId = isset($myVarsArr[$chatId]["team"]) ? $myVarsArr[$chatId]["team"] : "giocatore singolo";
-//$prima_risposta = isset($myVarsArr[$chatId]["prima_risposta"]) ? $myVarsArr[$chatId]["prima_risposta"] : -1;
 //lettura da file delle abilitazioni degli indizi per tutti i livelli
 //$abilitazione = array(0=>1, 1=>0, 2=>0);
 $myAblJson = file_get_contents($path_abl);
@@ -342,7 +341,6 @@ if ($nuovoComando !== "nessuno")
 	}
 }
 // calcolo delta_break in secondi (per quanto tempo il sistema è stato in sleep)
-
 $abl = multiexplode(array("/"," ",":"),$data_break_sleep);
 $giorno = $abl[0];
 $mese = $abl[1];
@@ -358,7 +356,6 @@ $ore = $abl[3];
 $minuti = $abl[4];
 $secondi_break_go = mktime($ore, $minuti, 0, $mese, $giorno, $anno);
 $delta_break = $secondi_break_go - $secondi_break_sleep;
-
 	
 //flag utilizzato per gestire comandi utente nello stato da_avviare o terminato se richiesti dall'admin
 $eccezione=false;
@@ -4244,11 +4241,6 @@ if(strpos($text, '/help') !== false)
 	else 
 		$response = "";
 	
-	if ($bonus_livello >0)
-	{
-		$response = $response . "\xF0\x9F\x8D\xAD" . " <i>girella: ". $bonus_livello ." minuti di bonus\nse superi il livello al primo tentativo</i>\n\n";
-	}
-	
 	$response = $response . $indizio[0] . "\n";
 	
 	if (!($tipo_risp_corr == "sequenza"))
@@ -4360,8 +4352,6 @@ if ($ACCURATEZZA_RISPOSTA=="elevata")
 		$accuratezza_r = "approssimata";
 else
 	$accuratezza_r = "approssimata";
-
-/*****************
 if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 {
 	$file = fopen($path_lock,"w+");
@@ -4420,7 +4410,6 @@ if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 		$livello++;
 		$myVarsArr[$chatId]["livello"]=$livello;
 		$myVarsArr[$chatId]["date"]=$data_corrente;
-		$myVarsArr[$chatId]["prima_risposta"] = -1;    // nessuna risposta data sul nuovo livello
 		if ($stella && $livello > 1)
 			$myVarsArr[$chatId]["star"]=(int)$myVarsArr[$chatId]["star"]+1;
 		
@@ -4435,7 +4424,6 @@ if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 					{
 						$myVarsArr[$key]["livello"]=$livello;
 						$myVarsArr[$key]["date"]=$data_corrente;
-						$myVarsArr[$key]["prima_risposta"]=-1;    // nessuna risposta data sul nuovo livello
 						
 						$msg = $nickId . " ha superato il livello del gioco inviando la risposta:\n" .$text."\n\ntocca il pulsante  'enigma' per visualizzare il nuovo quesito";
 						$ch = curl_init();
@@ -4537,158 +4525,7 @@ if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 					 3 => (String)($xml->domanda[$livello]->indizio3));
 	$risEsatta=true;
 }
-*****************/
-/*
-elseif ($bonus_livello>0 && ($prima_risposta != $livello))
-{
-	$file = fopen($path_lock,"w+");
-	$Lock = flock($file,LOCK_EX);
-	if (!$Lock)
-	{
-		$msg="l'utente " . $chatId . " non può gestire il bonus: lock non ottenuto";
-		$all_chatId = array_keys($amministratore);
-		$tot = count($all_chatId);
-		for ($i=0; $i<$tot; $i++) 
-		{ 
-			if ($all_chatId[$i]>0)
-			{
-				$ch = curl_init();
-				$myUrl=$botUrlMessage . "?chat_id=" . $all_chatId[$i] . "&text=" . urlencode($msg);
-				curl_setopt($ch, CURLOPT_URL, $myUrl); 
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-				
-				// read curl response
-				$output = curl_exec($ch);
-				curl_close($ch);
-			}
-		}
-		
-		$response='non ho capito, ripeti per favore...';
-		$parameters = array('chat_id' => $chatId, "text" => $response);
-		$parameters["method"] = "sendMessage";
-		echo json_encode($parameters);
-		
-		fclose($file);
-		exit();
-	}
 	
-	//mylog("lock ottenuto", $path_log, $chatId);
-	  
-	$myVarsJson = file_get_contents($path);
-    $myVarsArr = json_decode($myVarsJson,true);
-	
-	//mylog("letto dopo il lock", $path_log, $chatId);
-    
-	if ($myVarsArr[$chatId]["livello"]==$livello)
-	{
-		//la prima risposta è stata data per il livello corrente (bonus non più valido)
-		$myVarsArr[$chatId]["prima_risposta"]=$livello;
-		
-		$team = $myVarsArr[$chatId]["team"];
-		if (strlen($team)>=1)
-		{
-			foreach ($myVarsArr as $key => $value)
-			{
-				if ($myVarsArr[$key]["team"]===$team)
-				{
-					if ($key !== $chatId)
-					{
-						//la prima risposta è stata data per il livello corrente (bonus non più valido)
-						$myVarsArr[$chatId]["prima_risposta"]=$livello;
-						
-						$msg = $nickId . " ha fornito una risposta errata, il bonus non è più valido\n";
-						$ch = curl_init();
-						$myUrl=$botUrlMessage . "?chat_id=" . $key . "&text=" . urlencode($msg);
-						curl_setopt($ch, CURLOPT_URL, $myUrl); 
-						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-						
-						// read curl response
-						$output = curl_exec($ch);
-						curl_close($ch);
-					}
-				}
-			}
-		}
-		$myVarsJson = json_encode($myVarsArr);
-	    file_put_contents($path, $myVarsJson, LOCK_EX);
-		flock($file,LOCK_UN);
-		fclose($file);
-		//verifica di congruenza
-		$myVarsXXJson = file_get_contents($path);
-		$myVarsXXArr = json_decode($myVarsJson,true);
-		if ($myVarsXXArr[$idADMIN]["nick"]!=="ADMIN")
-		{
-			$msg="errore critico di scrittura del file dei livelli tentativo 1";
-			$all_chatId = array_keys($amministratore);
-			$tot = count($all_chatId);
-			for ($i=0; $i<$tot; $i++) 
-			{ 
-				if ($all_chatId[$i]>0)
-				{
-					$ch = curl_init();
-					$myUrl=$botUrlMessage . "?chat_id=" . $all_chatId[$i] . "&text=" . urlencode($msg);
-					curl_setopt($ch, CURLOPT_URL, $myUrl); 
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-					
-					// read curl response
-					$output = curl_exec($ch);
-					curl_close($ch);
-				}
-			}
-			
-			$myVarsJson = json_encode($myVarsArr);
-			file_put_contents($path, $myVarsJson, LOCK_EX);
-			
-			$myVarsXXJson = file_get_contents($path);
-			$myVarsXXArr = json_decode($myVarsJson,true);
-			if ($myVarsXXArr[$idADMIN]["nick"]!=="ADMIN")
-			{
-		
-				$msg="errore critico di scrittura del file dei livelli tentativo 2";
-				$all_chatId = array_keys($amministratore);
-				$tot = count($all_chatId);
-				for ($i=0; $i<$tot; $i++) 
-				{ 
-					if ($all_chatId[$i]>0)
-					{
-						$ch = curl_init();
-						$myUrl=$botUrlMessage . "?chat_id=" . $all_chatId[$i] . "&text=" . urlencode($msg);
-						curl_setopt($ch, CURLOPT_URL, $myUrl); 
-						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-						
-						// read curl response
-						$output = curl_exec($ch);
-						curl_close($ch);
-					}
-				}
-			}
-		}
-		else if ($myVarsXXArr[chatId]["livello"]!==$myVarsArr[chatId]["livello"])
-		{
-			$response='non ho capito, ripeti per favore...';
-			$parameters = array('chat_id' => $chatId, "text" => $response);
-			$parameters["method"] = "sendMessage";
-			echo json_encode($parameters);
-			
-			exit();
-		}
-		// fine verifica di congruenza
-	}
-	else
-	{
-		$response='non ho capito, ripeti per favore...';
-		$parameters = array('chat_id' => $chatId, "text" => $response);
-		$parameters["method"] = "sendMessage";
-		echo json_encode($parameters);
-		
-		flock($file,LOCK_UN);
-		fclose($file);
-		exit();
-	}
-}
-*/
-
-
 //gestisce la risposta corretta (allo start/restart si considera fittiziamente che la risposta è esatta)
 //mostrando la domanda del livello appena raggiunto
 //quando lo stato eccezione (su richiesta di admin) è impostato l'enigma è comunque visualizzato
