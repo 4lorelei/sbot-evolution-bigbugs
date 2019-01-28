@@ -175,7 +175,7 @@ $data_corrente = date("d/m/Y H:i");
 $data_livello = isset($myVarsArr[$chatId]["date"]) ? $myVarsArr[$chatId]["date"] : $data_corrente;
 $nickId = isset($myVarsArr[$chatId]["nick"]) ? $myVarsArr[$chatId]["nick"] : "NICK non impostato";
 $teamId = isset($myVarsArr[$chatId]["team"]) ? $myVarsArr[$chatId]["team"] : "giocatore singolo";
-$prima_risposta = isset($myVarsArr[$chatId]["prima_risposta"]) ? $myVarsArr[$chatId]["prima_risposta"] : -1;
+//$prima_risposta = isset($myVarsArr[$chatId]["prima_risposta"]) ? $myVarsArr[$chatId]["prima_risposta"] : -1;
 //lettura da file delle abilitazioni degli indizi per tutti i livelli
 //$abilitazione = array(0=>1, 1=>0, 2=>0);
 $myAblJson = file_get_contents($path_abl);
