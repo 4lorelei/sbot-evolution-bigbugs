@@ -4418,7 +4418,7 @@ if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 		$livello++;
 		$myVarsArr[$chatId]["livello"]=$livello;
 		$myVarsArr[$chatId]["date"]=$data_corrente;
-		$myVarsArr[$key]["prima_risposta"] = -1;    // nessuna risposta data sul nuovo livello
+		$myVarsArr[$chatId]["prima_risposta"] = -1;    // nessuna risposta data sul nuovo livello
 		if ($stella && $livello > 1)
 			$myVarsArr[$chatId]["star"]=(int)$myVarsArr[$chatId]["star"]+1;
 		
