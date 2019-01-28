@@ -4659,7 +4659,7 @@ if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 							
 						unset($myVarsArr[$key]["prima_risposta"]);
 						
-						$msg = $nickId . " ha superato il livello del gioco inviando la risposta:\n" . $text. $testo_bonus" . "\n\ntocca il pulsante  'enigma' per visualizzare il nuovo quesito";
+						$msg = $nickId . " ha superato il livello del gioco inviando la risposta:\n" . $text. $testo_bonus . "\n\ntocca il pulsante  'enigma' per visualizzare il nuovo quesito";
 						$ch = curl_init();
 						$myUrl=$botUrlMessage . "?chat_id=" . $key . "&text=" . urlencode($msg);
 						curl_setopt($ch, CURLOPT_URL, $myUrl); 
