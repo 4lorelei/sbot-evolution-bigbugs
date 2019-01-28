@@ -4360,6 +4360,8 @@ if ($ACCURATEZZA_RISPOSTA=="elevata")
 		$accuratezza_r = "approssimata";
 else
 	$accuratezza_r = "approssimata";
+
+/*****************
 if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 {
 	$file = fopen($path_lock,"w+");
@@ -4535,6 +4537,7 @@ if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 					 3 => (String)($xml->domanda[$livello]->indizio3));
 	$risEsatta=true;
 }
+*****************/
 /*
 elseif ($bonus_livello>0 && ($prima_risposta != $livello))
 {
