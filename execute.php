@@ -4863,7 +4863,7 @@ function abilitazione_livello($tempo_attesa, $data_livello, $data_sleep, $data_g
 	$secondi_go = strtotime(str_replace("/", "-", $data_go));
 	
 	// Se secondi_break è valido e il livello è stato raggiunto prima di data_sleep
-	if (($secondi_go - $secondi_sleep) > 0 && ($secondi_sleep > $secondi) && ($gestione_clock == "si_sospende"))
+	if (($secondi_go - $secondi_sleep) > 0 && ($secondi_sleep > $secondi))
 	    $secondi_break = $secondi_go - $secondi_sleep;
 	else 
 	    $secondi_break = 0;
@@ -4912,7 +4912,7 @@ function prossimo_aiuto($tempo_attesa, $data_livello, $data_sleep, $data_go, $ge
 	$secondi_corr=strtotime($data_corr_new);	
 	
 	// Se secondi_break è valido e il livello è stato raggiunto prima di data_sleep
-	if (($secondi_go - $secondi_sleep) > 0 && ($secondi_sleep > $secondi) && ($gestione_clock == "si_sospende"))
+	if (($secondi_go - $secondi_sleep) > 0 && ($secondi_sleep > $secondi))
 	    $secondi_break = $secondi_go - $secondi_sleep;
 	else 
 	    $secondi_break = 0;
