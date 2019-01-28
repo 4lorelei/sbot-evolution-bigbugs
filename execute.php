@@ -219,6 +219,8 @@ $data_corrente = date("d/m/Y H:i");
 $data_livello = isset($myVarsArr[$chatId]["date"]) ? $myVarsArr[$chatId]["date"] : $data_corrente;
 $nickId = isset($myVarsArr[$chatId]["nick"]) ? $myVarsArr[$chatId]["nick"] : "NICK non impostato";
 $teamId = isset($myVarsArr[$chatId]["team"]) ? $myVarsArr[$chatId]["team"] : "giocatore singolo";
+$bonus_livello = isset($myVarsArr[$chatId]["bonus"]) ? $myVarsArr[$chatId]["bonus"] : 0;
+$risposta_bonus = isset($myVarsArr[$chatId]["prima_risosta"]) ? "invalida" : "da_dare";
 
 
 //lettura da file delle abilitazioni degli indizi per tutti i livelli
@@ -431,7 +433,7 @@ $attesa_aiuto1 = isset($xml->domanda[$livello]->attesa1)?$xml->domanda[$livello]
 $attesa_aiuto2 = isset($xml->domanda[$livello]->attesa2)?$xml->domanda[$livello]->attesa2 : 120;
 $attesa_aiuto3 = isset($xml->domanda[$livello]->attesa3)?$xml->domanda[$livello]->attesa3 : 180;
 $accuratezza_risp_corr = isset($xml->domanda[$livello]->accuratezza)?$xml->domanda[$livello]->accuratezza : "approssimata";
-$bonus_livello = isset($xml->domanda[$livello]->bonus)?$xml->domanda[$livello]->bonus : 0;
+$quesito_bonus = isset($xml->domanda[$livello]->bonus)?$xml->domanda[$livello]->bonus : 0;
 $tipo_risp_corr = (String)($xml->domanda[$livello]->tipo);
 if (isset($abilitazione[$livello]["aiuto1"]))
 	$attesa_aiuto1 = $abilitazione[$livello]["aiuto1"];
@@ -4621,6 +4623,14 @@ if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 		$livello++;
 		$myVarsArr[$chatId]["livello"]=$livello;
 		$myVarsArr[$chatId]["date"]=$data_corrente;
+		
+		if ($quesito_bonus>0 && (!isset($myVarsArr[$chatId]["prima_risposta"])))
+			$myVarsArr[$chatId]["bonus"] = $quesito_bonus;
+		else
+			$myVarsArr[$chatId]["bonus"];
+			
+		unset($myVarsArr[$chatId]["prima_risposta"]);
+		
 		if ($stella && $livello > 1)
 			$myVarsArr[$chatId]["star"]=(int)$myVarsArr[$chatId]["star"]+1;
 		
@@ -4636,7 +4646,20 @@ if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 						$myVarsArr[$key]["livello"]=$livello;
 						$myVarsArr[$key]["date"]=$data_corrente;
 						
-						$msg = $nickId . " ha superato il livello del gioco inviando la risposta:\n" .$text."\n\ntocca il pulsante  'enigma' per visualizzare il nuovo quesito";
+						if ($quesito_bonus>0 && (!isset($myVarsArr[$key]["prima_risposta"])))
+						{
+							$myVarsArr[$key]["bonus"] = $quesito_bonus;
+							$testo_bonus = "\nè stato conquistato il bonus";
+						}
+						else
+						{
+							unset($myVarsArr[$key]["bonus"]);
+							$testo_bonus = "";
+						}
+							
+						unset($myVarsArr[$key]["prima_risposta"]);
+						
+						$msg = $nickId . " ha superato il livello del gioco inviando la risposta:\n" . $text. $testo_bonus" . "\n\ntocca il pulsante  'enigma' per visualizzare il nuovo quesito";
 						$ch = curl_init();
 						$myUrl=$botUrlMessage . "?chat_id=" . $key . "&text=" . urlencode($msg);
 						curl_setopt($ch, CURLOPT_URL, $myUrl); 
@@ -4740,7 +4763,131 @@ if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 					 3 => (String)($xml->domanda[$livello]->indizio3));
 	$risEsatta=true;
 }
+
+// risposta errata su un quesito di tipo bonus (bonus "bruciato")
+elseif ((!$eccezione) && $quesito_bonus > 0 &&  $risposta_bonus == "da_dare")
+{
+	$file = fopen($path_lock,"w+");
+	$Lock = flock($file,LOCK_EX);
 	
+	if ($Lock)
+	{
+		
+		$myVarsJson = file_get_contents($path);
+		$myVarsArr = json_decode($myVarsJson,true);
+		
+		//mylog("letto dopo il lock", $path_log, $chatId);
+		
+		$myVarsArr[$chatId]["prima_risposta"]="invalida";
+		$team = $myVarsArr[$chatId]["team"];
+		if (strlen($team)>=1)
+		{
+			foreach ($myVarsArr as $key => $value)
+			{
+				if ($myVarsArr[$key]["team"]===$team)
+				{
+					if ($key !== $chatId)
+					{
+						$myVarsArr[$key]["prima_risposta"]="invalida";
+						$msg = $nickId . " ha risposto in modo errato al quesito: il bonus non è più valido\n";
+						$ch = curl_init();
+						$myUrl=$botUrlMessage . "?chat_id=" . $key . "&text=" . urlencode($msg);
+						curl_setopt($ch, CURLOPT_URL, $myUrl); 
+						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+						
+						// read curl response
+						$output = curl_exec($ch);
+						curl_close($ch);
+					}
+				}
+			}
+		}
+		$myVarsJson = json_encode($myVarsArr);
+	    file_put_contents($path, $myVarsJson, LOCK_EX);
+
+		flock($file,LOCK_UN);
+		fclose($file);
+
+		//verifica di congruenza
+		$myVarsXXJson = file_get_contents($path);
+		$myVarsXXArr = json_decode($myVarsJson,true);
+		if ($myVarsXXArr[$idADMIN]["nick"]!=="ADMIN")
+		{
+			$msg="errore critico di scrittura del file dei livelli tentativo 1";
+			$all_chatId = array_keys($amministratore);
+			$tot = count($all_chatId);
+			for ($i=0; $i<$tot; $i++) 
+			{ 
+				if ($all_chatId[$i]>0)
+				{
+					$ch = curl_init();
+					$myUrl=$botUrlMessage . "?chat_id=" . $all_chatId[$i] . "&text=" . urlencode($msg);
+					curl_setopt($ch, CURLOPT_URL, $myUrl); 
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+					
+					// read curl response
+					$output = curl_exec($ch);
+					curl_close($ch);
+				}
+			}
+			
+			$myVarsJson = json_encode($myVarsArr);
+			file_put_contents($path, $myVarsJson, LOCK_EX);
+			
+			$myVarsXXJson = file_get_contents($path);
+			$myVarsXXArr = json_decode($myVarsJson,true);
+			if ($myVarsXXArr[$idADMIN]["nick"]!=="ADMIN")
+			{
+		
+				$msg="errore critico di scrittura del file dei livelli tentativo 2";
+				$all_chatId = array_keys($amministratore);
+				$tot = count($all_chatId);
+				for ($i=0; $i<$tot; $i++) 
+				{ 
+					if ($all_chatId[$i]>0)
+					{
+						$ch = curl_init();
+						$myUrl=$botUrlMessage . "?chat_id=" . $all_chatId[$i] . "&text=" . urlencode($msg);
+						curl_setopt($ch, CURLOPT_URL, $myUrl); 
+						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+						
+						// read curl response
+						$output = curl_exec($ch);
+						curl_close($ch);
+					}
+				}
+			}
+
+		}
+		else if ($myVarsXXArr[chatId]["livello"]!==$myVarsArr[chatId]["livello"])
+		{
+			$response='non ho capito, ripeti per favore...';
+			$parameters = array('chat_id' => $chatId, "text" => $response);
+			$parameters["method"] = "sendMessage";
+			echo json_encode($parameters);
+			
+			exit();
+		}
+		// fine verifica di congruenza
+	}
+	else
+	{
+		$response='non ho capito, ripeti per favore...';
+		$parameters = array('chat_id' => $chatId, "text" => $response);
+		$parameters["method"] = "sendMessage";
+		echo json_encode($parameters);
+		
+		flock($file,LOCK_UN);
+		fclose($file);
+		exit();
+	}
+	
+	}
+	
+	
+	
+
+}
 //gestisce la risposta corretta (allo start/restart si considera fittiziamente che la risposta è esatta)
 //mostrando la domanda del livello appena raggiunto
 //quando lo stato eccezione (su richiesta di admin) è impostato l'enigma è comunque visualizzato
@@ -5083,15 +5230,16 @@ function abilitazione_livello($tempo_attesa, $data_livello, $data_sleep, $data_g
 	
 	$secondi_sleep = strtotime(str_replace("/", "-", $data_sleep));
 	$secondi_go = strtotime(str_replace("/", "-", $data_go));
+	$secondi_bonus = $bonus*60;
 	
 	// Se secondi_break è valido e il livello è stato raggiunto prima di data_sleep
-	if (($secondi_go - $secondi_sleep) > 0 && ($secondi_sleep > $secondi))
+	if (($secondi_go - $secondi_sleep) > 0 && ($secondi_sleep > $secondi) && $gestione_clock == "si_sospende")
 	    $secondi_break = $secondi_go - $secondi_sleep;
 	else 
 	    $secondi_break = 0;
 	
 	
-	if ((time() - $secondi - $secondi_break) > ($tempo_attesa*60))
+	if ((time() - $secondi - $secondi_break + $secondi_bonus) > ($tempo_attesa*60))
 		return true;
 	else
 		return false;
@@ -5136,17 +5284,17 @@ function prossimo_aiuto($tempo_attesa, $data_livello, $data_sleep, $data_go, $ge
 	$secondi_corr=strtotime($data_corr_new);	
 	
 	// Se secondi_break è valido e il livello è stato raggiunto prima di data_sleep
-	if (($secondi_go - $secondi_sleep) > 0 && ($secondi_sleep > $secondi))
+	if (($secondi_go - $secondi_sleep) > 0 && ($secondi_sleep > $secondi) && $gestione_clock == "si_sospende")
 	    $secondi_break = $secondi_go - $secondi_sleep;
 	else 
 	    $secondi_break = 0;
 	
-	$diff=$secondi_corr - ($secondi + ($tempo_attesa * 60) + $secondi_break);
+	$diff=$secondi_corr - ($secondi + ($tempo_attesa * 60));
 	
 	if ($diff>=(3600*24))
 		return "n.d.";
 	else
-		return date("H:i",($secondi + ($tempo_attesa * 60) + $secondi_break));
+		return date("H:i",($secondi + ($tempo_attesa * 60) + $secondi_break) - $bonus );
 }
 
 // il confronto è case unsensitive, l'apostrofo e altri caratteri partcolari sono sostituiti con spazio
