@@ -4535,6 +4535,7 @@ if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 					 3 => (String)($xml->domanda[$livello]->indizio3));
 	$risEsatta=true;
 }
+/*
 elseif ($bonus_livello>0 && ($prima_risposta != $livello))
 {
 	$file = fopen($path_lock,"w+");
@@ -4682,7 +4683,9 @@ elseif ($bonus_livello>0 && ($prima_risposta != $livello))
 		exit();
 	}
 }
-	
+*/
+
+
 //gestisce la risposta corretta (allo start/restart si considera fittiziamente che la risposta è esatta)
 //mostrando la domanda del livello appena raggiunto
 //quando lo stato eccezione (su richiesta di admin) è impostato l'enigma è comunque visualizzato
