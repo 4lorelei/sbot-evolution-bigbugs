@@ -4232,7 +4232,7 @@ if(strpos($text, '/help') !== false)
 	
 	if ($ACCURATEZZA_RISPOSTA == "elevata" && $accuratezza_risp_corr == "approssimata" && ($livello > 0) )
 	{
-		$response = "\xF0\x9F\x8E\xA1" . " <i>panoramica: rispondi con una frase</i>\n";
+		$response = "\xF0\x9F\x8E\xA1" . " <i>panoramica: rispondi con una frase</i>\n\n";
 	}
 	else if ($ACCURATEZZA_RISPOSTA == "elevata" && $accuratezza_risp_corr == "elevata" && ($livello > 0) )
 	{
@@ -4245,8 +4245,6 @@ if(strpos($text, '/help') !== false)
 	{
 		$response = $response . "\xF0\x9F\x8D\xAD" . " <i>girella: ". $bonus_livello ." minuti di bonus\nse superi il livello al primo tentativo</i>\n\n";
 	}
-	else
-		$response = $response . "\n";
 	
 	$response = $response . $indizio[0] . "\n";
 	
