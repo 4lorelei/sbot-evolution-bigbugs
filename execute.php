@@ -342,7 +342,7 @@ if ($nuovoComando !== "nessuno")
 	}
 }
 // calcolo delta_break in secondi (per quanto tempo il sistema è stato in sleep)
-/*
+
 $abl = multiexplode(array("/"," ",":"),$data_break_sleep);
 $giorno = $abl[0];
 $mese = $abl[1];
@@ -358,7 +358,7 @@ $ore = $abl[3];
 $minuti = $abl[4];
 $secondi_break_go = mktime($ore, $minuti, 0, $mese, $giorno, $anno);
 $delta_break = $secondi_break_go - $secondi_break_sleep;
-*/
+
 	
 //flag utilizzato per gestire comandi utente nello stato da_avviare o terminato se richiesti dall'admin
 $eccezione=false;
