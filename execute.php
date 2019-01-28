@@ -9,6 +9,7 @@ if(!$update)
 {
   exit;
 }
+exit;
 //Versione
 //LaraLuu ver. 3.2 evo 16/01/2019
 //Token
