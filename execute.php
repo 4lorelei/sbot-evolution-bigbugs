@@ -5037,7 +5037,7 @@ function abilitazione_livello($tempo_attesa, $data_livello, $data_sleep, $data_g
 	    $secondi_break = 0;
 	
 	
-	if ((time() - $secondi - $secondi_break) > ($tempo_attesa*60))
+	if ((time() - $secondi - $secondi_break + ($bonus*60)) > ($tempo_attesa*60))
 		return true;
 	else
 		return false;
@@ -5085,12 +5085,12 @@ function prossimo_aiuto($tempo_attesa, $data_livello, $data_sleep, $data_go, $ge
 	else 
 	    $secondi_break = 0;
 	
-	$diff=$secondi_corr - ($secondi + ($tempo_attesa * 60) + $secondi_break);
+	$diff=$secondi_corr - ($secondi + ($tempo_attesa * 60) + $secondi_break) - ($bonus*60);
 	
 	if ($diff>=(3600*24))
 		return "n.d.";
 	else
-		return date("H:i",($secondi + ($tempo_attesa * 60) + $secondi_break));
+		return date("H:i",($secondi + ($tempo_attesa * 60) + $secondi_break - ($bonus*60)));
 }
 // il confronto è case unsensitive, l'apostrofo e altri caratteri partcolari sono sostituiti con spazio
 // la risposta data deve contenere tutte le parole previste nelle risposta esatta
