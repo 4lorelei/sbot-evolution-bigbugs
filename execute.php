@@ -3064,7 +3064,7 @@ if(strcmp($text, '/stat') === 0)
 			$msg_prossimo_aiuto = "\n\n<b>prossimo indizio alle:</b> " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare);
 		
 		if ($bonus_da_applicare > 0)
-			$msg_prossimo_aiuto = $msg_prossimo_aiuto . "\n<i>\xF0\x9F\x91\x8D benefici di un bonus di " . $bonus_da_applicare . "minuti";
+			$msg_prossimo_aiuto = $msg_prossimo_aiuto . "\n<i>\xF0\x9F\x91\x8D benefici di un bonus di " . $bonus_da_applicare . "minuti</i>";
 			
 	}
 	else if ($statoGioco == "terminato")
@@ -4278,6 +4278,9 @@ if(strpos($text, '/help') !== false)
 			$msg_prossimo_aiuto = "<i>prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto2, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare) . "</i>";
 		else 
 			$msg_prossimo_aiuto = "<i>prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare) . "</i>";
+		
+		if ($bonus_da_applicare > 0)
+			$msg_prossimo_aiuto = $msg_prossimo_aiuto . "\n<i>\xF0\x9F\x91\x8D benefici di un bonus di " . $bonus_da_applicare . "minuti</i>";
 	}
 	
 	$response = $response . "\n" . $msg_prossimo_aiuto;
