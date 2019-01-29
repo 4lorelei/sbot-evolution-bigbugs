@@ -4419,7 +4419,7 @@ if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 		
 		// verifica se va dato il bonus
 		if (($myVarsArr[$chatId]["prima_risposta"] != $livello) && ($bonus_livello > 0))
-			$myVarsArr[$chatId]["bonus"]=$bonus_livello;
+			$myVarsArr[$chatId]["bonus"]=(int)$bonus_livello;
 		else
 			$myVarsArr[$chatId]["bonus"]=0;
 		
