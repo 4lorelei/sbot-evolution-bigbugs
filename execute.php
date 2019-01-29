@@ -4537,7 +4537,7 @@ if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 					 3 => (String)($xml->domanda[$livello]->indizio3));
 	$risEsatta=true;
 }
-/*
+
 elseif ($bonus_livello>0 && ($prima_risposta != $livello))
 {
 	$file = fopen($path_lock,"w+");
@@ -4685,7 +4685,6 @@ elseif ($bonus_livello>0 && ($prima_risposta != $livello))
 		exit();
 	}
 }
-*/
 
 
 //gestisce la risposta corretta (allo start/restart si considera fittiziamente che la risposta è esatta)
