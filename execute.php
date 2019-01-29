@@ -3987,6 +3987,17 @@ if(strpos($text, '/team') !== false)
 							$myVarsArr[$key]["date"]=$myVarsArr[$chatId]["date"];
 							$myVarsArr[$key]["team"]=$team;
 							$myVarsArr[$key]["star"]=0;
+							
+							if (isset($myVarsArr[$chatId]["bonus"]))
+								$myVarsArr[$key]["bonus"]=$myVarsArr[$chatId]["bonus"];
+							else
+								unset($myVarsArr[$key]["bonus"]);
+							
+							if (isset($myVarsArr[$chatId]["prima_risposta"]))
+								$myVarsArr[$key]["prima_risposta"]=$myVarsArr[$chatId]["prima_risposta"];
+							else
+								unset($myVarsArr[$key]["prima_risposta"]);
+							
 							$myVarsJson = json_encode($myVarsArr);
 							file_put_contents($path, $myVarsJson, LOCK_EX);
 					
@@ -4429,10 +4440,17 @@ if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 		
 		// verifica se va dato il bonus
 		if (($myVarsArr[$chatId]["prima_risposta"] != $livello) && ($bonus_livello_xml > 0))
+		{
 			$myVarsArr[$chatId]["bonus"]=(int)$bonus_livello_xml;
+			$myVarsArr[$chatId]["prima_risposta"] = -1;
+		}
+			
 		else
+		{
 			$myVarsArr[$chatId]["bonus"]=0;
-		
+			$myVarsArr[$chatId]["prima_risposta"] = -1;
+		}
+			
 		$livello++;
 		$myVarsArr[$chatId]["livello"]=$livello;
 		$myVarsArr[$chatId]["date"]=$data_corrente;
@@ -4449,9 +4467,21 @@ if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 				{
 					if ($key !== $chatId)
 					{
+						// verifica se va dato il bonus
+						if (($myVarsArr[$key]["prima_risposta"] != $livello) && ($bonus_livello_xml > 0))
+						{
+							$myVarsArr[$key]["bonus"]=(int)$bonus_livello_xml;
+							$myVarsArr[$key]["prima_risposta"] = -1;
+						}
+							
+						else
+						{
+							$myVarsArr[$key]["bonus"]=0;
+							$myVarsArr[$key]["prima_risposta"] = -1;
+						}
+		
 						$myVarsArr[$key]["livello"]=$livello;
 						$myVarsArr[$key]["date"]=$data_corrente;
-						$myVarsArr[$key]["prima_risposta"]=-1;    // nessuna risposta data sul nuovo livello
 						
 						$msg = $nickId . " ha superato il livello del gioco inviando la risposta:\n" .$text."\n\ntocca il pulsante  'enigma' per visualizzare il nuovo quesito";
 						$ch = curl_init();
