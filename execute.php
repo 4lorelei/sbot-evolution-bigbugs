@@ -4262,7 +4262,10 @@ if(strpos($text, '/help') !== false)
 	
 	if ($bonus_livello_xml >0)
 	{
-		$response = $response . "\xF0\x9F\x8D\xAD" . " <i>girella: ". $bonus_livello_xml ." minuti di bonus\nse superi il livello al primo tentativo</i>\n\n";
+		$response = $response . "\xF0\x9F\x8D\xAD" . " <i>girella: ". $bonus_livello_xml ." minuti di bonus\nse superi il livello al primo tentativo</i>\n";
+		if ($myVarsArr[$chatId]["prima_risposta"] == $livello)
+			$response = $response. "<i>(il bonus è scaduto)</i>\n";
+		$response = $response."\n";
 	}
 	
 	$response = $response . $indizio[0] . "\n";
@@ -4442,13 +4445,11 @@ if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 		if (($myVarsArr[$chatId]["prima_risposta"] != $livello) && ($bonus_livello_xml > 0))
 		{
 			$myVarsArr[$chatId]["bonus"]=(int)$bonus_livello_xml;
-			$myVarsArr[$chatId]["prima_risposta"] = -1;
 		}
 			
 		else
 		{
 			$myVarsArr[$chatId]["bonus"]=0;
-			$myVarsArr[$chatId]["prima_risposta"] = -1;
 		}
 			
 		$livello++;
