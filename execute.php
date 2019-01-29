@@ -4417,6 +4417,12 @@ if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 		else
 			$stella=false;
 		
+		// verifica se va dato il bonus
+		if (($myVarsArr[$chatId]["prima_risposta"] != $livello) && ($bonus_livello > 0))
+			$myVarsArr[$chatId]["bonus"]=$bonus_livello;
+		else
+			$myVarsArr[$chatId]["bonus"]=0;
+		
 		$livello++;
 		$myVarsArr[$chatId]["livello"]=$livello;
 		$myVarsArr[$chatId]["date"]=$data_corrente;
