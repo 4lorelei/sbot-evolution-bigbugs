@@ -1,4 +1,4 @@
-<?php
+<?php echo "Silence is golden";
 //$star_code = 0x1F31F;
 $star_code = 0x2605;
 setlocale(LC_TIME, 'it_IT');
