@@ -4270,6 +4270,9 @@ if(strpos($text, '/help') !== false)
 	//prossimo aiuto
 	if (($livello > 0) && ($statoGioco != "terminato"))
 	{
+		if ($bonus_da_applicare > 0)
+			$msg_prossimo_aiuto = "<i>\xF0\x9F\x91\x8D benefici di un bonus di " . $bonus_da_applicare . " minuti</i>\n";
+		
 		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare))
 			$msg_prossimo_aiuto = "<i>tutti gli indizi del livello sono abilitati</i>";
 		else if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare))
@@ -4279,8 +4282,7 @@ if(strpos($text, '/help') !== false)
 		else 
 			$msg_prossimo_aiuto = "<i>prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare) . "</i>";
 		
-		if ($bonus_da_applicare > 0)
-			$msg_prossimo_aiuto = $msg_prossimo_aiuto . "\n<i>\xF0\x9F\x91\x8D benefici di un bonus di " . $bonus_da_applicare . "minuti</i>";
+		
 	}
 	
 	$response = $response . "\n" . $msg_prossimo_aiuto;
