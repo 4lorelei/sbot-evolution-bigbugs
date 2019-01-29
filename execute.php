@@ -1897,7 +1897,7 @@ if(strpos($text, '/reset') !== false && $utenteAdmin === true)
 		}
 		else
 		{
-			$msg = "uso del comando \n/reset game [-n]\n     reimposta a 0 livelli e aiuti (opzionalmente nick e team)\n/reset bot\n     reinizializza il bot\n/reset broadcast\n     abilita msg broadcast\n/reset clock\n     reimposta int sospensione";
+			$msg = "uso del comando \n/reset game [-n]\n     reimposta a 0 livelli e aiuti\n     (opzionalmente nick e team)\n/reset bot\n     reinizializza il bot\n/reset broadcast\n     abilita msg broadcast\n/reset clock\n     reimposta int sospensione";
 		}
 		$ch = curl_init();
 		$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($msg);
@@ -3062,6 +3062,10 @@ if(strcmp($text, '/stat') === 0)
 			$msg_prossimo_aiuto = "\n\n<b>prossimo indizio alle:</b> " . prossimo_aiuto($attesa_aiuto2, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare);
 		else 
 			$msg_prossimo_aiuto = "\n\n<b>prossimo indizio alle:</b> " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare);
+		
+		if ($bonus_da_applicare > 0)
+			$msg_prossimo_aiuto = $msg_prossimo_aiuto . "\n<i>\xF0\x9F\x91\x8D benefici di un bonus di " . $bonus_da_applicare . "minuti";
+			
 	}
 	else if ($statoGioco == "terminato")
 		$msg_prossimo_aiuto = "\n\n<b>la gara è terminata!</b>\n";
