@@ -4297,7 +4297,7 @@ if(strpos($text, '/help') !== false)
 	if (($livello > 0) && ($statoGioco != "terminato"))
 	{
 		if ($bonus_da_applicare > 0)
-			$msg_prossimo_aiuto = "<i>\xF0\x9F\x91\x8D benefici di un bonus di " . $bonus_da_applicare . " minuti</i>\n";
+			$msg_prossimo_aiuto = "<i>\xF0\x9F\x91\x8D usufruisci di un bonus di " . $bonus_da_applicare . " minuti</i>\n\n";
 		
 		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare))
 			$msg_prossimo_aiuto .= "<i>\xF0\x9F\x95\x91 tutti gli indizi del livello sono abilitati</i>";
@@ -4386,167 +4386,142 @@ if(strpos($text, '/refresh') !== false)
 {
 	$risEsatta=true;
 }
+// gestisce la risposta esatta
 else
 {
-//verifica se la risposta data è corretta e, se OK,  incrementa il livello
-//if((strcmp($text, strtolower($risposta)) === 0) && (!$eccezione))
-//if (risposta_esatta($text, $risposta) && (!$eccezione))
-if ($ACCURATEZZA_RISPOSTA=="elevata")
-	if ($accuratezza_risp_corr == "elevata")
-		$accuratezza_r = "elevata";
-	else 
+	//verifica se la risposta data è corretta e, se OK,  incrementa il livello
+	//if((strcmp($text, strtolower($risposta)) === 0) && (!$eccezione))
+	//if (risposta_esatta($text, $risposta) && (!$eccezione))
+	if ($ACCURATEZZA_RISPOSTA=="elevata")
+		if ($accuratezza_risp_corr == "elevata")
+			$accuratezza_r = "elevata";
+		else 
+			$accuratezza_r = "approssimata";
+	else
 		$accuratezza_r = "approssimata";
-else
-	$accuratezza_r = "approssimata";
 
 
-if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
-{
-	$file = fopen($path_lock,"w+");
-	$Lock = flock($file,LOCK_EX);
-	if (!$Lock)
+	if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 	{
-		$msg="l'utente " . $chatId . " non può aggiornare il livello: lock non ottenuto";
-		$all_chatId = array_keys($amministratore);
-		$tot = count($all_chatId);
-		for ($i=0; $i<$tot; $i++) 
-		{ 
-			if ($all_chatId[$i]>0)
-			{
-				$ch = curl_init();
-				$myUrl=$botUrlMessage . "?chat_id=" . $all_chatId[$i] . "&text=" . urlencode($msg);
-				curl_setopt($ch, CURLOPT_URL, $myUrl); 
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-				
-				// read curl response
-				$output = curl_exec($ch);
-				curl_close($ch);
-			}
-		}
-		
-		$response='non ho capito, ripeti per favore...';
-		$parameters = array('chat_id' => $chatId, "text" => $response);
-		$parameters["method"] = "sendMessage";
-		echo json_encode($parameters);
-		
-		fclose($file);
-		exit();
-	}
-	
-	//mylog("lock ottenuto", $path_log, $chatId);
-	  
-	$myVarsJson = file_get_contents($path);
-    $myVarsArr = json_decode($myVarsJson,true);
-	
-	//mylog("letto dopo il lock", $path_log, $chatId);
-    
-	if ($myVarsArr[$chatId]["livello"]==$livello)
-	{
-		$maxlivello=0;
-		foreach ($myVarsArr as $key => $value) 
+		$file = fopen($path_lock,"w+");
+		$Lock = flock($file,LOCK_EX);
+		if (!$Lock)
 		{
-			if ($maxlivello < $value['livello'])
-			{
-				$maxlivello = $value['livello'];
-			}
-		}
-		if ($livello == $maxlivello)
-			$stella=true;
-		else
-			$stella=false;
-		
-		// verifica se va dato il bonus
-		if (($myVarsArr[$chatId]["prima_risposta"] != $livello) && ($bonus_livello_xml > 0))
-		{
-			$myVarsArr[$chatId]["bonus"]=(int)$bonus_livello_xml;
-		}
-			
-		else
-		{
-			$myVarsArr[$chatId]["bonus"]=0;
-		}
-			
-		$livello++;
-		$myVarsArr[$chatId]["livello"]=$livello;
-		$myVarsArr[$chatId]["date"]=$data_corrente;
-		$myVarsArr[$chatId]["prima_risposta"] = -1;    // nessuna risposta data sul nuovo livello
-		if ($stella && $livello > 1)
-			$myVarsArr[$chatId]["star"]=(int)$myVarsArr[$chatId]["star"]+1;
-		
-		$team = $myVarsArr[$chatId]["team"];
-		if (strlen($team)>=1)
-		{
-			foreach ($myVarsArr as $key => $value)
-			{
-				if ($myVarsArr[$key]["team"]===$team)
+			$msg="l'utente " . $chatId . " non può aggiornare il livello: lock non ottenuto";
+			$all_chatId = array_keys($amministratore);
+			$tot = count($all_chatId);
+			for ($i=0; $i<$tot; $i++) 
+			{ 
+				if ($all_chatId[$i]>0)
 				{
-					if ($key !== $chatId)
+					$ch = curl_init();
+					$myUrl=$botUrlMessage . "?chat_id=" . $all_chatId[$i] . "&text=" . urlencode($msg);
+					curl_setopt($ch, CURLOPT_URL, $myUrl); 
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+					
+					// read curl response
+					$output = curl_exec($ch);
+					curl_close($ch);
+				}
+			}
+			
+			$response='non ho capito, ripeti per favore...';
+			$parameters = array('chat_id' => $chatId, "text" => $response);
+			$parameters["method"] = "sendMessage";
+			echo json_encode($parameters);
+			
+			fclose($file);
+			exit();
+		}
+		
+		//mylog("lock ottenuto", $path_log, $chatId);
+		  
+		$myVarsJson = file_get_contents($path);
+		$myVarsArr = json_decode($myVarsJson,true);
+		
+		//mylog("letto dopo il lock", $path_log, $chatId);
+		
+		if ($myVarsArr[$chatId]["livello"]==$livello)
+		{
+			$maxlivello=0;
+			foreach ($myVarsArr as $key => $value) 
+			{
+				if ($maxlivello < $value['livello'])
+				{
+					$maxlivello = $value['livello'];
+				}
+			}
+			if ($livello == $maxlivello)
+				$stella=true;
+			else
+				$stella=false;
+			
+			// verifica se va dato il bonus
+			if (($myVarsArr[$chatId]["prima_risposta"] != $livello) && ($bonus_livello_xml > 0))
+			{
+				$myVarsArr[$chatId]["bonus"]=(int)$bonus_livello_xml;
+			}
+				
+			else
+			{
+				$myVarsArr[$chatId]["bonus"]=0;
+			}
+				
+			$livello++;
+			$myVarsArr[$chatId]["livello"]=$livello;
+			$myVarsArr[$chatId]["date"]=$data_corrente;
+			$myVarsArr[$chatId]["prima_risposta"] = -1;    // nessuna risposta data sul nuovo livello
+			if ($stella && $livello > 1)
+				$myVarsArr[$chatId]["star"]=(int)$myVarsArr[$chatId]["star"]+1;
+			
+			$team = $myVarsArr[$chatId]["team"];
+			if (strlen($team)>=1)
+			{
+				foreach ($myVarsArr as $key => $value)
+				{
+					if ($myVarsArr[$key]["team"]===$team)
 					{
-						// verifica se va dato il bonus
-						if (($myVarsArr[$key]["prima_risposta"] != $livello) && ($bonus_livello_xml > 0))
+						if ($key !== $chatId)
 						{
-							$myVarsArr[$key]["bonus"]=(int)$bonus_livello_xml;
-							$myVarsArr[$key]["prima_risposta"] = -1;
-						}
+							// verifica se va dato il bonus
+							if (($myVarsArr[$key]["prima_risposta"] != $livello) && ($bonus_livello_xml > 0))
+							{
+								$myVarsArr[$key]["bonus"]=(int)$bonus_livello_xml;
+								$myVarsArr[$key]["prima_risposta"] = -1;
+							}
+								
+							else
+							{
+								$myVarsArr[$key]["bonus"]=0;
+								$myVarsArr[$key]["prima_risposta"] = -1;
+							}
+			
+							$myVarsArr[$key]["livello"]=$livello;
+							$myVarsArr[$key]["date"]=$data_corrente;
 							
-						else
-						{
-							$myVarsArr[$key]["bonus"]=0;
-							$myVarsArr[$key]["prima_risposta"] = -1;
+							$msg = $nickId . " ha superato il livello del gioco inviando la risposta:\n" .$text."\n\ntocca il pulsante  'enigma' per visualizzare il nuovo quesito";
+							$ch = curl_init();
+							$myUrl=$botUrlMessage . "?chat_id=" . $key . "&text=" . urlencode($msg);
+							curl_setopt($ch, CURLOPT_URL, $myUrl); 
+							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+							
+							// read curl response
+							$output = curl_exec($ch);
+							curl_close($ch);
 						}
-		
-						$myVarsArr[$key]["livello"]=$livello;
-						$myVarsArr[$key]["date"]=$data_corrente;
-						
-						$msg = $nickId . " ha superato il livello del gioco inviando la risposta:\n" .$text."\n\ntocca il pulsante  'enigma' per visualizzare il nuovo quesito";
-						$ch = curl_init();
-						$myUrl=$botUrlMessage . "?chat_id=" . $key . "&text=" . urlencode($msg);
-						curl_setopt($ch, CURLOPT_URL, $myUrl); 
-						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-						
-						// read curl response
-						$output = curl_exec($ch);
-						curl_close($ch);
 					}
 				}
 			}
-		}
-		$myVarsJson = json_encode($myVarsArr);
-	    file_put_contents($path, $myVarsJson, LOCK_EX);
-		flock($file,LOCK_UN);
-		fclose($file);
-		//verifica di congruenza
-		$myVarsXXJson = file_get_contents($path);
-		$myVarsXXArr = json_decode($myVarsJson,true);
-		if ($myVarsXXArr[$idADMIN]["nick"]!=="ADMIN")
-		{
-			$msg="errore critico di scrittura del file dei livelli tentativo 1";
-			$all_chatId = array_keys($amministratore);
-			$tot = count($all_chatId);
-			for ($i=0; $i<$tot; $i++) 
-			{ 
-				if ($all_chatId[$i]>0)
-				{
-					$ch = curl_init();
-					$myUrl=$botUrlMessage . "?chat_id=" . $all_chatId[$i] . "&text=" . urlencode($msg);
-					curl_setopt($ch, CURLOPT_URL, $myUrl); 
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-					
-					// read curl response
-					$output = curl_exec($ch);
-					curl_close($ch);
-				}
-			}
-			
 			$myVarsJson = json_encode($myVarsArr);
 			file_put_contents($path, $myVarsJson, LOCK_EX);
-			
+			flock($file,LOCK_UN);
+			fclose($file);
+			//verifica di congruenza
 			$myVarsXXJson = file_get_contents($path);
 			$myVarsXXArr = json_decode($myVarsJson,true);
 			if ($myVarsXXArr[$idADMIN]["nick"]!=="ADMIN")
 			{
-		
-				$msg="errore critico di scrittura del file dei livelli tentativo 2";
+				$msg="errore critico di scrittura del file dei livelli tentativo 1";
 				$all_chatId = array_keys($amministratore);
 				$tot = count($all_chatId);
 				for ($i=0; $i<$tot; $i++) 
@@ -4563,122 +4538,75 @@ if (risposta_esatta($text, $risposta, $accuratezza_r) && (!$eccezione))
 						curl_close($ch);
 					}
 				}
-			}
-		}
-		else if ($myVarsXXArr[chatId]["livello"]!==$myVarsArr[chatId]["livello"])
-		{
-			$response='non ho capito, ripeti per favore...';
-			$parameters = array('chat_id' => $chatId, "text" => $response);
-			$parameters["method"] = "sendMessage";
-			echo json_encode($parameters);
-			
-			exit();
-		}
-		// fine verifica di congruenza
-	}
-	else
-	{
-		$response='non ho capito, ripeti per favore...';
-		$parameters = array('chat_id' => $chatId, "text" => $response);
-		$parameters["method"] = "sendMessage";
-		echo json_encode($parameters);
-		
-		flock($file,LOCK_UN);
-		fclose($file);
-		exit();
-	}
-	
-	//$xml=simplexml_load_file("domande.xml") or die("Error: Cannot create object");
-	$tipo = (String)($xml->domanda[$livello]->tipo);
-	$risorsa = (String)($xml->domanda[$livello]->risorsa);
-	$risposta = (String)($xml->domanda[$livello]->risposta);
-	$indizio = array(0 => (String)($xml->domanda[$livello]->indizio0), 
-					 1 => (String)($xml->domanda[$livello]->indizio1), 
-					 2 => (String)($xml->domanda[$livello]->indizio2), 
-					 3 => (String)($xml->domanda[$livello]->indizio3));
-	$risEsatta=true;
-}
-
-elseif ($bonus_livello_xml>0 && ($prima_risposta != $livello))
-{
-	$file = fopen($path_lock,"w+");
-	$Lock = flock($file,LOCK_EX);
-	if (!$Lock)
-	{
-		$msg="l'utente " . $chatId . " non può gestire il bonus: lock non ottenuto";
-		$all_chatId = array_keys($amministratore);
-		$tot = count($all_chatId);
-		for ($i=0; $i<$tot; $i++) 
-		{ 
-			if ($all_chatId[$i]>0)
-			{
-				$ch = curl_init();
-				$myUrl=$botUrlMessage . "?chat_id=" . $all_chatId[$i] . "&text=" . urlencode($msg);
-				curl_setopt($ch, CURLOPT_URL, $myUrl); 
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
 				
-				// read curl response
-				$output = curl_exec($ch);
-				curl_close($ch);
-			}
-		}
-		
-		$response='non ho capito, ripeti per favore...';
-		$parameters = array('chat_id' => $chatId, "text" => $response);
-		$parameters["method"] = "sendMessage";
-		echo json_encode($parameters);
-		
-		fclose($file);
-		exit();
-	}
-	
-	//mylog("lock ottenuto", $path_log, $chatId);
-	  
-	$myVarsJson = file_get_contents($path);
-    $myVarsArr = json_decode($myVarsJson,true);
-	
-	//mylog("letto dopo il lock", $path_log, $chatId);
-    
-	if ($myVarsArr[$chatId]["livello"]==$livello)
-	{
-		//la prima risposta è stata data per il livello corrente (bonus non più valido)
-		$myVarsArr[$chatId]["prima_risposta"]=$livello;
-		
-		$team = $myVarsArr[$chatId]["team"];
-		if (strlen($team)>=1)
-		{
-			foreach ($myVarsArr as $key => $value)
-			{
-				if ($myVarsArr[$key]["team"]===$team)
+				$myVarsJson = json_encode($myVarsArr);
+				file_put_contents($path, $myVarsJson, LOCK_EX);
+				
+				$myVarsXXJson = file_get_contents($path);
+				$myVarsXXArr = json_decode($myVarsJson,true);
+				if ($myVarsXXArr[$idADMIN]["nick"]!=="ADMIN")
 				{
-					if ($key !== $chatId)
-					{
-						//la prima risposta è stata data per il livello corrente (bonus non più valido)
-						$myVarsArr[$key]["prima_risposta"]=$livello;
-						
-						$msg = $nickId . " ha fornito una risposta errata, il bonus non è più valido\n";
-						$ch = curl_init();
-						$myUrl=$botUrlMessage . "?chat_id=" . $key . "&text=" . urlencode($msg);
-						curl_setopt($ch, CURLOPT_URL, $myUrl); 
-						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-						
-						// read curl response
-						$output = curl_exec($ch);
-						curl_close($ch);
+			
+					$msg="errore critico di scrittura del file dei livelli tentativo 2";
+					$all_chatId = array_keys($amministratore);
+					$tot = count($all_chatId);
+					for ($i=0; $i<$tot; $i++) 
+					{ 
+						if ($all_chatId[$i]>0)
+						{
+							$ch = curl_init();
+							$myUrl=$botUrlMessage . "?chat_id=" . $all_chatId[$i] . "&text=" . urlencode($msg);
+							curl_setopt($ch, CURLOPT_URL, $myUrl); 
+							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+							
+							// read curl response
+							$output = curl_exec($ch);
+							curl_close($ch);
+						}
 					}
 				}
 			}
+			else if ($myVarsXXArr[chatId]["livello"]!==$myVarsArr[chatId]["livello"])
+			{
+				$response='non ho capito, ripeti per favore...';
+				$parameters = array('chat_id' => $chatId, "text" => $response);
+				$parameters["method"] = "sendMessage";
+				echo json_encode($parameters);
+				
+				exit();
+			}
+			// fine verifica di congruenza
 		}
-		$myVarsJson = json_encode($myVarsArr);
-	    file_put_contents($path, $myVarsJson, LOCK_EX);
-		flock($file,LOCK_UN);
-		fclose($file);
-		//verifica di congruenza
-		$myVarsXXJson = file_get_contents($path);
-		$myVarsXXArr = json_decode($myVarsJson,true);
-		if ($myVarsXXArr[$idADMIN]["nick"]!=="ADMIN")
+		else
 		{
-			$msg="errore critico di scrittura del file dei livelli tentativo 1";
+			$response='non ho capito, ripeti per favore...';
+			$parameters = array('chat_id' => $chatId, "text" => $response);
+			$parameters["method"] = "sendMessage";
+			echo json_encode($parameters);
+			
+			flock($file,LOCK_UN);
+			fclose($file);
+			exit();
+		}
+		
+		//$xml=simplexml_load_file("domande.xml") or die("Error: Cannot create object");
+		$tipo = (String)($xml->domanda[$livello]->tipo);
+		$risorsa = (String)($xml->domanda[$livello]->risorsa);
+		$risposta = (String)($xml->domanda[$livello]->risposta);
+		$indizio = array(0 => (String)($xml->domanda[$livello]->indizio0), 
+						 1 => (String)($xml->domanda[$livello]->indizio1), 
+						 2 => (String)($xml->domanda[$livello]->indizio2), 
+						 3 => (String)($xml->domanda[$livello]->indizio3));
+		$risEsatta=true;
+	}
+
+	elseif ($bonus_livello_xml>0 && ($prima_risposta != $livello))
+	{
+		$file = fopen($path_lock,"w+");
+		$Lock = flock($file,LOCK_EX);
+		if (!$Lock)
+		{
+			$msg="l'utente " . $chatId . " non può gestire il bonus: lock non ottenuto";
 			$all_chatId = array_keys($amministratore);
 			$tot = count($all_chatId);
 			for ($i=0; $i<$tot; $i++) 
@@ -4696,15 +4624,62 @@ elseif ($bonus_livello_xml>0 && ($prima_risposta != $livello))
 				}
 			}
 			
+			$response='non ho capito, ripeti per favore...';
+			$parameters = array('chat_id' => $chatId, "text" => $response);
+			$parameters["method"] = "sendMessage";
+			echo json_encode($parameters);
+			
+			fclose($file);
+			exit();
+		}
+		
+		//mylog("lock ottenuto", $path_log, $chatId);
+		  
+		$myVarsJson = file_get_contents($path);
+		$myVarsArr = json_decode($myVarsJson,true);
+		
+		//mylog("letto dopo il lock", $path_log, $chatId);
+		
+		if ($myVarsArr[$chatId]["livello"]==$livello)
+		{
+			//la prima risposta è stata data per il livello corrente (bonus non più valido)
+			$myVarsArr[$chatId]["prima_risposta"]=$livello;
+			
+			$team = $myVarsArr[$chatId]["team"];
+			if (strlen($team)>=1)
+			{
+				foreach ($myVarsArr as $key => $value)
+				{
+					if ($myVarsArr[$key]["team"]===$team)
+					{
+						if ($key !== $chatId)
+						{
+							//la prima risposta è stata data per il livello corrente (bonus non più valido)
+							$myVarsArr[$key]["prima_risposta"]=$livello;
+							
+							$msg = $nickId . " ha fornito una risposta errata, il bonus non è più valido\n";
+							$ch = curl_init();
+							$myUrl=$botUrlMessage . "?chat_id=" . $key . "&text=" . urlencode($msg);
+							curl_setopt($ch, CURLOPT_URL, $myUrl); 
+							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+							
+							// read curl response
+							$output = curl_exec($ch);
+							curl_close($ch);
+						}
+					}
+				}
+			}
 			$myVarsJson = json_encode($myVarsArr);
 			file_put_contents($path, $myVarsJson, LOCK_EX);
-			
+			flock($file,LOCK_UN);
+			fclose($file);
+			//verifica di congruenza
 			$myVarsXXJson = file_get_contents($path);
 			$myVarsXXArr = json_decode($myVarsJson,true);
 			if ($myVarsXXArr[$idADMIN]["nick"]!=="ADMIN")
 			{
-		
-				$msg="errore critico di scrittura del file dei livelli tentativo 2";
+				$msg="errore critico di scrittura del file dei livelli tentativo 1";
 				$all_chatId = array_keys($amministratore);
 				$tot = count($all_chatId);
 				for ($i=0; $i<$tot; $i++) 
@@ -4721,32 +4696,58 @@ elseif ($bonus_livello_xml>0 && ($prima_risposta != $livello))
 						curl_close($ch);
 					}
 				}
+				
+				$myVarsJson = json_encode($myVarsArr);
+				file_put_contents($path, $myVarsJson, LOCK_EX);
+				
+				$myVarsXXJson = file_get_contents($path);
+				$myVarsXXArr = json_decode($myVarsJson,true);
+				if ($myVarsXXArr[$idADMIN]["nick"]!=="ADMIN")
+				{
+			
+					$msg="errore critico di scrittura del file dei livelli tentativo 2";
+					$all_chatId = array_keys($amministratore);
+					$tot = count($all_chatId);
+					for ($i=0; $i<$tot; $i++) 
+					{ 
+						if ($all_chatId[$i]>0)
+						{
+							$ch = curl_init();
+							$myUrl=$botUrlMessage . "?chat_id=" . $all_chatId[$i] . "&text=" . urlencode($msg);
+							curl_setopt($ch, CURLOPT_URL, $myUrl); 
+							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+							
+							// read curl response
+							$output = curl_exec($ch);
+							curl_close($ch);
+						}
+					}
+				}
 			}
+			else if ($myVarsXXArr[chatId]["livello"]!==$myVarsArr[chatId]["livello"])
+			{
+				$response='non ho capito, ripeti per favore...';
+				$parameters = array('chat_id' => $chatId, "text" => $response);
+				$parameters["method"] = "sendMessage";
+				echo json_encode($parameters);
+				
+				exit();
+			}
+			// fine verifica di congruenza
 		}
-		else if ($myVarsXXArr[chatId]["livello"]!==$myVarsArr[chatId]["livello"])
+		else
 		{
 			$response='non ho capito, ripeti per favore...';
 			$parameters = array('chat_id' => $chatId, "text" => $response);
 			$parameters["method"] = "sendMessage";
 			echo json_encode($parameters);
 			
+			flock($file,LOCK_UN);
+			fclose($file);
 			exit();
 		}
-		// fine verifica di congruenza
-	}
-	else
-	{
-		$response='non ho capito, ripeti per favore...';
-		$parameters = array('chat_id' => $chatId, "text" => $response);
-		$parameters["method"] = "sendMessage";
-		echo json_encode($parameters);
-		
-		flock($file,LOCK_UN);
-		fclose($file);
-		exit();
 	}
 }
-} //BBBBBBBBBBBBBBBBBBBBBBB
 
 //gestisce la risposta corretta (allo start/restart si considera fittiziamente che la risposta è esatta)
 //mostrando la domanda del livello appena raggiunto
