@@ -4485,6 +4485,8 @@ else
 			{
 				$myVarsArr[$chatId]["bonus"]=0;
 			}
+			
+			$myVarsArr[$chatId]["tartaruga"]=0;
 				
 			$livello++;
 			$myVarsArr[$chatId]["livello"]=$livello;
@@ -4514,6 +4516,8 @@ else
 								$myVarsArr[$key]["bonus"]=0;
 								$myVarsArr[$key]["prima_risposta"] = -1;
 							}
+							
+							$myVarsArr[$key]["tartaruga"]=0
 			
 							$myVarsArr[$key]["livello"]=$livello;
 							$myVarsArr[$key]["date"]=$data_corrente;
@@ -4619,7 +4623,7 @@ else
 		$risEsatta=true;
 	}
 
-	elseif ($bonus_livello_xml>0 && ($prima_risposta != $livello))
+	elseif (($bonus_livello_xml>0 && ($prima_risposta != $livello)) || ($tartaruga_livello_xml > 0))
 	{
 		$file = fopen($path_lock,"w+");
 		$Lock = flock($file,LOCK_EX);
@@ -4659,7 +4663,10 @@ else
 		
 		//mylog("letto dopo il lock", $path_log, $chatId);
 		
-		if ($myVarsArr[$chatId]["livello"]==$livello)
+		if ($tartaruga_livello_xml > 0)
+			($myVarsArr[$chatId]["tartaruga"]=time();
+		
+		if (($myVarsArr[$chatId]["livello"]==$livello) && ($bonus_livello_xml>0))
 		{
 			//la prima risposta è stata data per il livello corrente (bonus non più valido)
 			$myVarsArr[$chatId]["prima_risposta"]=$livello;
@@ -4689,16 +4696,43 @@ else
 					}
 				}
 			}
+		}
+		$myVarsJson = json_encode($myVarsArr);
+		file_put_contents($path, $myVarsJson, LOCK_EX);
+		flock($file,LOCK_UN);
+		fclose($file);
+		//verifica di congruenza
+		$myVarsXXJson = file_get_contents($path);
+		$myVarsXXArr = json_decode($myVarsJson,true);
+		if ($myVarsXXArr[$idADMIN]["nick"]!=="ADMIN")
+		{
+			$msg="errore critico di scrittura del file dei livelli tentativo 1";
+			$all_chatId = array_keys($amministratore);
+			$tot = count($all_chatId);
+			for ($i=0; $i<$tot; $i++) 
+			{ 
+				if ($all_chatId[$i]>0)
+				{
+					$ch = curl_init();
+					$myUrl=$botUrlMessage . "?chat_id=" . $all_chatId[$i] . "&text=" . urlencode($msg);
+					curl_setopt($ch, CURLOPT_URL, $myUrl); 
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+					
+					// read curl response
+					$output = curl_exec($ch);
+					curl_close($ch);
+				}
+			}
+			
 			$myVarsJson = json_encode($myVarsArr);
 			file_put_contents($path, $myVarsJson, LOCK_EX);
-			flock($file,LOCK_UN);
-			fclose($file);
-			//verifica di congruenza
+			
 			$myVarsXXJson = file_get_contents($path);
 			$myVarsXXArr = json_decode($myVarsJson,true);
 			if ($myVarsXXArr[$idADMIN]["nick"]!=="ADMIN")
 			{
-				$msg="errore critico di scrittura del file dei livelli tentativo 1";
+		
+				$msg="errore critico di scrittura del file dei livelli tentativo 2";
 				$all_chatId = array_keys($amministratore);
 				$tot = count($all_chatId);
 				for ($i=0; $i<$tot; $i++) 
@@ -4715,45 +4749,19 @@ else
 						curl_close($ch);
 					}
 				}
-				
-				$myVarsJson = json_encode($myVarsArr);
-				file_put_contents($path, $myVarsJson, LOCK_EX);
-				
-				$myVarsXXJson = file_get_contents($path);
-				$myVarsXXArr = json_decode($myVarsJson,true);
-				if ($myVarsXXArr[$idADMIN]["nick"]!=="ADMIN")
-				{
-			
-					$msg="errore critico di scrittura del file dei livelli tentativo 2";
-					$all_chatId = array_keys($amministratore);
-					$tot = count($all_chatId);
-					for ($i=0; $i<$tot; $i++) 
-					{ 
-						if ($all_chatId[$i]>0)
-						{
-							$ch = curl_init();
-							$myUrl=$botUrlMessage . "?chat_id=" . $all_chatId[$i] . "&text=" . urlencode($msg);
-							curl_setopt($ch, CURLOPT_URL, $myUrl); 
-							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-							
-							// read curl response
-							$output = curl_exec($ch);
-							curl_close($ch);
-						}
-					}
-				}
 			}
-			else if ($myVarsXXArr[chatId]["livello"]!==$myVarsArr[chatId]["livello"])
-			{
-				$response='non ho capito, ripeti per favore...';
-				$parameters = array('chat_id' => $chatId, "text" => $response);
-				$parameters["method"] = "sendMessage";
-				echo json_encode($parameters);
-				
-				exit();
-			}
-			// fine verifica di congruenza
 		}
+		else if ($myVarsXXArr[chatId]["livello"]!==$myVarsArr[chatId]["livello"])
+		{
+			$response='non ho capito, ripeti per favore...';
+			$parameters = array('chat_id' => $chatId, "text" => $response);
+			$parameters["method"] = "sendMessage";
+			echo json_encode($parameters);
+			
+			exit();
+		}
+		// fine verifica di congruenza
+		//}
 		else
 		{
 			$response='non ho capito, ripeti per favore...';
