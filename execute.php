@@ -371,6 +371,7 @@ $attesa_aiuto2 = isset($xml->domanda[$livello]->attesa2)?$xml->domanda[$livello]
 $attesa_aiuto3 = isset($xml->domanda[$livello]->attesa3)?$xml->domanda[$livello]->attesa3 : 180;
 $accuratezza_risp_corr = isset($xml->domanda[$livello]->accuratezza)?$xml->domanda[$livello]->accuratezza : "approssimata";
 $bonus_livello_xml = isset($xml->domanda[$livello]->bonus)?$xml->domanda[$livello]->bonus : 0;
+$tartaruga_livello_xml = isset($xml->domanda[$livello]->tartaruga)?$xml->domanda[$livello]->tartaruga : 0;
 $tipo_risp_corr = (String)($xml->domanda[$livello]->tipo);
 if (isset($abilitazione[$livello]["aiuto1"]))
 	$attesa_aiuto1 = $abilitazione[$livello]["aiuto1"];
@@ -4281,6 +4282,20 @@ if(strpos($text, '/help') !== false)
 		$response = $response . "\xF0\x9F\x8D\xAD" . " <i>girella: ". $bonus_livello_xml ." minuti di bonus\nse superi il livello al primo tentativo</i>\n";
 		if ($myVarsArr[$chatId]["prima_risposta"] == $livello)
 			$response = $response. "<i>(il bonus è scaduto)</i>\n";
+		$response = $response."\n";
+	}
+	
+	if ($tartaruga_livello_xml > 0)
+	{
+		$response = $response . "\xF0\x9F\x90\xA2" . " <i>tortuga: ". "attendi " . $tartaruga_livello_xml ." secondi dopo ogni risposta errata</i>\n";
+		
+		$secondi_ultima_risp = (int)$myVarsArr[$chatId]["risposta_tartaruga"];
+		if (($secondi_ultima_risp + $tartaruga_livello_xml) > time())
+		{
+			$prossima_risposta = $secondi_ultima_risp + $tartaruga_livello_xml;
+			$response = $response. "<i>puoi fornire la prossima risposta alle ". $prossima_risposta . " </i>\n";
+		}
+			
 		$response = $response."\n";
 	}
 	
