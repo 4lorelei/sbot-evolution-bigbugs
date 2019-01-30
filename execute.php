@@ -4664,7 +4664,7 @@ else
 		//mylog("letto dopo il lock", $path_log, $chatId);
 		
 		if ($tartaruga_livello_xml > 0)
-			($myVarsArr[$chatId]["tartaruga"]=time();
+			$myVarsArr[$chatId]["tartaruga"]=time();
 		
 		if (($myVarsArr[$chatId]["livello"]==$livello) && ($bonus_livello_xml>0))
 		{
