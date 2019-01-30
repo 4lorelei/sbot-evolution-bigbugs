@@ -974,7 +974,6 @@ if(strpos($text, '/match') !== false && $utenteAdmin === true)
 					$output = curl_exec($ch);
 					curl_close($ch);
 				}
-					
 				elseif (isset($abl[3]) && isset($abl[4]))
 				{
 					$ore = substr($abl[4], 0, strpos($abl[4], ":"));
