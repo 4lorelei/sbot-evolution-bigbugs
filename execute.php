@@ -964,7 +964,7 @@ if(strpos($text, '/match') !== false && $utenteAdmin === true)
 			{
 				if ($statoGioco == "da_ripristinare")
 				{
-					$response = "il server è nello stato da ripristinare\n in questo stato non è consentito l'uso dei comandi a tempo";
+					$response = "il server è nello stato da ripristinare\nin questo stato non è consentito l'uso dei comandi a tempo";
 					$ch = curl_init();
 					$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response);
 					curl_setopt($ch, CURLOPT_URL, $myUrl); 
@@ -3067,13 +3067,13 @@ if(strcmp($text, '/stat') === 0)
 	{
 		
 		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare))
-			$msg_prossimo_aiuto = "\n\n<b>tutti gli indizi del livello sono abilitati</b>";
+			$msg_prossimo_aiuto = "\n\n<b>\xF0\x9F\x95\x91 tutti gli indizi del livello sono abilitati</b>";
 		else if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare))
-			$msg_prossimo_aiuto = "\n\n<b>prossimo indizio alle:<b> " . prossimo_aiuto($attesa_aiuto3, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare);
+			$msg_prossimo_aiuto = "\n\n<b>\xF0\x9F\x95\x91 prossimo indizio alle:<b> " . prossimo_aiuto($attesa_aiuto3, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare);
 		else if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare))
-			$msg_prossimo_aiuto = "\n\n<b>prossimo indizio alle:</b> " . prossimo_aiuto($attesa_aiuto2, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare);
+			$msg_prossimo_aiuto = "\n\n<b>\xF0\x9F\x95\x91 prossimo indizio alle:</b> " . prossimo_aiuto($attesa_aiuto2, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare);
 		else 
-			$msg_prossimo_aiuto = "\n\n<b>prossimo indizio alle:</b> " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare);
+			$msg_prossimo_aiuto = "\n\n<b>\xF0\x9F\x95\x91 prossimo indizio alle:</b> " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare);
 		
 		if ($bonus_da_applicare > 0)
 			$msg_prossimo_aiuto = $msg_prossimo_aiuto . "\n<i>\xF0\x9F\x91\x8D benefici di un bonus di " . $bonus_da_applicare . " minuti</i>";
