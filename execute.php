@@ -962,7 +962,20 @@ if(strpos($text, '/match') !== false && $utenteAdmin === true)
 	
 			if ($abl[2]=="-t")
 			{
-				if (isset($abl[3]) && isset($abl[4]))
+				if ($statoGioco == "da_ripristinare")
+				{
+					$response = "il server è nello stato da ripristinare\n in questo stato non è consentito l'uso dei comandi a tempo";
+					$ch = curl_init();
+					$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response);
+					curl_setopt($ch, CURLOPT_URL, $myUrl); 
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+					
+					// read curl response
+					$output = curl_exec($ch);
+					curl_close($ch);
+				}
+					
+				elseif (isset($abl[3]) && isset($abl[4]))
 				{
 					$ore = substr($abl[4], 0, strpos($abl[4], ":"));
 					$minuti = substr($abl[4], strpos($abl[4], ":")+1);
@@ -3064,7 +3077,7 @@ if(strcmp($text, '/stat') === 0)
 			$msg_prossimo_aiuto = "\n\n<b>prossimo indizio alle:</b> " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare);
 		
 		if ($bonus_da_applicare > 0)
-			$msg_prossimo_aiuto = $msg_prossimo_aiuto . "\n<i>\xF0\x9F\x91\x8D benefici di un bonus di " . $bonus_da_applicare . "minuti</i>";
+			$msg_prossimo_aiuto = $msg_prossimo_aiuto . "\n<i>\xF0\x9F\x91\x8D benefici di un bonus di " . $bonus_da_applicare . " minuti</i>";
 			
 	}
 	else if ($statoGioco == "terminato")
