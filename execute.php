@@ -4517,7 +4517,7 @@ else
 								$myVarsArr[$key]["prima_risposta"] = -1;
 							}
 							
-							$myVarsArr[$key]["tartaruga"]=0
+							$myVarsArr[$key]["tartaruga"]=0;
 			
 							$myVarsArr[$key]["livello"]=$livello;
 							$myVarsArr[$key]["date"]=$data_corrente;
