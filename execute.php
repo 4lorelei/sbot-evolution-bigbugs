@@ -4374,6 +4374,8 @@ if(strpos($text, '/refresh') !== false)
 {
 	$risEsatta=true;
 }
+else
+{
 //verifica se la risposta data è corretta e, se OK,  incrementa il livello
 //if((strcmp($text, strtolower($risposta)) === 0) && (!$eccezione))
 //if (risposta_esatta($text, $risposta) && (!$eccezione))
@@ -4732,7 +4734,7 @@ elseif ($bonus_livello_xml>0 && ($prima_risposta != $livello))
 		exit();
 	}
 }
-
+} //BBBBBBBBBBBBBBBBBBBBBBB
 
 //gestisce la risposta corretta (allo start/restart si considera fittiziamente che la risposta è esatta)
 //mostrando la domanda del livello appena raggiunto
