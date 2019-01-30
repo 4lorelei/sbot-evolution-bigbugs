@@ -4642,7 +4642,7 @@ elseif ($bonus_livello_xml>0 && ($prima_risposta != $livello))
 					if ($key !== $chatId)
 					{
 						//la prima risposta è stata data per il livello corrente (bonus non più valido)
-						$myVarsArr[$chatId]["prima_risposta"]=$livello;
+						$myVarsArr[$key]["prima_risposta"]=$livello;
 						
 						$msg = $nickId . " ha fornito una risposta errata, il bonus non è più valido\n";
 						$ch = curl_init();
