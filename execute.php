@@ -3068,7 +3068,7 @@ if(strcmp($text, '/stat') === 0)
 	{
 		
 		if ($bonus_da_applicare > 0)
-			$msg_prossimo_aiuto = "\n\n<i>\xF0\x9F\x91\x8D usufruisci di un bonus di " . $bonus_da_applicare . " minuti</i>";
+			$msg_prossimo_aiuto = "\n\n<i>\xF0\x9F\x91\x8D stai utilizzando un bonus di " . $bonus_da_applicare . " minuti</i>";
 		else
 			$msg_prossimo_aiuto = "\n";
 		
@@ -4316,7 +4316,7 @@ if(strpos($text, '/help') !== false)
 	if (($livello > 0) && ($statoGioco != "terminato"))
 	{
 		if ($bonus_da_applicare > 0)
-			$msg_prossimo_aiuto = "<i>\xF0\x9F\x91\x8D usufruisci di un bonus di " . $bonus_da_applicare . " minuti</i>\n\n";
+			$msg_prossimo_aiuto = "<i>\xF0\x9F\x91\x8D stai utilizzando un bonus di " . $bonus_da_applicare . " minuti</i>\n\n";
 		
 		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare))
 			$msg_prossimo_aiuto .= "<i>\xF0\x9F\x95\x91 tutti gli indizi del livello sono abilitati</i>";
