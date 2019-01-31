@@ -9,13 +9,18 @@ In fase di valutazione della risposta le parole non pertinenti con la risposta s
 <b>Esito: </b>La risposta è corretta
 
 🎢 <i>tornado: usa solo le parole giuste</i>
-In fase di valutazione della risposta anche una sola parola non pertinente con la risposta ne compromette la vaidità.
-Esempio:
-Domanda: Chi è l'autore della poesia "L'Infinito"?
-Risposta: Il poeta Giacomo Leopardi
-La risposta è considerata errata essendo la risposta prevista "Giacomo Leopardi"
 
-🍭
+In fase di valutazione della risposta anche una sola parola non pertinente con la risposta ne compromette la vaidità.
+<b>Esempio: </b>
+<b>Domanda: </b><i>Chi è l'autore della poesia "L'Infinito"?</i>
+<b>Risposta: </b><i>Il poeta Giacomo Leopardi</i>
+<b>Esito: </b>La risposta è errata essendo la risposta prevista "Giacomo Leopardi"
+
+🍭 <i>girella: xx minuti di bonus se superi il livello al primo tentativo</i>
+
+Rispondendo in modo corretto già al primo tentativo si conquista un bonus in minuti che si applica al <b>successivo livello</b>. Sul nuovo livello il tempo di attesa per ottenere gli aiuti si riduce del tempo indicato dal bonus.
+<b>I giocatori che partecipano in team hanno complessivamente un unico tentativo</b>, pertanto è presa in esame per il bonus esclusivamente la prima risposta del primo giocatore che fornisce la risposta.
+
 🐢
 👍
 🕑
