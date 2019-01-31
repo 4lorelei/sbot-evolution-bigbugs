@@ -4293,7 +4293,7 @@ if(strpos($text, '/help') !== false)
 		if (($secondi_ultima_risp + $tartaruga_livello_xml) > time())
 		{
 			$prossima_risposta = $secondi_ultima_risp + $tartaruga_livello_xml;
-			$response = $response. "<i>prossima risposta alle: ". date("H:i:s", $prossima_risposta) . "+</i>\n";
+			$response = $response. "<i>prossima risposta alle: ". date("H:i:s", $prossima_risposta) . "</i>\n";
 		}
 			
 		$response = $response."\n";
@@ -4410,8 +4410,8 @@ else
 {
 	
 	// quesito di tipo tartaruga - risposta giunta troppo presto
-	if ($myVarsArr[chatId]["tartaruga"]>0 && $tartaruga_livello_xml > 0 && 
-	    ($myVarsArr[chatId]["tartaruga"]+$tartaruga_livello_xml) > time())
+	if ($myVarsArr[$chatId]["tartaruga"]>0 && $tartaruga_livello_xml > 0 && 
+	    ($myVarsArr[$chatId]["tartaruga"]+$tartaruga_livello_xml) > time())
 	{
 		$response="\xF0\x9F\x90\xA2 tortuga: la risposta non può essere valutata al momento";
 		$parameters = array('chat_id' => $chatId, "text" => $response);
