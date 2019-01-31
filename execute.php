@@ -4289,7 +4289,7 @@ if(strpos($text, '/help') !== false)
 	{
 		$response = $response . "\xF0\x9F\x90\xA2" . " <i>tortuga: ". "attendi " . $tartaruga_livello_xml ." secondi dopo ogni risposta errata</i>\n";
 		
-		$secondi_ultima_risp = (int)$myVarsArr[$chatId]["risposta_tartaruga"];
+		$secondi_ultima_risp = (int)$myVarsArr[$chatId]["tartaruga"];
 		if (($secondi_ultima_risp + $tartaruga_livello_xml) > time())
 		{
 			$prossima_risposta = $secondi_ultima_risp + $tartaruga_livello_xml;
