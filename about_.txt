@@ -5,7 +5,7 @@
 In fase di valutazione della risposta le parole non pertinenti con la risposta sono ignorate.
 <b>Esempio: </b> 
 <b>Domanda: </b><i>Qual è la capitale della Francia?</i>
-<b>Risposta: </b></i>Roma Londra Parigi Vienna</i>
+<b>Risposta: </b><i>Roma Londra Parigi Vienna</i>
 <b>Esito: </b>La risposta è corretta
 
 🎢 <i>tornado: usa solo le parole giuste</i>
