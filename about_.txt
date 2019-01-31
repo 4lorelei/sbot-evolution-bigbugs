@@ -1,6 +1,6 @@
 ﻿<b>Legenda:</b>
 
-\xF0\x9F\x8E\xA1 <i>panoramica: rispondi con una frase</i>
+🎢 <i>panoramica: rispondi con una frase</i>
 In fase di valutazione della risposta le parole non pertinenti con la risposta sono ignorate.
 Esempio: 
 Domanda: Qual è la capitale della Francia?
