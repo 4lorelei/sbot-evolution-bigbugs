@@ -1,19 +1,23 @@
 ﻿<b>Legenda:</b>
 
-🎢 <i>panoramica: rispondi con una frase</i>
+🎡 <i>panoramica: rispondi con una frase</i>
 In fase di valutazione della risposta le parole non pertinenti con la risposta sono ignorate.
 Esempio: 
 Domanda: Qual è la capitale della Francia?
 Risposta: Roma Londra Parigi Vienna
 La risposta è considerata corretta
 
-\xF0\x9F\x8E\xA2 <i>tornado: usa solo le parole giuste</i>
+🎢 <i>tornado: usa solo le parole giuste</i>
 In fase di valutazione della risposta anche una sola parola non pertinente con la risposta ne compromette la vaidità.
 Esempio:
 Domanda: Chi è l'autore della poesia "L'Infinito"?
 Risposta: Il poeta Giacomo Leopardi
 La risposta è considerata errata essendo la risposta prevista "Giacomo Leopardi"
 
+🍭
+🐢
+👍
+🕐
 <b>Regolamento:</b>
 
 1. la caccia al tesoro è riservata agli studenti del Liceo Nobel
