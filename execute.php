@@ -4293,7 +4293,7 @@ if(strpos($text, '/help') !== false)
 		if (($secondi_ultima_risp + $tartaruga_livello_xml) > time())
 		{
 			$prossima_risposta = $secondi_ultima_risp + $tartaruga_livello_xml;
-			$response = $response. "<i>puoi fornire la prossima risposta alle ". $prossima_risposta . " </i>\n";
+			$response = $response. "<i>prossima risposta alle: ". date("H:i:s", $prossima_risposta) . "</i>\n";
 		}
 			
 		$response = $response."\n";
