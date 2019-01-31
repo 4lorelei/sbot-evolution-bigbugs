@@ -4623,7 +4623,7 @@ else
 		$risEsatta=true;
 	}
 
-	elseif (($bonus_livello_xml>0 && ($prima_risposta != $livello)) || ($tartaruga_livello_xml > 0))
+	elseif (($bonus_livello_xml>0 && ($prima_risposta != $livello)) || ($tartaruga_livello_xml > 0)) &&  !$eccezione)
 	{
 		$file = fopen($path_lock,"w+");
 		$Lock = flock($file,LOCK_EX);
@@ -4762,6 +4762,7 @@ else
 		}
 		// fine verifica di congruenza
 		//}
+		/*
 		else
 		{
 			$response='non ho capito, ripeti per favore...';
@@ -4773,6 +4774,7 @@ else
 			fclose($file);
 			exit();
 		}
+		*/
 	}
 }
 
