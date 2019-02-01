@@ -1812,14 +1812,20 @@ if(strpos($text, '/show') !== false && $utenteAdmin === true)
 //reset del gioco
 if(strpos($text, '/reset') !== false && $utenteAdmin === true) 
 {
-	if (strpos($text, " ")>0)
+	if (strpos($text, " ")>0) 
 	{
 		$tipo  = explode(" ", $text);
 		if ((($tipo[1] === "game") && (!isset($tipo[2]))) || (($tipo[1] === "game") && ($tipo[2] === "-n")))
 		{
+			$myVarsArr[$idADMIN]['data_sleep'] = "";
+			$myVarsArr[$idADMIN]['data_go'] = "";
+				
 		    $tot=0;
 			foreach ($myVarsArr as $key => $value)
 			{
+				unset($myVarsArr[$key]["bonus"]);
+				unset($myVarsArr[$key]["prima_risposta"]);
+
 				$myVarsArr[$key]['livello'] = 0;
 				$myVarsArr[$key]['star'] = 0;
 				$myVarsArr[$key]['date'] = $data_corrente;
@@ -1923,7 +1929,7 @@ if(strpos($text, '/reset') !== false && $utenteAdmin === true)
 	}
 	else
 	{
-		$response = "uso del comando \n/reset game [-n]\n     reimposta a 0 livelli e aiuti (opzionalmente nick e team)\n/reset bot\n     reinizializza il bot\n/reset broadcast\n     abilita msg broadcast\n/reset clock\n     reimposta int sospensione";
+		$response = "uso del comando \n/reset game [-n]\n     reimposta a 0 livelli e aiuti\n     (opzionalmente nick e team)\n/reset bot\n     reinizializza il bot\n/reset broadcast\n     abilita msg broadcast\n/reset clock\n     reimposta int sospensione";
 		$ch = curl_init();
 		$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($response);
 		curl_setopt($ch, CURLOPT_URL, $myUrl); 
