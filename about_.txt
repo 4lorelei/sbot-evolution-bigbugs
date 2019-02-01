@@ -54,5 +54,5 @@ Nella fascia oraria in cui il gioco è sospeso, il tempo di attesa per ottenere 
 
 <b>Gestione dei team:</b>
 
-I team possono essere formati e modificati prima dell'inizio del gioco e durante la gara ma solo per un periodo limitato.
+I team possono essere formati e modificati prima dell'inizio del gioco e, per un periodo limitato, durante la gara.
 Quando un team supera i primi livelli (il valore esatto è deciso dall'admin), non può più essere modificato e quindi non possono più essere inseriti giocatori né i giocatori presenti possono uscire dal team.
