@@ -33,7 +33,7 @@ Tocca il pulsante "indizi" per continuare.
 
 	 <domanda>
 		<tipo>immagine</tipo>
-		<risorsa>immagini/colibrì.jpg</risorsa>
+		<risorsa>immagini/colibrì.gif</risorsa>
 		<risposta>madre</risposta>
 		<accuratezza>approssimata</accuratezza>
 		<indizio0>nel nido su un albero vivono due colibrì, uno grande e l'altro piccolo: il più piccolo è il figlio del colibrì più grande, ma questo non è suo padre; chi è allora?</indizio0>
