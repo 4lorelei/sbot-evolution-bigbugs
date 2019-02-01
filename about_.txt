@@ -55,4 +55,4 @@ Nella fascia oraria in cui il gioco è sospeso, il tempo di attesa per ottenere 
 <b>Gestione dei team:</b>
 
 I team possono essere formati e modificati prima dell'inizio del gioco e, per un periodo limitato, durante la gara.
-Un team che supera il livello 25, non può più essere modificato e quindi non possono più essere inseriti giocatori né i giocatori presenti possono uscire dal team.
+Quando un team supera il livello 25, non può più essere modificato e quindi non possono più essere inseriti giocatori né i giocatori presenti possono uscire dal team. 
