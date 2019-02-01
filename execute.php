@@ -4285,7 +4285,7 @@ if(strpos($text, '/help') !== false)
 	
 	if ($bonus_livello_xml >0)
 	{
-		$response = $response . "\xF0\x9F\x8D\xAD" . " <i>girella: ". $bonus_livello_xml ." minuti di bonus\nse superi il livello al primo tentativo</i>\n";
+		$response = $response . "\xF0\x9F\x8D\xAD" . " <i>lollipop: ". $bonus_livello_xml ." minuti di bonus\nse superi il livello al primo tentativo</i>\n";
 		if ($myVarsArr[$chatId]["prima_risposta"] == $livello)
 			$response = $response. "<i>(il bonus è scaduto)</i>\n";
 		$response = $response."\n";

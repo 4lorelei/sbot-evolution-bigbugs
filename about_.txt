@@ -18,7 +18,7 @@ In fase di valutazione della risposta anche una sola parola non pertinente con l
 <b>Esito: </b>La risposta è errata essendo la risposta prevista "Giacomo Leopardi"
 
 
-🍭 <i>girella: xx minuti di bonus se superi il livello al primo tentativo</i>
+🍭 <i>lollipop: xx minuti di bonus se superi il livello al primo tentativo</i>
 
 Rispondendo in modo corretto già al primo tentativo si conquista un bonus in minuti che si applica al <b>successivo livello</b>. Sul nuovo livello il tempo di attesa per ottenere gli aiuti si riduce del tempo indicato dal bonus.
 <b>I giocatori che partecipano in team hanno complessivamente un unico tentativo</b>, pertanto è presa in esame per il bonus esclusivamente la prima risposta del primo giocatore che fornisce la risposta.
