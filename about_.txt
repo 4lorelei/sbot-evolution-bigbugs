@@ -52,3 +52,7 @@ In questi casi il bot è predisposto per accettare più risposte differenti.
 Nella fascia oraria in cui il gioco è sospeso, il tempo di attesa per ottenere gli aiuti si congela. Alla ripresa del gioco i tempi di attesa sono ricalcolati per ciascun giocatore o team, non considerando l'intero intervallo di sospensione. 
 
 
+<b>Gestione dei team:</b>
+
+I team possono essere formati e modificati prima dell'inizio del gioco e durante la gara ma solo per un periodo limitato.
+Quando un team supera i primi livelli (il valore esatto è deciso dall'admin), non può più essere modificato e quindi non possono più essere inseriti giocatori né i giocatori presenti possono uscire dal team.
