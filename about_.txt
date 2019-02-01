@@ -26,7 +26,7 @@ Rispondendo in modo corretto già al primo tentativo si conquista un bonus in mi
 
 🐢 <i>tortuga: attendi xx secondi dopo ogni risposta errata</i>
 
-Ogni singolo giocatore può fornire al massimo una risposta ogni xx secondi. Le risposte fornite prima che sia trascorso il tempo indicato a partire dalla precedente risposta errata, non sono valutate.
+Ogni singolo giocatore può fornire al massimo una risposta ogni xx secondi. Le risposte fornite prima che sia trascorso il tempo indicato, calcolato a partire dalla precedente risposta errata, non sono valutate.
 
 
 👍 <i>stai utilizzando un bonus di xx minuti</i>
@@ -49,7 +49,7 @@ In questi casi il bot è predisposto per accettare più risposte differenti.
 
 <b>Sospensione del gioco:</b>
 
-Nella fascia oraria in cui il gioco è sospeso, il tempo di attesa per ottenere gli aiuti si congela. Alla ripresa del gioco i tempi di attesa sono ricalcolati per ciascun giocatore o team, non considerando l'intero intervallo di sospensione. 
+Nella fascia oraria in cui il gioco è sospeso, il tempo di attesa per ottenere gli aiuti si congela. Alla ripresa del gioco i tempi di attesa sono ricalcolati per ciascun giocatore o team, escludendo l'intero intervallo di sospensione. 
 
 
 <b>Gestione dei team:</b>
