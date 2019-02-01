@@ -1,4 +1,4 @@
-﻿<b>Legenda:</b>
+﻿<b>Legenda e altre info:</b>
 
 🎡 <i>panoramica: rispondi con una frase</i>
 
@@ -25,17 +25,19 @@ Rispondendo in modo corretto già al primo tentativo si conquista un bonus in mi
 
 
 🐢 <i>tortuga: attendi xx secondi dopo ogni risposta errata</i>
+
 Ogni singolo giocatore può fornire al massimo una risposta ogni xx secondi. Le risposste fornite prima che sia trascorso il tempo indicato a partire dalla precedente risposta errata, non sono valutate.
 
 
 👍 <i>stai utilizzando un bonus di xx minuti</i>
+
 Indica che sul livello corrente il tempo di attesa per ottenere gli aiuti è ridotto rispetto al tempo standard per il livello.
 
 
 🕑 <i>prossimo indizio alle hh:mm</i>
 
-Indica l'ora in cui si renderà disponibile il successivo aiuto. In totale sono previsti tre differenti aiuti per livello.
-L'ora indicata non tiene conto della successiva sospensione del gioco, fin quando essa non si verifica. Può capitare che l'ora indicata cada in un intervallo in cui il gioco è sospeso; in questo caso alla ripresa del gioco l'ora è correttamente aggiornata tenendo conto del periodo di sospensione.
+Indica l'ora in cui si renderà disponibile il successivo aiuto. <b>In totale sono previsti tre differenti aiuti per livello</b>.
+L'ora indicata non tiene conto della successiva <b>sospensione</b> del gioco, fin quando essa non si verifica. Può capitare che l'ora indicata cada in un intervallo in cui il gioco è sospeso; in questo caso alla ripresa del gioco l'ora è correttamente aggiornata tenendo conto del periodo di sospensione.
 
 
 <b>Risposte aperte:</b>
