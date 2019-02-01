@@ -26,7 +26,7 @@ Rispondendo in modo corretto già al primo tentativo si conquista un bonus in mi
 
 🐢 <i>tortuga: attendi xx secondi dopo ogni risposta errata</i>
 
-Ogni singolo giocatore può fornire al massimo una risposta ogni xx secondi. Le risposste fornite prima che sia trascorso il tempo indicato a partire dalla precedente risposta errata, non sono valutate.
+Ogni singolo giocatore può fornire al massimo una risposta ogni xx secondi. Le risposte fornite prima che sia trascorso il tempo indicato a partire dalla precedente risposta errata, non sono valutate.
 
 
 👍 <i>stai utilizzando un bonus di xx minuti</i>
