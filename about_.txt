@@ -8,6 +8,7 @@ In fase di valutazione della risposta le parole non pertinenti con la risposta s
 <b>Risposta: </b><i>Roma Londra Parigi Vienna</i>
 <b>Esito: </b>La risposta è corretta
 
+
 🎢 <i>tornado: usa solo le parole giuste</i>
 
 In fase di valutazione della risposta anche una sola parola non pertinente con la risposta ne compromette la vaidità.
@@ -16,51 +17,36 @@ In fase di valutazione della risposta anche una sola parola non pertinente con l
 <b>Risposta: </b><i>Il poeta Giacomo Leopardi</i>
 <b>Esito: </b>La risposta è errata essendo la risposta prevista "Giacomo Leopardi"
 
+
 🍭 <i>girella: xx minuti di bonus se superi il livello al primo tentativo</i>
 
 Rispondendo in modo corretto già al primo tentativo si conquista un bonus in minuti che si applica al <b>successivo livello</b>. Sul nuovo livello il tempo di attesa per ottenere gli aiuti si riduce del tempo indicato dal bonus.
 <b>I giocatori che partecipano in team hanno complessivamente un unico tentativo</b>, pertanto è presa in esame per il bonus esclusivamente la prima risposta del primo giocatore che fornisce la risposta.
 
-🐢
-👍
-🕑
-<b>Regolamento:</b>
 
-1. la caccia al tesoro è riservata agli studenti del Liceo Nobel
+🐢 <i>tortuga: attendi xx secondi dopo ogni risposta errata</i>
+Ogni singolo giocatore può fornire al massimo una risposta ogni xx secondi. Le risposste fornite prima che sia trascorso il tempo indicato a partire dalla precedente risposta errata, non sono valutate.
 
-2. ad ogni enigma occorre rispondere con una o più parole, numeri o codici; il bot non fa distinzione tra minuscole e maiuscole e  considera corretta ogni risposta che includa tutte le parole previste nella soluzione, indipendentemente dall'ordine; gli apostrofi e le lettere accentate, se presenti nella soluzione, devono essere inseriti correttamente
 
-3. tramite i pulsanti "enigma" e "indizi" è possibile visualizzare l'enigma corrente e gli indizi disponibili per l'enigma; nuovi indizi si rendono disponibili con il passare del tempo
+👍 <i>stai utilizzando un bonus di xx minuti</i>
+Indica che sul livello corrente il tempo di attesa per ottenere gli aiuti è ridotto rispetto al tempo standard per il livello.
 
-4. quando un enigma è stato risolto, il bot propone automaticamente quello successivo, fino al raggiungimento dell'ultimo enigma che conduce al tesoro
 
-5. quando un giocatore trova il tesoro pone fine alla gara per tutti i giocatori 
+🕑 <i>prossimo indizio alle hh:mm</i>
 
-6. i giocatori hanno la possibilità di impostare un "nickname" (nome di fantasia usato durante la gara) e di registrarsi inserendo i propri dati anagrafici; la registrazione è obbligatoria per essere inseriti nella classifica ufficiale e concorrere alla premiazione finale
+Indica l'ora in cui si renderà disponibile il successivo aiuto. In totale sono previsti tre differenti aiuti per livello.
+L'ora indicata non tiene conto della successiva sospensione del gioco, fin quando essa non si verifica. Può capitare che l'ora indicata cada in un intervallo in cui il gioco è sospeso; in questo caso alla ripresa del gioco l'ora è correttamente aggiornata tenendo conto del periodo di sospensione.
 
-7. un giocatore che ha impostato il nickname può costituire un "team" e aggiungere ad esso altri giocatori (anche questi ultimi devono aver impostato il nickname)
 
-8. è possibile visualizzare in tempo reale la classifica con i livelli occupati dai giocatori singoli e dai team; la calssifica generale non tiene conto dei giocatori anonimi e ordina i concorrenti in base ai livelli, le stelle e la data di accesso all'ultimo livello 
+<b>Risposte aperte:</b>
 
-9. è possibile inviare segnalzioni all'admin tramite la chat dedicata
+In alcuni casi la risposta ad un gioco potrebbe  nascondere delle ambiguità in termini di formalismo o di termini.
+Ad esempio la data della scoperta dell'America potrebbe essere fornita nel formato "12/10/1492" oppure nel formato "12 ottobre 1492".
+In questi casi il bot è predisposto per accettare più risposte differenti.
 
-10. il giocatore che per primo supera un livello conquista una "stella" di cui beneficerà anche il team
 
-11. nel momento in cui un giocatore entra a far parte di un team già esistente, perde le "stelle" che aveva conquistato in precedenza; se un giocatore esce da un team o ne costituisce uno, non perde le stelle già conquistate
+<b>Sospensione del gioco:</b>
 
-12. ulteriori informazioni sono incluse nelle FAQ scaricabili tramite il pulsante "faq"
+Nella fascia oraria in cui il gioco è sospeso, il tempo di attesa per ottenere gli aiuti si congela. Alla ripresa del gioco i tempi di attesa sono ricalcolati per ciascun giocatore o team, non considerando l'intero intervallo di sospensione. 
 
-──────────────
 
-<b>Riconoscimenti:</b>
-
-Ciao,
-mi chiamo Lara Luu e sono il robot che ti assiste durante la gara.
-
-Desidero ringraziare la D.S. avv. Annunziata Langella, il "Team per l'Innovazione digitale" e tutti i docenti del Liceo Nobel che hanno sostenuto e reso possibile questa iniziativa.
-		
-In modo particolare ringrazio calorosamente coloro che hanno collaborato a predisporre gli enigmi della caccia al tesoro.
-
-Infine, mando un saluto affettuoso ad Andrea e Bruno Sarto che mi hanno ideata e programmata.
-
-                               Lara Luu
