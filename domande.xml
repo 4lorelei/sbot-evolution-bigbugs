@@ -32,7 +32,7 @@ Tocca il pulsante "indizi" per continuare.
      <!-- FINE ANTEPRIMA -->
 
 	 <domanda>
-		<tipo>immagine</tipo>
+		<tipo>video</tipo>
 		<risorsa>immagini/colibrì.gif</risorsa>
 		<risposta>madre</risposta>
 		<accuratezza>approssimata</accuratezza>
