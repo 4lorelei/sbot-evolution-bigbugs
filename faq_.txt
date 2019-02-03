@@ -11,6 +11,8 @@ ENIGMI
 7. Posso sapere quando sarà disponibile il prossimo aiuto?
 8. Non riesco a risolvere l'enigma di un livello, cosa faccio?
 9. Cosa sono e come si conquistano le "stelle"?
+10. Cosa sono e come si ottiene un bonus?
+11. Perché le risposte che fornisco non sono valutate (<i>tortuga</i>)?
 
 NICKNAME
 10. Cos'è il nickname?
@@ -58,7 +60,12 @@ Per interpretare correttamente un enigma è necessario prestare attenzione sia a
 Per rispondere è sufficiente digitare la risposta che si ritiene corretta e inviare il messaggio.
 
 2. Quando viene considerata corretta una risposta?
-Una risposta è considerata corretta se la risposta data è costituita da meno di 50 caratteri (spazi inclusi) e include tutte parole che compongono la soluzione. Gli apostrofi e gli accenti, se presenti nella soluzione, devono essere inseriti correttamente. Esempi:
+La valutazione della risposta da parte del bot è articolata e dipende da una serie di circostanze come di seguito illustrato:
+
+- La risposta inviata contiene più di 50 caratteri (spazi inclusi): la risposta non viene valutata
+
+- Tra gli indizi compare l'indicazione 🎡 <i>panoramica: rispondi con una frase</i>: 
+La risposta è considerata corretta se la risposta inviata include tutte parole che compongono la soluzione. Gli apostrofi e gli accenti, se presenti nella soluzione, devono essere inseriti correttamente mentre eventuali caratteri sopeciali sono ignorati. Esempi:
 
 Soluzione:
 L'isola che non c'è
@@ -73,7 +80,23 @@ Risposte scorrette:
 La isola che non c'è
 Isola che non c'è
 L'isola che non c'e'
-L'isola che non c'è è una canzone di Bennato che fa parte dell'album Sono solo canzonette
+
+- Tra gli indizi compare l'indicazione 🎢 <i>tornado: usa solo le parole giuste</i>:
+La risposta è considerata corretta se la risposta inviata include esclusivamente le parole che compongono la soluzione. Gli apostrofi e gli accenti, se presenti nella soluzione, devono essere inseriti correttamente mentre eventuali caratteri sopeciali sono ignorati. Esempi:
+
+Soluzione:
+L'isola che non c'è
+
+Risposte corrette:
+L'isola che non c'è
+Che non c'è l'isola
+
+Risposte scorrette:
+La isola che non c'è
+Isola che non c'è
+L'isola che non c'e'
+Bennato l'isola che non c'è
+L'isola che non c'è di Bennato
 
 3. C'è differenza tra maiuscole e minuscole?
 No, non c'è differenza tra maiuscole e minuscole
@@ -86,10 +109,11 @@ E' possibile conoscere l'istante in cui si abiliteranno nuovi indizi tramite il 
 Tramite il pulsante "enigma"
 
 6. Con che criterio vengono forniti gli indizi?
-Per ogni livello sono predefiniti degli intervalli di tempo superati i quali si abilitano automaticamente gli indizi.
+Per ogni livello sono predefiniti degli intervalli di tempo, uguali per tutti i concorrenti, superati i quali si abilitano automaticamente gli indizi.
+Qualora si disponga di un bonus conquistato al livello precedente, il tempo di attesa è ridotto per quel giocatore o team rispetto al tempo standard del livello.
 
 7. Posso sapere quando sarà disponibile il prossimo indizio?
-E' possibile conoscere l'istante in cui si abiliterà un nuovo indizio tramite il pulsante "tabellino" (presente all'interno del menu "gara")
+L'indicazione del tempo da attendere per il prossimo indizio è presente sia tra le info degli indizi che nel tabellino della gara (il cui pulsante è presente all'interno del menu "gara").
 
 8. Non riesco a risolvere l'enigma di un livello, cosa faccio?
 Se non sono ancora abilitati tutti gli indizi per il livello corrente, puoi sperare di risolvere l’enigma con i nuovi indizi che riceverai. Diversamente puoi consultare amici o conoscenti per richiedere un supporto. In ultima analisi ci sono i forum...
@@ -97,6 +121,15 @@ Se non sono ancora abilitati tutti gli indizi per il livello corrente, puoi sper
 9. Cosa sono e come si conquistano le "stelle"?
 Le "stelle" sono un indice che rappresenta l’abilità di un giocatore a risolvere rapidamente gli enigmi. Infatti, un giocatore conquista una stella quando, tra tutti i partecipanti, è il primo a superare un dato livello.
 Le "stelle" associate ad un team corrispondono alla somma delle "stelle" dei suoi giocatori.
+
+10. Cosa sono e come si ottiene un bonus?
+Tra gli indizi di un enigma può essere presente l'indicazione 🍭 <i>lollipop: xx minuti di bonus se superi il livello al primo tentativo</i>.
+In questo caso, rispondendo correttamente al primo tentativo si ottiene un bonus in minuti che dà un vatanggio sul livello successivo.
+I tempi di attesa per ricevere gli indizi, sul successivo livello, si riducono rispetto al tempo standard previsto per il livello.
+
+11. Perché le risposte che fornisco non sono valutate (<i>tortuga</i>)?
+Se tra gli indizi di un messaggio comapre l'indicazione 🐢 <i>tortuga: attendi xx secondi dopo ogni risposta errata</i>, non è possibile fornire roisposte a ripetizione ma occorre attendere il tempo indicato prima che il bot valuti nuove risposte.
+
 
 NICKNAME
 10. Cos'è il nickname?
