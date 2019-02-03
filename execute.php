@@ -4411,7 +4411,7 @@ if(strpos($text, '/refresh') !== false)
 {
 	$risEsatta=true;
 }
-// gestisce la risposta esatta
+// gestisce la risposta inviata
 else
 {
 	
@@ -4670,10 +4670,23 @@ else
 		
 		//mylog("letto dopo il lock", $path_log, $chatId);
 		
+		// se il livello nel frattempo è cambiato non va fatta alcuna gestione
+		if ($myVarsArr[$chatId]["livello"]!=$livello)
+		{
+			$response='non ho capito, ripeti per favore...';
+			$parameters = array('chat_id' => $chatId, "text" => $response);
+			$parameters["method"] = "sendMessage";
+			echo json_encode($parameters);
+			
+			flock($file,LOCK_UN);
+			fclose($file);
+			exit();
+		}
+		
 		if ($tartaruga_livello_xml > 0)
 			$myVarsArr[$chatId]["tartaruga"]=time();
 		
-		if (($myVarsArr[$chatId]["livello"]==$livello) && ($bonus_livello_xml>0))
+		if (($myVarsArr[$chatId]["prima_risposta"]!=$livello) && ($bonus_livello_xml>0))
 		{
 			//la prima risposta è stata data per il livello corrente (bonus non più valido)
 			$myVarsArr[$chatId]["prima_risposta"]=$livello;
