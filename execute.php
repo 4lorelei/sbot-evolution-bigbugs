@@ -4497,15 +4497,12 @@ else
 			
 			// verifica se va dato il bonus
 			if (($myVarsArr[$chatId]["prima_risposta"] != $livello) && ($bonus_livello_xml > 0))
-			{
-				$myVarsArr[$chatId]["bonus"]=(int)$bonus_livello_xml;
-			}
-				
+				$bonus_da_dare = (int)$bonus_livello_xml;
 			else
-			{
-				$myVarsArr[$chatId]["bonus"]=0;
-			}
+				$bonus_da_dare = 0;
 			
+			
+			$myVarsArr[$chatId]["bonus"]=$bonus_da_dare;
 			$myVarsArr[$chatId]["tartaruga"]=0;
 				
 			$livello++;
@@ -4524,18 +4521,8 @@ else
 					{
 						if ($key !== $chatId)
 						{
-							// verifica se va dato il bonus
-							if (($myVarsArr[$key]["prima_risposta"] != $livello) && ($bonus_livello_xml > 0))
-							{
-								$myVarsArr[$key]["bonus"]=(int)$bonus_livello_xml;
-								$myVarsArr[$key]["prima_risposta"] = -1;
-							}
-								
-							else
-							{
-								$myVarsArr[$key]["bonus"]=0;
-								$myVarsArr[$key]["prima_risposta"] = -1;
-							}
+							$myVarsArr[$key]["bonus"]=$bonus_da_dare;
+							$myVarsArr[$key]["prima_risposta"] = -1;
 							
 							$myVarsArr[$key]["tartaruga"]=0;
 			
