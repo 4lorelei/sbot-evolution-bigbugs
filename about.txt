@@ -1,7 +1,7 @@
 ﻿<b>COMANDI RICONOSCIUTI DAL BOT:</b>
 
 /about - info sul bot
-/about faq - scariva le FAQ
+/about faq - scarica le FAQ
 
 /help - indizi per il livello corrente
 /refresh - ripete la domanda
