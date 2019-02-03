@@ -35,7 +35,6 @@ Tocca il pulsante "indizi" per continuare.
 		<tipo>video</tipo>
 		<risorsa>immagini/colibrì.gif</risorsa>
 		<risposta>madre</risposta>
-		<accuratezza>approssimata</accuratezza>
 		<indizio0>nel nido su un albero vivono due colibrì, uno grande e l'altro piccolo: il più piccolo è il figlio del colibrì più grande, ma questo non è suo padre; chi è allora?</indizio0>
 		<indizio1>il colibrì è l'uccello più piccolo del mondo; ne è stato misurato uno di 5 cm di lunghezza per 1,6 grammi di peso</indizio1>
 		<indizio2>riesce a sostare immobile sospeso grazie a un battito d’ali velocissimo</indizio2>
@@ -59,29 +58,26 @@ Tocca il pulsante "indizi" per continuare.
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
-		<bonus>120</bonus>
+		<bonus>599</bonus>
 		<tartaruga>100</tartaruga>
  		<autore>bs rebus nobel</autore>
 	</domanda>
 	
 	<domanda>
-		<tipo>immagine</tipo>
-		<risorsa>immagini/ingranaggio.jpg</risorsa>
-		<risposta>+346,5 -396</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>la ruota dentata verde compie 99 giri in senso antiorario.
-quanti giri e frazioni di giro in senso antiorario compiono in totale le ruote dentate?
-e quanti giri in senso orario?
-N.B. indicare con + i giri in senso orario e con - i giri in senso antiorario
-(es. +325 -270,75)</indizio0>
-		<indizio1>4 ruote girano in senso orario e 4 in senso antiorario</indizio1>
-		<indizio2>le ruote piccole compiono tutte lo stesso numero di giri</indizio2>
-		<indizio3>la ruota grande compie la metà dei giri di una ruota piccola</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
- 		<autore>bs ingranaggio</autore>
-	</domanda>
+		<tipo>video</tipo>
+		<risorsa>video/pearlharbor.mp4</risorsa>
+		<risposta>in piedi|sedia rotelle|seduto|si alza</risposta>
+		<accuratezza>approssimata</accuratezza>
+		<indizio0>c'è qualcosa che non va!</indizio0>
+		<indizio1>è il discorso del presidente Roosevelt dopo l'attacco di Pearl Harbor</indizio1>
+		<indizio2>cerca il video originale</indizio2>
+		<indizio3>il presidente era disabile</indizio3>
+		<attesa1>180</attesa1>
+		<attesa2>480</attesa2>
+		<attesa3>600</attesa3>
+		<autore>bs Pearl Harbor</autore>
+    </domanda>
+
 
     <domanda>
         <tipo>audio</tipo>
@@ -92,9 +88,11 @@ N.B. indicare con + i giri in senso orario e con - i giri in senso antiorario
         <indizio1>è un personaggio della commedia</indizio1>
         <indizio2>... Ditegli sempre di sì</indizio2>
         <indizio3>l'inquilino di Teresa Lo Giudice</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
+		<attesa1>1</attesa1>
+		<attesa2>2</attesa2>
+		<attesa3>3</attesa3>
+		<bonus>599</bonus>
+		<tartaruga>0</tartaruga>
         <autore>bs Eduardo cra cra</autore>
     </domanda>
 
@@ -107,9 +105,12 @@ N.B. indicare con + i giri in senso orario e con - i giri in senso antiorario
 		<indizio1>parola</indizio1>
 		<indizio2>porta</indizio2>
 		<indizio3>volta</indizio3>
-		<attesa1>120</attesa1>
-		<attesa2>180</attesa2>
-		<attesa3>240</attesa3>
+		<attesa1>1</attesa1>
+		<attesa2>2</attesa2>
+		<attesa3>3</attesa3>
+		<bonus>1</bonus>
+		<tartaruga>20</tartaruga>
+		<bonus>359</bonus>
  		<autore>bs parole chiave</autore>
 	</domanda>	
 	
@@ -125,6 +126,8 @@ N.B. indicare con + i giri in senso orario e con - i giri in senso antiorario
 		<attesa1>120</attesa1>
 		<attesa2>240</attesa2>
 		<attesa3>360</attesa3>
+		<tartaruga>0</tartaruga>
+		<bonus>0</bonus>
  		<autore>bs marchio auto</autore>
 	</domanda>
 	
@@ -246,19 +249,6 @@ ed assai triste è il passato"</indizio1>
         <autore>bs libro</autore>
     </domanda>
 
-	<domanda>
-		<tipo>video</tipo>
-		<risorsa>video/pearlharbor.mp4</risorsa>
-		<risposta>piedi</risposta>
-		<indizio0>c'è qualcosa che non va!</indizio0>
-		<indizio1>è il discorso del presidente Roosevelt dopo l'attacco di Pearl Harbor</indizio1>
-		<indizio2>cerca il video originale</indizio2>
-		<indizio3>il presidente era disabile</indizio3>
-		<attesa1>180</attesa1>
-		<attesa2>480</attesa2>
-		<attesa3>600</attesa3>
-		<autore>bs Pearl Harbor</autore>
-    </domanda>
 
 	<domanda>
 		<tipo>immagine</tipo>
