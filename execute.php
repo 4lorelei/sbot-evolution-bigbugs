@@ -3074,14 +3074,14 @@ if(strcmp($text, '/stat') === 0)
 	{
 		
 		if ($bonus_da_applicare > 0)
-			$msg_prossimo_aiuto = "\n\n<i>\xF0\x9F\x91\x8D stai utilizzando un bonus di " . (int)$bonus_da_applicare . " minuti</i>";
+			$msg_prossimo_aiuto = "\n\n<i>\xF0\x9F\x91\x8D stai utilizzando un bonus di " . $bonus_da_applicare . " minuti</i>";
 		else
 			$msg_prossimo_aiuto = "\n";
 		
 		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare))
-			$msg_prossimo_aiuto .= "\ntutti gli indizi del livello sono abilitati</b>";
+			$msg_prossimo_aiuto .= "\n<b>tutti gli indizi del livello sono abilitati</b>";
 		else if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare))
-			$msg_prossimo_aiuto .= "\n<b>prossimo indizio alle:<b> " . prossimo_aiuto($attesa_aiuto3, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare);
+			$msg_prossimo_aiuto .= "\n<b>prossimo indizio alle:</b> " . prossimo_aiuto($attesa_aiuto3, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare);
 		else if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare))
 			$msg_prossimo_aiuto .= "\n<b>prossimo indizio alle:</b> " . prossimo_aiuto($attesa_aiuto2, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare);
 		else 
