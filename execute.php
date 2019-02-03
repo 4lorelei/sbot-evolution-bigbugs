@@ -3117,7 +3117,7 @@ if(strcmp($text, '/stat') === 0)
 	
 	$response =  $response . "\n<b>nickname:</b> " . $nickId . "\n<b>team:</b> " . $nometeam;
 	$response =  $response . "\n<b>sei sul livello:</b> " . $livello . "\nraggiunto il: " . $myVarsArr[$chatId]["date"];
-	$response =  $response . $msg_prossimo_aiuto;
+	//$response =  $response . $msg_prossimo_aiuto;
 	$response =  $response . "\n\n<b>numero di giocatori:</b> " . $tot . "\n    team: " . $numteam . "\n    giocatori singoli: " . $numsingle ;
 	$response =  $response . "\n\n<b>max livello raggiunto:</b> " . $maxlivello;
 	$response =  $response . $msg_primo;
