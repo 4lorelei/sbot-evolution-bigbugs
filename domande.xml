@@ -31,16 +31,27 @@ Tocca il pulsante "indizi" per continuare.
 	 
 	 <domanda>
 		<tipo>immagine</tipo>
-		<risorsa>immagini/film.jpg</risorsa>
-		<risposta>ricerca nemo</risposta>
-		<indizio0>il titolo... </indizio0>
-		<indizio1>un figlio unico deve essere ritrovato</indizio1>
-		<indizio2>un padre va alla ricerca di suo figlio con l'aiuto di un'amica smemorata</indizio2>
-		<indizio3>è un film di animazione</indizio3>
-		<attesa1>120</attesa1>
-		<attesa2>240</attesa2>
-		<attesa3>360</attesa3>
- 		<autore>bs nemo</autore>
+		<risorsa>immagini/anagramma.jpg</risorsa>
+		<risposta>due tre | 2 3</risposta>
+		<accuratezza>approssimata</accuratezza>
+		<indizio0>quali carte hanno il dorso "segnato"?
+risolvi l’anagramma e lo saprai
+
+
+suggerimento:
+la ruota panoramica tra gli indizi rivela che il bot valuta la risposta ignorando le parole in più, anche quelle sbagliate
+
+...in questo caso puoi rispondere elencando tutte le carte e superare il livello anche senza risolvere l'anagramma</indizio0>
+		<indizio1>l'anagramma inizia così:
+le carte segnate...</indizio1>
+		<indizio2>le carte segnate sono...</indizio2>
+		<indizio3>le carte segnate sono il due e il...</indizio3>
+		<attesa1>2</attesa1>
+		<attesa2>4</attesa2>
+		<attesa3>6</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs panoramica</autore>
 	</domanda>	
 	
 	<domanda>
