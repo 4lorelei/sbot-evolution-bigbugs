@@ -56,16 +56,25 @@ le carte segnate...</indizio1>
 	
 	<domanda>
 		<tipo>immagine</tipo>
-		<risorsa>immagini/maremma.jpg</risorsa>
-		<risposta>window</risposta>
-		<indizio0>un bravo fotografo imprime nelle immagini le proprie emozioni e tiene aperta una finestra sul mondo per lasciare entrare sempre nuovi profumi</indizio0>
-		<indizio1>le lenzuola sono ripiegate su se stesse</indizio1>
-		<indizio2>un bravo fotografo sperimenta sempre diversi punti di vista</indizio2>
-		<indizio3>e se le lenzuola fossero perfettamente distese?</indizio3>
-		<attesa1>120</attesa1>
-		<attesa2>240</attesa2>
-		<attesa3>360</attesa3>
- 		<autore>bs maremma lenzuola</autore>
+		<risorsa>immagini/cani.jpg</risorsa>
+		<risposta>lorenzo lilli | lorenzo e lilli</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>individua la coppia intrusa
+
+suggerimento:
+poiché tra gli indizi compare l'emoticon della montagna russa tornado, nella risposta dovrai indicare solo le parole che compongono la risposta esatta
+
+per risolvere questo enigma, ad ogni tentativo dovrai limitarti ad indicare una singola coppia
+</indizio0>
+		<indizio1>Tom e Franco sono identici</indizio1>
+		<indizio2>Sally e Bernarda sono "lisce"</indizio2>
+		<indizio3>Tullio e Ralph hanno lo stesso sguardo</indizio3>
+		<attesa1>2</attesa1>
+		<attesa2>4</attesa2>
+		<attesa3>6</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs tornado</autore>
 	</domanda>	
 
 	<domanda>
