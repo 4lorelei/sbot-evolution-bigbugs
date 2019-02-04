@@ -5239,8 +5239,19 @@ function risposta_esatta($risposta, $esatta, $accuratezza)
 	
 	$esatta=str_replace("|", " | ", $esatta);
 	
-	$risposta = preg_replace('/[^a-zA-Z0-9-+*:><=.,èéàòùì]/', ' ', $risposta);
-    $esatta = preg_replace('/[^a-zA-Z0-9-+*:><=.,èéàòùì|]/', ' ', $esatta);
+	if ($accuratezza=="approssimata")
+	{
+		// la virgola è un separatore quindi è convertita in spazio
+		$risposta = preg_replace('/[^a-zA-Z0-9-+*:><=.èéàòùì]/', ' ', $risposta);
+		$esatta = preg_replace('/[^a-zA-Z0-9-+*:><=.èéàòùì|]/', ' ', $esatta);
+	}
+	else
+	{
+		// la virgola NON è un separatore quindi è significativa
+		$risposta = preg_replace('/[^a-zA-Z0-9-+*:><=.,èéàòùì]/', ' ', $risposta);
+		$esatta = preg_replace('/[^a-zA-Z0-9-+*:><=.,èéàòùì|]/', ' ', $esatta);
+	}
+	
 	
 	$risposta = trim(preg_replace('/\s+/', ' ', $risposta));
 	$esatta = trim(preg_replace('/\s+/', ' ', $esatta));
