@@ -87,7 +87,13 @@ per risolvere questo enigma, ad ogni tentativo dovrai limitarti ad indicare una 
 		<risorsa>immagini/america.jpg</risorsa>
 		<risposta>venerdì | venerdi</risposta>
 		<accuratezza>elevata</accuratezza>
-		<indizio0>in quale giorno dells settimana fu scoperta l'America?</indizio0>
+		<indizio0>In quale giorno della settimana fu scoperta l'America?
+
+Suggerimento:
+faresti bene a rispondere al primo tentativo!
+la presenza del lollipop tra gli indizi indica che rispondendo correttamente al primo tentativo riceverai un bonus in minuti.
+In questo caso, sul prossimo livello l'attesa per ricevere gli indizi si riduce rispetto al tempo standard
+		</indizio0>
 		<indizio1>è un giorno feriale</indizio1>
 		<indizio2>corrisponde con il nome dell'aborigeno cui Robinson Crusoe salva la vita</indizio2>
 		<indizio3>è il giorno dedicato alla dea dell'amore</indizio3>
