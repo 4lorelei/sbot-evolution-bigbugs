@@ -100,7 +100,7 @@ In questo caso, sul prossimo livello l'attesa per ricevere gli indizi si riduce 
 		<attesa1>2</attesa1>
 		<attesa2>4</attesa2>
 		<attesa3>6</attesa3>
-		<bonus>6</bonus>
+		<bonus>4</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>bs lollipop</autore>
 	</domanda>	
@@ -114,15 +114,15 @@ In questo caso, sul prossimo livello l'attesa per ricevere gli indizi si riduce 
 
 suggerimento:
 rifletti prima di rispondere! 
-quando compare l'emoticon di tortuga tra gli indizi non puoi rispondere a ripetizione ma devono passare alcuni secondi tra una risposta e l'altra 
+quando compare l'emoticon di tortuga tra gli indizi, non puoi rispondere a ripetizione ma devono passare alcuni secondi tra una risposta e l'altra 
 		</indizio0>
 		<indizio1>sequenza</indizio1>
 		<indizio2>sequenza</indizio2>
 		<indizio3>sequenza</indizio3>
-		<attesa1>2</attesa1>
-		<attesa2>4</attesa2>
+		<attesa1>4</attesa1>
+		<attesa2>5</attesa2>
 		<attesa3>6</attesa3>
-		<bonus>6</bonus>
+		<bonus>0</bonus>
 		<tartaruga>30</tartaruga>
  		<autore>bs tortuga</autore>
 	</domanda>	
