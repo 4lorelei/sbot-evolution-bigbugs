@@ -67,7 +67,7 @@ le carte segnate...</indizio1>
 		<indizio0>individua la coppia intrusa
 
 suggerimento:
-poiché tra gli indizi compare l'emoticon della montagna russa tornado, nella risposta dovrai indicare solo le parole che compongono la risposta esatta
+poiché tra gli indizi compare l'emoticon della montagna russa (tornado), nella risposta dovrai indicare solo le parole che compongono la risposta esatta
 
 per risolvere questo enigma, ad ogni tentativo dovrai limitarti ad indicare una singola coppia
 </indizio0>
@@ -89,7 +89,7 @@ per risolvere questo enigma, ad ogni tentativo dovrai limitarti ad indicare una 
 		<accuratezza>elevata</accuratezza>
 		<indizio0>In quale giorno della settimana fu scoperta l'America?
 
-Suggerimento:
+suggerimento:
 faresti bene a rispondere al primo tentativo!
 la presenza del lollipop tra gli indizi indica che rispondendo correttamente al primo tentativo riceverai un bonus in minuti.
 In questo caso, sul prossimo livello l'attesa per ricevere gli indizi si riduce rispetto al tempo standard
@@ -105,6 +105,27 @@ In questo caso, sul prossimo livello l'attesa per ricevere gli indizi si riduce 
  		<autore>bs lollipop</autore>
 	</domanda>	
 	
+		<domanda>
+		<tipo>sequenza</tipo>
+		<risorsa>immagini/lennon.jpg</risorsa>
+		<risposta>lennon | john lennon</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>chi è il personaggio della caricatura?
+
+suggerimento:
+rifletti prima di rispondere! 
+quando compare l'emoticon di tortuga tra gli indizi non puoi rispondere a ripetizione ma devono passare alcuni secondi tra una risposta e l'altra 
+		</indizio0>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
+		<attesa1>2</attesa1>
+		<attesa2>4</attesa2>
+		<attesa3>6</attesa3>
+		<bonus>6</bonus>
+		<tartaruga>30</tartaruga>
+ 		<autore>bs tortuga</autore>
+	</domanda>	
 	
 
 	<domanda>
