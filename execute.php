@@ -3085,9 +3085,10 @@ if(strcmp($text, '/stat') === 0)
 			$msg_prossimo_aiuto .= "\n<b>prossimo indizio alle:</b> " . prossimo_aiuto($attesa_aiuto3, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare);
 		else if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare))
 			$msg_prossimo_aiuto .= "\n<b>prossimo indizio alle:</b> " . prossimo_aiuto($attesa_aiuto2, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare);
-		else 
+		else  if ($attesa_aiuto1 < 1440) // 24 h
 			$msg_prossimo_aiuto .= "\n<b>prossimo indizio alle:</b> " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare);
-		
+		else
+			$msg_prossimo_aiuto="";
 		
 			
 	}
@@ -4331,8 +4332,10 @@ if(strpos($text, '/help') !== false)
 			$msg_prossimo_aiuto .= "<i>\xF0\x9F\x95\x91 prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto3, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare) . "</i>";
 		else if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare))
 			$msg_prossimo_aiuto .= "<i>\xF0\x9F\x95\x91 prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto2, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare) . "</i>";
-		else 
+		else if ($attesa_aiuto1 < 1440)   // 24 h
 			$msg_prossimo_aiuto .= "<i>\xF0\x9F\x95\x91 prossimo indizio alle: " . prossimo_aiuto($attesa_aiuto1, $myVarsArr[$chatId]["date"], $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare) . "</i>";
+		else
+			$msg_prossimo_aiuto = "";
 		
 		
 	}
