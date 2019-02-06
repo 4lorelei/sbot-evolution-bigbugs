@@ -135,10 +135,9 @@ quando compare l'emoticon di tortuga tra gli indizi, non puoi rispondere a ripet
 		<accuratezza>approssimata</accuratezza>
 		<indizio0>Teseo come riuscì a trovare l'uscita del labirinto?
 		
-		suggerimento:
-		descrivi con una frase la strategia utilizzata da Teseo
-		il bot riconosce come valide più risposte diverse
-		</indizio0>
+suggerimento:
+descrivi con una frase la strategia utilizzata da Teseo
+il bot riconosce come valide più risposte diverse</indizio0>
 		<indizio1>Teseo era innamorato di Arianna</indizio1>
 		<indizio2>il nome di Arianna è collegato ad un celebre mito</indizio2>
 		<indizio3>Pollicino nella famosa fiaba trova la strada del ritorno grazie alle briciole che aveva disseminato, Teseo si organizza diversamente...</indizio3>
