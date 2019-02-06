@@ -260,23 +260,6 @@ ricorda che puoi ricomniciare l'anteprima dall'inizio in qualsiasi momento invia
     </domanda>
 	
 	<domanda>
-		<tipo>immagine</tipo>
-		<risorsa>immagini/parole1.jpg</risorsa>
-		<risposta>memoria</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>quale parola collega questi vocaboli?</indizio0>
-		<indizio1>quella dell'elefante è proverbiale</indizio1>
-		<indizio2>tutti vorrebbero averla di ferro</indizio2>
-		<indizio3>qualcuno c'è la fotografica</indizio3>
-		<attesa1>30</attesa1>
-		<attesa2>60</attesa2>
-		<attesa3>90</attesa3>
-		<bonus>59</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs personaggi1</autore>
-	</domanda>
-
-	<domanda>
         <tipo>testo</tipo>
         <risorsa>unghia, diamante, fusto, cicala</risorsa>
         <risposta>ancora | dell'ancora</risposta>
