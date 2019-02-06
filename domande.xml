@@ -51,9 +51,9 @@ la presenza della ruota panoramica tra gli indizi rivela che il bot valuta la ri
 le carte segnate...</indizio1>
 		<indizio2>le carte segnate sono...</indizio2>
 		<indizio3>le carte segnate sono il due e il...</indizio3>
-		<attesa1>2</attesa1>
-		<attesa2>4</attesa2>
-		<attesa3>6</attesa3>
+		<attesa1>5</attesa1>
+		<attesa2>7</attesa2>
+		<attesa3>9</attesa3>
 		<bonus>0</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>bs panoramica</autore>
@@ -74,9 +74,9 @@ per risolvere questo enigma, ad ogni tentativo dovrai limitarti ad indicare una 
 		<indizio1>Tom e Franco sono identici</indizio1>
 		<indizio2>Sally e Bernarda sono "lisce"</indizio2>
 		<indizio3>Tullio e Ralph hanno lo stesso sguardo</indizio3>
-		<attesa1>2</attesa1>
-		<attesa2>4</attesa2>
-		<attesa3>6</attesa3>
+		<attesa1>5</attesa1>
+		<attesa2>7</attesa2>
+		<attesa3>9</attesa3>
 		<bonus>0</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>bs tornado</autore>
@@ -98,8 +98,8 @@ se riesci, sul prossimo livello l'attesa per ricevere gli indizi si riduce rispe
 		<indizio2>corrisponde con il nome dell'aborigeno cui Robinson Crusoe salva la vita</indizio2>
 		<indizio3>è il giorno dedicato alla dea dell'amore</indizio3>
 		<attesa1>5</attesa1>
-		<attesa2>6</attesa2>
-		<attesa3>7</attesa3>
+		<attesa2>7</attesa2>
+		<attesa3>9</attesa3>
 		<bonus>4</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>bs lollipop</autore>
@@ -119,11 +119,11 @@ quando compare l'emoticon di tortuga tra gli indizi, non puoi rispondere a ripet
 		<indizio1>sequenza</indizio1>
 		<indizio2>sequenza</indizio2>
 		<indizio3>sequenza</indizio3>
-		<attesa1>4</attesa1>
-		<attesa2>5</attesa2>
-		<attesa3>6</attesa3>
+		<attesa1>5</attesa1>
+		<attesa2>7</attesa2>
+		<attesa3>9</attesa3>
 		<bonus>0</bonus>
-		<tartaruga>30</tartaruga>
+		<tartaruga>20</tartaruga>
  		<autore>bs tortuga</autore>
 	</domanda>	
 	
@@ -131,7 +131,7 @@ quando compare l'emoticon di tortuga tra gli indizi, non puoi rispondere a ripet
 	<domanda>
 		<tipo>immagine</tipo>
 		<risorsa>immagini/teseo.jpg</risorsa>
-		<risposta>filo di Arianna | gomitolo di lana | filo di lana | segue il filo | riavvolge il filo | seguendo il filo | riavvolgendo il filo</risposta>
+		<risposta>filo di Arianna | gomitolo di lana | filo di lana | segue il filo | riavvolge il filo | srotola il filo | seguendo il filo | riavvolgendo il filo | srotolando il filo</risposta>
 		<accuratezza>approssimata</accuratezza>
 		<indizio0>Teseo come riuscì a trovare l'uscita del labirinto?
 		
@@ -153,27 +153,37 @@ il bot riconosce come valide più risposte diverse</indizio0>
 		<tipo>immagine</tipo>
 		<risorsa>immagini/ruote2.jpg</risorsa>
 		<risposta>4500</risposta>
-		<indizio0>se la ruota verde fa 3000 giri, quanti ne fa la ruota rossa?</indizio0>
+		<accuratezza>esatta</accuratezza>
+		<indizio0>se la ruota verde fa 3000 giri, quanti ne fa la ruota rossa?
+		
+suggerimento:
+ricorda che puoi ricomniciare l'anteprima dall'inizio in qualsiasi momento inviando il messaggio /zero
+		</indizio0>
 		<indizio1>concentrati sulla prima e sull'ultima ruota</indizio1>
 		<indizio2>la ruota verde ha 36 denti</indizio2>
 		<indizio3>...e quella rossa ne ha 24</indizio3>
-		<attesa1>120</attesa1>
-		<attesa2>240</attesa2>
-		<attesa3>360</attesa3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>89</bonus>
+		<tartaruga>0</tartaruga>
  		<autore>bs ruote 2:3</autore>
 	</domanda>	
 	
 	<domanda>
 		<tipo>video</tipo>
 		<risorsa>video/joker.mp4</risorsa>
-		<risposta>ossimetro</risposta>
+		<risposta>ossimetro | saturimetro | pulsossimetro </risposta>
+		<accuratezza>approssimata</accuratezza>
 		<indizio0>The Dark Knight - Joker and Two-Face hospital scene... qualcosa non va!!!</indizio0>
 		<indizio1>fai attenzione alle immagini</indizio1>
 		<indizio2>al lancio della moneta</indizio2>
 		<indizio3>è un errore cinematografico</indizio3>
-		<attesa1>180</attesa1>
-		<attesa2>480</attesa2>
-		<attesa3>600</attesa3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>89</bonus>
+		<tartaruga>0</tartaruga>
 		<autore>bs Joker</autore>
     </domanda>
 
@@ -181,15 +191,36 @@ il bot riconosce come valide più risposte diverse</indizio0>
 		<tipo>testo</tipo>
 		<risorsa> sono al centro della scena ma per me non darti pena, sono sempre positivo il mio numero è distintivo </risorsa>
 		<risposta>protone</risposta>
+		<accuratezza>esatta</accuratezza>
 		<indizio0>di cosa si tratta?</indizio0>
 		<indizio1>costituisce il nucleo</indizio1>
 		<indizio2>il quanto di elettricità positiva</indizio2>
 		<indizio3>non decade e quindi la sua vita è eterna</indizio3>
-		<attesa1>120</attesa1>
-		<attesa2>240</attesa2>
-		<attesa3>360</attesa3>
+		<attesa1>30</attesa1>
+		<attesa2>60</attesa2>
+		<attesa3>90</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
 		<autore>Lilla Mangano atomo carica meno</autore>
 	</domanda>	
+	
+	 <domanda>
+		<tipo>video</tipo>
+		<risorsa>immagini/colibrì.gif</risorsa>
+		<accuratezza>esatta</accuratezza>
+		<risposta>madre| la madre</risposta>
+		<indizio0>nel nido su un albero vivono due colibrì, uno grande e l'altro piccolo: il più piccolo è il figlio del colibrì più grande, ma questo non è suo padre; chi è allora?</indizio0>
+		<indizio1>il colibrì è l'uccello più piccolo del mondo; ne è stato misurato uno di 5 cm di lunghezza per 1,6 grammi di peso</indizio1>
+		<indizio2>riesce a sostare immobile sospeso grazie a un battito d’ali velocissimo</indizio2>
+		<indizio3>...ed ha due genitori, come tutti gli altri uccellini</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>20</tartaruga>
+ 		<autore>bs colibrì</autore>
+	</domanda>
+	
 	
 	<domanda>
 		<tipo>immagine</tipo>
@@ -336,22 +367,7 @@ il bot riconosce come valide più risposte diverse</indizio0>
 	
      <!-- FINE ANTEPRIMA -->
 
-	 <domanda>
-		<tipo>video</tipo>
-		<risorsa>immagini/colibrì.gif</risorsa>
-		<risposta>madre</risposta>
-		<indizio0>nel nido su un albero vivono due colibrì, uno grande e l'altro piccolo: il più piccolo è il figlio del colibrì più grande, ma questo non è suo padre; chi è allora?</indizio0>
-		<indizio1>il colibrì è l'uccello più piccolo del mondo; ne è stato misurato uno di 5 cm di lunghezza per 1,6 grammi di peso</indizio1>
-		<indizio2>riesce a sostare immobile sospeso grazie a un battito d’ali velocissimo</indizio2>
-		<indizio3>...ed ha due genitori, come tutti gli altri uccellini</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>58</bonus>
- 		<autore>bs colibrì</autore>
-	</domanda>
-	
-	
+
   	<domanda>
 		<tipo>chiusura</tipo>
 		<risorsa>immagini/forziere.png</risorsa>
