@@ -10,7 +10,7 @@ if(!$update)
   exit;
 }
 //Versione
-//LaraLuu ver. 3.2 evo 16/01/2019
+//LaraLuu ver. 4.0 evo 06/02/2019
 //Token
 //Chestnut2016 (LaraLuu10-Chestnut2016)
 //$token = "302203409:AAEyrF7Ke0AbSC8V5D-fySjcWCloL_urcBE";
@@ -28,6 +28,7 @@ if(!$update)
 //$token="738410474:AAHdHaQ0M3pOmMf1uU9boanIc4JtFy3V5ww";
 //BigBugs - (LaraLuu test - BigBugs evo)
 $token="327275867:AAFGxtaZMUmwR08BIzI542RmdYfMrwPn36w";
+
 $botUrl = "https://api.telegram.org/bot".$token."/sendPhoto";
 $botUrlVoice = "https://api.telegram.org/bot".$token."/sendVoice";
 $botUrlVideo = "https://api.telegram.org/bot".$token."/sendVideo";
