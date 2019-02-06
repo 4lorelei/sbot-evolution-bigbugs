@@ -20,13 +20,13 @@ Esempio:
 
 🍭 <i>lollipop: xx minuti di bonus se superi il livello al primo tentativo</i>
 
-Indica che rispondendo in modo corretto al primo tentativo si conquista un bonus in minuti che si applica al <b>successivo livello</b>. Sul nuovo livello il tempo di attesa per ottenere gli aiuti si riduce del tempo indicato dal bonus.
+Indica che rispondendo in modo corretto al primo tentativo si conquista un bonus in minuti che si applica al <b>successivo livello</b>. Sul nuovo livello il tempo di attesa per ottenere gli aiuti si riduce del tempo indicato dal bonus rispetto ai tempi standard previsti per il livello.
 <b>I giocatori che partecipano in team hanno complessivamente un unico tentativo</b>, pertanto è presa in esame per il bonus esclusivamente la prima risposta del primo giocatore che fornisce la risposta.
 
 
 🐢 <i>tortuga: attendi xx secondi dopo ogni risposta errata</i>
 
-Indica che ogni singolo giocatore può fornire al massimo una risposta ogni xx secondi. Eventuali risposte fornite prima che sia trascorso il tempo indicato, calcolato a partire dalla precedente risposta errata, non sono valutate dal bot e non alterano il tempo di attesa.
+Indica che ogni singolo giocatore non può fornire risposte a ripetizione ma deve attendere alcuni secondi tra una risposta e la successiva. Eventuali risposte fornite prima che sia trascorso il tempo indicato, calcolato a partire dalla precedente risposta errata, non sono valutate dal bot ma non alterano il tempo di attesa.
 
 
 👍 <i>stai utilizzando un bonus di xx minuti</i>
@@ -42,7 +42,7 @@ L'ora indicata non tiene conto della successiva <b>sospensione</b> del gioco, fi
 
 <b>Risposte aperte:</b>
 
-In alcuni casi la risposta ad un gioco potrebbe  nascondere delle ambiguità in termini di formalismo o di termini.
+In alcuni casi la risposta ad un gioco potrebbe  nascondere delle ambiguità riguardanti il formalismo o i termini usati.
 Ad esempio la data della scoperta dell'America potrebbe essere fornita nel formato "12/10/1492" oppure nel formato "12 ottobre 1492".
 In questi casi il bot è predisposto per accettare più risposte differenti.
 
@@ -55,4 +55,4 @@ Nella fascia oraria in cui il gioco è sospeso, il tempo di attesa per ottenere 
 <b>Gestione dei team:</b>
 
 I team possono essere formati e modificati prima dell'inizio del gioco e, per un periodo limitato, durante la gara.
-Quando un team supera il livello 25, non può più essere modificato e quindi non possono più essere inseriti giocatori né i giocatori presenti possono uscire dal team. 
+Quando un team supera il livello 25, la formazione non può più essere modificata e quindi non possono più essere inseriti giocatori né i giocatori presenti possono uscire dal team. 
