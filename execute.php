@@ -3763,6 +3763,7 @@ if(strpos($text, '/zero') !== false)
 		$par  = explode(" ", $text);
 		
 		$myVarsArr[$chatId]["livello"]=0;
+		$myVarsArr[$chatId]["star"]=0;
 		$myVarsArr[$chatId]["date"]=$data_corrente;
 		
 		$team = $myVarsArr[$chatId]["team"];
@@ -3775,6 +3776,7 @@ if(strpos($text, '/zero') !== false)
 					if ($key !== $chatId)
 					{
 						$myVarsArr[$key]["livello"]=0;
+						$myVarsArr[$key]["star"]=0;
 						$myVarsArr[$key]["date"]=$data_corrente;
 						
 						$msg = $nickId . " ha azzerato il livello di gioco del team";
