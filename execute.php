@@ -45,6 +45,8 @@ $date = isset($message['date']) ? $message['date'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
 $text = trim($text);
 $text = strtolower($text);
+
+
 header("Content-Type: application/json");
 // path dei file sequenziali gestiti a run-time
 $path = 'livello.txt';
@@ -64,6 +66,12 @@ $path_anagrafica='anagrafica.txt';
 $path_automa='automa.txt';
 $path_monitor='monitor.txt';
 $path_log='log.txt';
+
+
+mylog($text, $path_log, $chatId);
+
+
+
 $path_lock='lock.txt';
 // keyboard con emoticons
 $emo_help = "\xF0\x9F\x94\x8D";
