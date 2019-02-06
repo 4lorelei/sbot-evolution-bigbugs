@@ -3,14 +3,15 @@
 	<domanda>
 		<tipo>testo</tipo>
 		<risorsa>
-Benvenuto in Chestnut xxx Replay.
-Gli avanzamenti nei livelli ed eventauli registrazioni saranno annullati dopo un breve periodo di inutilizzo del bot e sarà ripristinata la classifica finale della gara.
+Puoi prendere visione del regolamento della caccia al tesoro toccando il pulsante "about".
 
-I tempi di attesa per gli indizi sono di pochi minuti e le soluzioni degli enigmi sono riportate sul canale ufficiale @InsideChestnutxxx.
+La gara avrà inizio il giorno xxxxxx alle ore 14:30, nel frattempo puoi prendere familiarità con l'app partecipando all'anteprima di Chestnut.
+Il punteggio che conquisti in questa fase NON è significativo ai fini della gara!
+Ti consiglio di impostare fin da subito il tuo nickname e di effettuare la registrazione anagrafica. Inoltre, se vuoi gareggiare insieme ad alcuni amici della scuola, puoi formare una squadra in modo da essere pienamente operativo alla partenza della gara.
 
-Per ripartire dal livello 0 invia il messaggio /zero
+@InsideChestnutXXXX è il canale ufficiale della caccia al tesoro: unisciti al canale per restare sempre aggiornato.
 
-Per continuare tocca il pulsante 'indizi'
+Tocca il pulsante "indizi" per continuare.
 		</risorsa>
 		<risposta>ok</risposta>
 		<accuratezza>approssimata</accuratezza>
@@ -34,9 +35,7 @@ Per continuare tocca il pulsante 'indizi'
 	<!-- Caratteri significativi in tornado a-zA-Z0-9-+*:><=.,èéàòùì -->
 	<!-- (la voirgola è significativa) -->
 	
-    <!-- INIZIO ANTEPRIMA -->
-	 
-	<!-- FINE ANTEPRIMA -->
+     <!-- INIZIO ANTEPRIMA -->
 	 
 	 <domanda>
 		<tipo>immagine</tipo>
@@ -261,6 +260,23 @@ ricorda che puoi ricomniciare l'anteprima dall'inizio in qualsiasi momento invia
     </domanda>
 	
 	<domanda>
+		<tipo>immagine</tipo>
+		<risorsa>immagini/parole1.jpg</risorsa>
+		<risposta>memoria</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>quale parola collega questi vocaboli?</indizio0>
+		<indizio1>quella dell'elefante è proverbiale</indizio1>
+		<indizio2>tutti vorrebbero averla di ferro</indizio2>
+		<indizio3>qualcuno c'è la fotografica</indizio3>
+		<attesa1>30</attesa1>
+		<attesa2>60</attesa2>
+		<attesa3>90</attesa3>
+		<bonus>59</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs personaggi1</autore>
+	</domanda>
+
+	<domanda>
         <tipo>testo</tipo>
         <risorsa>unghia, diamante, fusto, cicala</risorsa>
         <risposta>ancora | dell'ancora</risposta>
@@ -394,23 +410,27 @@ ricorda che puoi ricomniciare l'anteprima dall'inizio in qualsiasi momento invia
 		<tartaruga>0</tartaruga>
 		<autore>Anna Calemme Napoleone</autore>
 	</domanda>
-	
+
 	<domanda>
 		<tipo>immagine</tipo>
-		<risorsa>immagini/forziere.png</risorsa>
-		<risposta>impossibile798797987</risposta>
+		<risorsa>immagini/stop.jpg</risorsa>
+		<risposta>murexbrandaris</risposta>
 		<accuratezza>indefinita</accuratezza>
-		<indizio0>hai raggiunto il tesoro di Chestnut xxx Replay</indizio0>
-		<indizio1>-----</indizio1>
-		<indizio2>-----</indizio2>
-		<indizio3>-----</indizio3>
+		<indizio0>l'anteprima è terminata</indizio0>
+		<indizio1>-----------------------</indizio1>
+		<indizio2>-----------------------</indizio2>
+		<indizio3>-----------------------</indizio3>
 		<attesa1>999999</attesa1>
 		<attesa2>999999</attesa2>
 		<attesa3>999999</attesa3>
 		<bonus>0</bonus>
 		<tartaruga>0</tartaruga>
- 		<autore>bs chiusura replay</autore>
-	</domanda>
+ 		<autore>bs fine anteprima</autore>
+	</domanda>	
+
+	
+     <!-- FINE ANTEPRIMA -->
+
 
   	<domanda>
 		<tipo>chiusura</tipo>
