@@ -66,12 +66,6 @@ $path_anagrafica='anagrafica.txt';
 $path_automa='automa.txt';
 $path_monitor='monitor.txt';
 $path_log='log.txt';
-
-
-mylog($text, $path_log, $chatId);
-
-
-
 $path_lock='lock.txt';
 // keyboard con emoticons
 $emo_help = "\xF0\x9F\x94\x8D";
