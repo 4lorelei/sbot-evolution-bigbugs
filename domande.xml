@@ -153,7 +153,7 @@ il bot riconosce come valide più risposte diverse</indizio0>
 		<tipo>immagine</tipo>
 		<risorsa>immagini/ruote2.jpg</risorsa>
 		<risposta>4500</risposta>
-		<accuratezza>esatta</accuratezza>
+		<accuratezza>elevata</accuratezza>
 		<indizio0>se la ruota verde fa 3000 giri, quanti ne fa la ruota rossa?
 		
 suggerimento:
@@ -191,7 +191,7 @@ ricorda che puoi ricomniciare l'anteprima dall'inizio in qualsiasi momento invia
 		<tipo>testo</tipo>
 		<risorsa> sono al centro della scena ma per me non darti pena, sono sempre positivo il mio numero è distintivo </risorsa>
 		<risposta>protone</risposta>
-		<accuratezza>esatta</accuratezza>
+		<accuratezza>elevata</accuratezza>
 		<indizio0>di cosa si tratta?</indizio0>
 		<indizio1>costituisce il nucleo</indizio1>
 		<indizio2>il quanto di elettricità positiva</indizio2>
@@ -207,7 +207,7 @@ ricorda che puoi ricomniciare l'anteprima dall'inizio in qualsiasi momento invia
 	 <domanda>
 		<tipo>video</tipo>
 		<risorsa>immagini/colibrì.gif</risorsa>
-		<accuratezza>esatta</accuratezza>
+		<accuratezza>elevata</accuratezza>
 		<risposta>madre| la madre</risposta>
 		<indizio0>nel nido su un albero vivono due colibrì, uno grande e l'altro piccolo: il più piccolo è il figlio del colibrì più grande, ma questo non è suo padre; chi è allora?</indizio0>
 		<indizio1>il colibrì è l'uccello più piccolo del mondo; ne è stato misurato uno di 5 cm di lunghezza per 1,6 grammi di peso</indizio1>
