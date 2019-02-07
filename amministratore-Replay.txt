@@ -1,1 +1,0 @@
-{"270509489":true,"flag":true,"stato_gioco":"in_esecuzione","156289830":true}
