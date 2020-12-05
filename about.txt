@@ -1,5 +1,5 @@
 ﻿<b>COMANDI RICONOSCIUTI DAL BOT:</b>
- 
+
 /about - info sul bot
 /about faq - scarica le FAQ
 

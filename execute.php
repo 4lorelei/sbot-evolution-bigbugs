@@ -26,6 +26,8 @@ if(!$update)
 //$token="487143922:AAFRNOJ_fVVF1tQ4T_9KDSA1loMSPJZjycw";
 //Chestnut2019 - (LaraLuu31-Chestnut2019)
 //$token="738410474:AAHdHaQ0M3pOmMf1uU9boanIc4JtFy3V5ww";
+//Chestnut2021 (LaraLuu40-Chestnut2021)
+//$token="1411271054:AAEKcS18LRxkn4MwhVg4542IgjCcPpy_avk";
 //BigBugs - (LaraLuu test - BigBugs evo)
 $token="327275867:AAFGxtaZMUmwR08BIzI542RmdYfMrwPn36w";
 
@@ -67,6 +69,10 @@ $path_automa='automa.txt';
 $path_monitor='monitor.txt';
 $path_log='log.txt';
 $path_lock='lock.txt';
+
+//prefisso password quesiti di tipo link
+$prefisso_pwd='x_____';
+
 // keyboard con emoticons
 $emo_help = "\xF0\x9F\x94\x8D";
 $emoji_help=json_decode('"'.$emo_help.'"');
@@ -262,7 +268,7 @@ if (!isset($idADMIN))
 	
 	exit();
 }
-	
+
 //ottiene lo stato del gioco: da_avviare, terminato, in_pausa, da_ripristinare, in_esecuzione
 //(è memorizzato nel file amministratore.txt)
 $statoGioco=$amministratore['stato_gioco'];
@@ -810,7 +816,7 @@ if(strpos($text, '/list') !== false && $utenteAdmin === true)
 	$msg = $msg . "/admin Id\n    nuovo admin\n";
 	$msg = $msg . "/match:\n    /match start [-s]  (inizio gara)\n    /match go [-s]  (restart gara)\n    /match sleep [-s]  (in pausa)\n    /match end [-s]  (fine gara)\n    /match status   (statistiche)\n";
 	$msg = $msg . "    /match start -t [data ora]\n    /match go -t [data ora]\n    /match sleep -t [data ora]\n    /match end -t [data ora]\n";
-	$msg = $msg . "/config:\n    /config maxteam num\n    /config answer a|r\n    /config clock on|off\n    /config managetean liv\n    /config zerocmd on|off\n";
+	$msg = $msg . "/config:\n    /config maxteam num\n    /config answer a|r\n    /config clock on|off\n    /config manageteam liv\n    /config zerocmd on|off\n";
 	$msg = $msg . "/enable:\n    /enable liv t1 t2 t3\n    /enable -liv t1 t2 t3\n     t1 t2 t3 tempi in min\n";
 	$msg = $msg . "/identity Id | nick | team\n    identifica utente o team\n";
 	$msg = $msg . "/lnext livello\n    avanza gli utenti del livello\n";
@@ -4313,7 +4319,7 @@ if(strpos($text, '/help') !== false)
 	
 	$response = $response . $indizio[0] . "\n";
 	
-	if (!($tipo_risp_corr == "sequenza"))
+	if (!($tipo_risp_corr == "sequenza") && !($tipo_risp_corr == "link"))
 	{
 		// fornisce gli indizi per il livello corrente coerentemente con le abilitazioni
 		if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] , $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare))
@@ -4322,6 +4328,28 @@ if(strpos($text, '/help') !== false)
 			$response = $response . "\n" . $indizio[2]. "\n";
 		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] , $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare))
 			$response = $response . "\n" . $indizio[3]. "\n";
+	}
+	else if ($tipo_risp_corr == "link")
+	{
+		// fornisce gli indizi per il livello corrente coerentemente con le abilitazioni
+		$risorsa = (String)($xml->domanda[$livello]->risorsa);
+
+		if (abilitazione_livello($attesa_aiuto3, $myVarsArr[$chatId]["date"] , $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare)){
+			$myhash=md5((string)"id=" . $chatId . "&" . $indizio[3] . "_____");
+            $xx=substr($myhash, 0, 6);
+			$response = $response . "\n" . $indizio[3] . "\n" . $risorsa . "?id=" . $chatId . "&" . $indizio[3] . "&ck=" . $xx . "\n";
+		}
+		else if (abilitazione_livello($attesa_aiuto2, $myVarsArr[$chatId]["date"] , $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare)){
+			$myhash=md5((string)"id=" . $chatId . "&" . $indizio[2] . "_____");
+            $xx=substr($myhash, 0, 6);
+			$response = $response . "\n" . $indizio[2] . "\n" . $risorsa . "?id=" . $chatId . "&" . $indizio[2] . "&ck=" . $xx . "\n";
+		}
+		else if (abilitazione_livello($attesa_aiuto1, $myVarsArr[$chatId]["date"] , $data_break_sleep, $data_break_go, $CLOCK, $bonus_da_applicare)){
+			$myhash=md5((string)"id=" . $chatId . "&" . $indizio[1] . "_____");
+            $xx=substr($myhash, 0, 6);
+			$response = $response . "\n" . $indizio[1] . "\n" . $risorsa . "?id=" . $chatId . "&" . $indizio[1] . "&ck=" . $xx . "\n";
+		}
+			
 	}
 			
 	//prossimo aiuto
@@ -4537,7 +4565,10 @@ else
 							$myVarsArr[$key]["livello"]=$livello;
 							$myVarsArr[$key]["date"]=$data_corrente;
 							
-							$msg = $nickId . " ha superato il livello del gioco inviando la risposta:\n" .$text."\n\ntocca il pulsante  'enigma' per visualizzare il nuovo quesito";
+							if (strpos($text, $prefisso_pwd) === 0)
+								$msg = $nickId . " ha superato il livello del gioco \n\ntocca il pulsante  'enigma' per visualizzare il nuovo quesito";
+							else
+								$msg = $nickId . " ha superato il livello del gioco inviando la risposta:\n" .$text."\n\ntocca il pulsante  'enigma' per visualizzare il nuovo quesito";
 							$ch = curl_init();
 							$myUrl=$botUrlMessage . "?chat_id=" . $key . "&text=" . urlencode($msg);
 							curl_setopt($ch, CURLOPT_URL, $myUrl); 
@@ -4959,6 +4990,27 @@ if(($risEsatta==true)||($eccezione == true))
 	{
 		$ch = curl_init();
 		$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($risorsa);
+		curl_setopt($ch, CURLOPT_URL, $myUrl); 
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+		
+		// read curl response
+		$output = curl_exec($ch);
+		curl_close($ch);
+		exit();
+		
+		/* Modo alternativo
+		$parameters = array('chat_id' => $chatId, "text" => $risorsa);
+		$parameters["method"] = "sendMessage";
+		echo json_encode($parameters);
+		exit();
+		*/
+	}
+	if(strcmp($tipo, "link") === 0)
+	{
+		$ch = curl_init();
+		$risorsa_con_id = $risorsa;
+		$risorsa_con_id = $risorsa_con_id . "?id=" . $chatId;
+		$myUrl=$botUrlMessage . "?chat_id=" . $chatId . "&text=" . urlencode($risorsa_con_id);
 		curl_setopt($ch, CURLOPT_URL, $myUrl); 
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
 		
