@@ -846,7 +846,7 @@ riporta, senza spazi, il calcolo che porta alla soluzione
 	
 	<domanda>
 		<tipo>sequenza</tipo>
-		<risorsa>immagini/libri.png</risorsa>
+		<risorsa>immagini/libri.jpg</risorsa>
 		<risposta>Domanda Fondamentale sulla Vita Universo Tutto quanto</risposta>
 		<accuratezza>approssimata</accuratezza>
 		<indizio0>i libri rispondono a molti interrogativi ma in questo caso siamo alla ricerca di una domanda</indizio0>

@@ -1,1 +1,0 @@
-{"270509489":true,"flag":true,"stato_gioco":"in_esecuzione","maxTeam":7,"accuratezza_risposta":"elevata","variazione_team":-1,"clock":"si_sospende","comando_zero":"abilitato"}
