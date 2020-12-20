@@ -827,6 +827,40 @@ riporta, senza spazi, il calcolo che porta alla soluzione
  		<autore>Calemme scienziati</autore>
 	</domanda>
 	
+	<domanda>
+		<tipo>sequenza</tipo>
+		<risorsa>immagini/alphabet.jpg</risorsa>
+		<risposta>vivalascuola | viva la scuola</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>un messaggio cifrato</indizio0>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs alphabet</autore>
+	</domanda>
+	
+	<domanda>
+		<tipo>sequenza</tipo>
+		<risorsa>immagini/libri.png</risorsa>
+		<risposta>Domanda Fondamentale sulla Vita Universo Tutto quanto</risposta>
+		<accuratezza>approssimata</accuratezza>
+		<indizio0>i libri rispondono a molti interrogativi ma in questo caso siamo alla ricerca di una domanda</indizio0>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>calemme autostoppisti</autore>
+	</domanda>
+	
   	<domanda>
 		<tipo>chiusura</tipo>
 		<risorsa>immagini/forziere.png</risorsa>
