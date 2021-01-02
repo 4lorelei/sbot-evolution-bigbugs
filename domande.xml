@@ -59,6 +59,23 @@ Tocca il pulsante "indizi" per continuare.
 		<bonus>0</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>bs coming soon</autore>
+	</domanda>
+
+	<domanda>
+		<tipo>link</tipo>
+		<risorsa>http://www.gioco.com</risorsa>
+		<risposta>x_____anno</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>gioca e vinci</indizio0>
+		<indizio1>-----------------------</indizio1>
+		<indizio2>-----------------------</indizio2>
+		<indizio3>-----------------------</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>lino gioco</autore>
 	</domanda>	
 	
 	<domanda>
