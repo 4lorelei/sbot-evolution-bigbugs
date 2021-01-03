@@ -534,14 +534,14 @@ what am I?</risorsa>
 	</domanda>
 	
 	<domanda>
-		<tipo>immagine</tipo>
+		<tipo>sequenza</tipo>
 		<risorsa>immagini/english1.jpg</risorsa>
 		<risposta>The Blower's Daughter</risposta>
 		<accuratezza>elevata</accuratezza>
 		<indizio0>risolvi il rebus in lingua inglese</indizio0>
-		<indizio1>usa parole inglesi per le immagini</indizio1>
-		<indizio2>sostituisci la lettera indicata</indizio2>
-		<indizio3>aggiungi la lettera in corrispondenza del +</indizio3>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
