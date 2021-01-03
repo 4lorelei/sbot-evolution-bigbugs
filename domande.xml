@@ -92,7 +92,7 @@ Tocca il pulsante "indizi" per continuare.
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
 		<bonus>0</bonus>
-		<tartaruga>30</tartaruga>
+		<tartaruga>0</tartaruga>
         <autore>Guariglia indivinello luce</autore>
     </domanda>	
 	
@@ -126,7 +126,7 @@ Tocca il pulsante "indizi" per continuare.
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
 		<bonus>30</bonus>
-		<tartaruga>30</tartaruga>
+		<tartaruga>0</tartaruga>
         <autore>bs indovinello istat</autore>
     </domanda>	
 	
@@ -144,28 +144,9 @@ Tocca il pulsante "indizi" per continuare.
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
 		<bonus>0</bonus>
-		<tartaruga>30</tartaruga>
+		<tartaruga>15</tartaruga>
  		<autore>bs colori complementari</autore>
-	</domanda>	
-	
-	<domanda>
-		<tipo>immagine</tipo>
-		<risorsa>immagini/asserzioni.jpg</risorsa>
-		<risposta>bg</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>elencare quali asserzioni in elenco sono VERE
-(esempio: scrivere BDF per indicare che le asserzioni B D F sono VERE)
-		</indizio0>
-		<indizio1>la prima asserzione è un paradosso (sarebbe contemporaneamente sia vera che falsa)</indizio1>
-		<indizio2>è la variante di un gioco classico</indizio2>
-		<indizio3>ci sono 2 asserzioni vere</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>30</tartaruga>
- 		<autore>bs asserzioni</autore>
-	</domanda>	
+	</domanda>
 	
 	<domanda>
 		<tipo>immagine</tipo>
@@ -200,6 +181,25 @@ Tocca il pulsante "indizi" per continuare.
 		<tartaruga>0</tartaruga>
  		<autore>bs ghigliottina1</autore>
 	</domanda>
+	
+	<domanda>
+		<tipo>immagine</tipo>
+		<risorsa>immagini/asserzioni.jpg</risorsa>
+		<risposta>bg</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>elencare quali asserzioni in elenco sono VERE
+(esempio: scrivere BDF per indicare che le asserzioni B D F sono VERE)
+		</indizio0>
+		<indizio1>la prima asserzione è un paradosso (sarebbe contemporaneamente sia vera che falsa)</indizio1>
+		<indizio2>è la variante di un gioco classico</indizio2>
+		<indizio3>ci sono 2 asserzioni vere</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>30</bonus>
+		<tartaruga>30</tartaruga>
+ 		<autore>bs asserzioni</autore>
+	</domanda>	
 	
 	<domanda>
 		<tipo>documento</tipo>
