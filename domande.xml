@@ -65,7 +65,7 @@ Tocca il pulsante "indizi" per continuare.
 		<tipo>link</tipo>
 		<risorsa>http://www.gioco.com</risorsa>
 		<risposta>x_____anno</risposta>
-		<accuratezza>elevata</accuratezza>
+		<accuratezza>indefinita</accuratezza>
 		<indizio0>gioca e vinci</indizio0>
 		<indizio1>-----------------------</indizio1>
 		<indizio2>-----------------------</indizio2>
@@ -78,41 +78,23 @@ Tocca il pulsante "indizi" per continuare.
  		<autore>lino gioco</autore>
 	</domanda>	
 	
-	<domanda>
-		<tipo>documento</tipo>
-		<risorsa>documenti/film.pdf</risorsa>
-		<risposta>il gladiatore | gladiator</risposta>
+	
+    <domanda>
+        <tipo>testo</tipo>
+        <risorsa>quando la luce non c'è non esiste e quando la luce c'è si nasconde</risorsa>
+        <risposta>ombra</risposta>
 		<accuratezza>elevata</accuratezza>
-		<indizio0>il titolo del film celato all'interno del documento</indizio0>
-		<indizio1>l'apparenza inganna</indizio1>
-		<indizio2>analizza il documento in tutte le sue parti</indizio2>
-		<indizio3>prova con il copia e incolla del contenuto</indizio3>
+        <indizio0>indovinello</indizio0>
+        <indizio1>chiedilo alla luna che sorge</indizio1>
+        <indizio2>alla meridiana quando segna le ore</indizio2>
+        <indizio3>o anche al pescatore di De André</indizio3>
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
 		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs pdf celato</autore>
-	</domanda>	
-
-	<domanda>
-		<tipo>immagine</tipo>
-		<risorsa>immagini/asserzioni.jpg</risorsa>
-		<risposta>bg</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>elencare quali asserzioni in elenco sono VERE
-(esempio: scrivere BDF per indicare che le asserzioni B D F sono VERE)
-		</indizio0>
-		<indizio1>la prima asserzione è un paradosso (sarebbe contemporaneamente sia vera che falsa)</indizio1>
-		<indizio2>è la variante di un gioco classico</indizio2>
-		<indizio3>ci sono 2 asserzioni vere</indizio3>
-		<attesa1>20</attesa1>
-		<attesa2>25</attesa2>
-		<attesa3>30</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs asserzioni</autore>
-	</domanda>	
+		<tartaruga>30</tartaruga>
+        <autore>Guariglia indivinello luce</autore>
+    </domanda>	
 	
 	<domanda>
 		<tipo>immagine</tipo>
@@ -131,6 +113,213 @@ Tocca il pulsante "indizi" per continuare.
  		<autore>bs autunno</autore>
 	</domanda>	
 	
+    <domanda>
+        <tipo>testo</tipo>
+        <risorsa>nel 2018 qual è stato il nome maschile e quale il nome femminile più diffusi tra i bambini?</risorsa>
+        <risposta>leonardo sofia</risposta>
+		<accuratezza>elevata</accuratezza>
+        <indizio0>indovinello</indizio0>
+        <indizio1>fai attenzione all'anno</indizio1>
+        <indizio2>è un dato rilevato statisticamente</indizio2>
+        <indizio3>è una statistica ISTAT</indizio3>
+		<attesa1>60</attesa1> 
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>30</bonus>
+		<tartaruga>30</tartaruga>
+        <autore>bs indovinello istat</autore>
+    </domanda>	
+	
+	<domanda>
+		<tipo>sequenza</tipo>
+		<risorsa>immagini/bandiere.jpg</risorsa>
+		<risposta>bianco blu rosso | bianco blue rosso</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>se quella in alto è la bandiera di Palau, quali sono i colori della bandiera in basso?
+		</indizio0>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>30</tartaruga>
+ 		<autore>bs colori complementari</autore>
+	</domanda>	
+	
+	<domanda>
+		<tipo>immagine</tipo>
+		<risorsa>immagini/asserzioni.jpg</risorsa>
+		<risposta>bg</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>elencare quali asserzioni in elenco sono VERE
+(esempio: scrivere BDF per indicare che le asserzioni B D F sono VERE)
+		</indizio0>
+		<indizio1>la prima asserzione è un paradosso (sarebbe contemporaneamente sia vera che falsa)</indizio1>
+		<indizio2>è la variante di un gioco classico</indizio2>
+		<indizio3>ci sono 2 asserzioni vere</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>30</tartaruga>
+ 		<autore>bs asserzioni</autore>
+	</domanda>	
+	
+	<domanda>
+		<tipo>immagine</tipo>
+		<risorsa>immagini/felicita.jpg</risorsa>
+		<risposta>la ricerca della felicità | la ricerca della felicita</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>il titolo</indizio0>
+		<indizio1>è un film del 2006</indizio1>
+		<indizio2>la storia di una padre e del figlio</indizio2>
+		<indizio3>con Will Smith</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>30</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs emoticon film felicità</autore>
+	</domanda>
+	
+	<domanda>
+		<tipo>sequenza</tipo>
+		<risorsa>immagini/ghigliottina1.jpg</risorsa>
+		<risposta>metropolitana</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>trova la parola collegata alle altre</indizio0>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs ghigliottina1</autore>
+	</domanda>
+	
+	<domanda>
+		<tipo>documento</tipo>
+		<risorsa>documenti/film.pdf</risorsa>
+		<risposta>il gladiatore | gladiator</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>il titolo del film celato all'interno del documento</indizio0>
+		<indizio1>l'apparenza inganna</indizio1>
+		<indizio2>analizza il documento in tutte le sue parti</indizio2>
+		<indizio3>prova con il copia e incolla del contenuto</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>45</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs pdf celato</autore>
+	</domanda>	
+	
+	<domanda>
+		<tipo>sequenza</tipo>
+		<risorsa>immagini/puzzle1.jpg</risorsa>
+		<risposta>david di michelangelo | david</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>chi si cela tra i tasselli del puzzle?</indizio0>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>Guariglia david</autore>
+	</domanda>
+	
+	<domanda>
+		<tipo>sequenza</tipo>
+		<risorsa>immagini/gatti-padroni.jpg</risorsa>
+		<risposta>rosamunda ludovico clementina adalberto vladimiro</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>il nome dei proprietari dei gatti</indizio0>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs gatti e padroni</autore>
+	</domanda>
+
+	<domanda>
+		<tipo>video</tipo>
+		<risorsa>video/proietti-asino.mp4</risorsa>
+		<risposta>5940</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>Δt</indizio0>
+		<indizio1>5:36 7:15</indizio1>
+		<indizio2>1h 39'</indizio2>
+		<indizio3>99'</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+		<autore>bs proietti asino</autore>
+    </domanda>
+
+	<domanda>
+		<tipo>sequenza</tipo>
+		<risorsa>immagini/ghigliottina2.jpg</risorsa>
+		<risposta>vista</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>trova la parola collegata alle altre</indizio0>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>30</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs ghigliottina2</autore>
+	</domanda>
+	
+	<domanda>
+		<tipo>immagine</tipo>
+		<risorsa>immagini/dea.jpg</risorsa>
+		<risposta>aurora australis</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>you can see it at night and you have to travel a lot</indizio0>
+		<indizio1>sleeping beauty</indizio1>
+		<indizio2>the Roman goddess of the dawn</indizio2>
+		<indizio3>in the traditions of Aboriginal Australians, it is commonly associated with fire</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>30</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>Pina Russo aurora</autore>
+	</domanda>
+	
+	<domanda>
+		<tipo>sequenza</tipo>
+		<risorsa>immagini/rebus.jpg</risorsa>
+		<risposta>fotosintesi clorofilliana</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>risolvi il rebus</indizio0>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>30</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>Vittorioso rebus</autore>
+	</domanda>
+
 	<domanda>
 		<tipo>immagine</tipo>
 		<risorsa>immagini/calc.jpg</risorsa>
@@ -150,28 +339,10 @@ quale operazione ho fatto ogni volta?
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
 		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
+		<tartaruga>15</tartaruga>
  		<autore>bs calcolatrice</autore>
 	</domanda>	
 	
-	<domanda>
-		<tipo>sequenza</tipo>
-		<risorsa>immagini/bandiere.jpg</risorsa>
-		<risposta>bianco blu rosso | bianco blue rosso</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>se quella in alto è la bandiera di Palau, quali sono i colori della bandiera in basso?
-		</indizio0>
-		<indizio1>sequenza</indizio1>
-		<indizio2>sequenza</indizio2>
-		<indizio3>sequenza</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>20</tartaruga>
- 		<autore>bs colori complementari</autore>
-	</domanda>	
-
 	<domanda>
 		<tipo>sequenza</tipo>
 		<risorsa>immagini/danubio.jpg</risorsa>
@@ -192,23 +363,6 @@ quale operazione ho fatto ogni volta?
 	
 	<domanda>
 		<tipo>immagine</tipo>
-		<risorsa>immagini/dolomiti.jpg</risorsa>
-		<risposta>altoadige | alto adige</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>il fascino delle Dolomiti: il paesaggio alpino crea intrecci come ricami che si riflettono nei laghi limpidi</indizio0>
-		<indizio1>le cime dei "monti pallidi", quando il sole le attraversa, si riflettono sul manto innevato con ombre che si allungano a dismisura</indizio1>
-		<indizio2>le ombre dei monti sono come tessere rovesciate, che raccontano del tempo che fugge via</indizio2>
-		<indizio3>affidati alla ragione e concentrati su una sola regione</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs dolomiti</autore>
-	</domanda>	
-	
-	<domanda>
-		<tipo>immagine</tipo>
 		<risorsa>immagini/film-pasto.jpg</risorsa>
 		<risposta>cena con delitto | knives out</risposta>
 		<accuratezza>elevata</accuratezza>
@@ -219,150 +373,11 @@ quale operazione ho fatto ogni volta?
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
-		<bonus>0</bonus>
+		<bonus>30</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>bs emoticon film pasto</autore>
 	</domanda>	
 	
-	<domanda>
-		<tipo>immagine</tipo>
-		<risorsa>immagini/felicita.jpg</risorsa>
-		<risposta>la ricerca della felicità | la ricerca della felicita</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>il titolo</indizio0>
-		<indizio1>è un film del 2006</indizio1>
-		<indizio2>la storia di una padre e del figlio</indizio2>
-		<indizio3>con Will Smith</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs emoticon film felicità</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>sequenza</tipo>
-		<risorsa>immagini/gatti-padroni.jpg</risorsa>
-		<risposta>rosamunda ludovico clementina adalberto vladimiro</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>il nome dei proprietari dei gatti</indizio0>
-		<indizio1>sequenza</indizio1>
-		<indizio2>sequenza</indizio2>
-		<indizio3>sequenza</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs gatti e padroni</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>video</tipo>
-		<risorsa>video/tempo.mp4</risorsa>
-		<risposta>tecnica pomodoro</risposta>
-		<accuratezza>approssimata</accuratezza>
-		<indizio0>la gestione del tempo è un "ingrediente" importante per affrontare e vincere le sfide
-		
-cosa richiama esplicitamente il video?</indizio0>
-		<indizio1>nel video compare un timer</indizio1>
-		<indizio2>una tecnica per la gestione del tempo</indizio2>
-		<indizio3>il timer ha la durata di 25 minuti ed ha la forma di un pomodoro
-</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
-		<autore>bs video apple</autore>
-    </domanda>
-	
-	<domanda>
-		<tipo>sequenza</tipo>
-		<risorsa>immagini/ghigliottina1.jpg</risorsa>
-		<risposta>metropolitana</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>trova la parola collegata alle altre</indizio0>
-		<indizio1>sequenza</indizio1>
-		<indizio2>sequenza</indizio2>
-		<indizio3>sequenza</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs ghigliottina1</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>sequenza</tipo>
-		<risorsa>immagini/ghigliottina2.jpg</risorsa>
-		<risposta>vista</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>trova la parola collegata alle altre</indizio0>
-		<indizio1>sequenza</indizio1>
-		<indizio2>sequenza</indizio2>
-		<indizio3>sequenza</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs ghigliottina2</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>sequenza</tipo>
-		<risorsa>immagini/ghigliottina3.jpg</risorsa>
-		<risposta>bussola</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>trova la parola collegata alle altre</indizio0>
-		<indizio1>sequenza</indizio1>
-		<indizio2>sequenza</indizio2>
-		<indizio3>sequenza</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs ghigliottina3</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>video</tipo>
-		<risorsa>video/proietti-asino.mp4</risorsa>
-		<risposta>5940</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>Δt</indizio0>
-		<indizio1>5:36 7:15</indizio1>
-		<indizio2>1h 39'</indizio2>
-		<indizio3>99'</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
-		<autore>bs proietti asino</autore>
-    </domanda>
-
-	<domanda>
-		<tipo>video</tipo>
-		<risorsa>video/proietti-mucca.mp4</risorsa>
-		<risposta>bice nina</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>come si chiamano la mucca bianca e la mucca nera?</indizio0>
-		<indizio1>la soluzione è nel video</indizio1>
-		<indizio2>guarda al secondo 12</indizio2>
-		<indizio3>...e al secondo 29</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
-		<autore>bs proietti mucca</autore>
-    </domanda>
-
 	<domanda>
 		<tipo>sequenza</tipo>
 		<risorsa>immagini/identikit2.jpg</risorsa>
@@ -375,45 +390,11 @@ cosa richiama esplicitamente il video?</indizio0>
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
-		<bonus>0</bonus>
+		<bonus>30</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>bs identikit politico</autore>
 	</domanda>
 	
-	<domanda>
-		<tipo>sequenza</tipo>
-		<risorsa>immagini/identikit3.jpg</risorsa>
-		<risposta>zenone | zenone di elea</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>il nome del personaggio</indizio0>
-		<indizio1>sequenza</indizio1>
-		<indizio2>sequenza</indizio2>
-		<indizio3>sequenza</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs identikit storico</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>sequenza</tipo>
-		<risorsa>immagini/identikit1.jpg</risorsa>
-		<risposta>tony stark</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>il nome del personaggio</indizio0>
-		<indizio1>sequenza</indizio1>
-		<indizio2>sequenza</indizio2>
-		<indizio3>sequenza</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs identikit supereroe</autore>
-	</domanda>
-
 	<domanda>
 		<tipo>sequenza</tipo>
 		<risorsa>immagini/collage.jpg</risorsa>
@@ -430,24 +411,7 @@ cosa richiama esplicitamente il video?</indizio0>
 		<tartaruga>0</tartaruga>
  		<autore>bs collage di immagini (colore)</autore>
 	</domanda>
-
-	<domanda>
-		<tipo>sequenza</tipo>
-		<risorsa>immagini/collage2.jpg</risorsa>
-		<risposta>sette | 7</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>quale parola collega tutte le immagini del collage?</indizio0>
-		<indizio1>sequenza</indizio1>
-		<indizio2>sequenza</indizio2>
-		<indizio3>sequenza</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs collage di immagini (numero)</autore>
-	</domanda>
-
+	
 	<domanda>
 		<tipo>sequenza</tipo>
 		<risorsa>immagini/piramide.jpg</risorsa>
@@ -464,13 +428,47 @@ cosa richiama esplicitamente il video?</indizio0>
 		<tartaruga>0</tartaruga>
  		<autore>bs collage di immagini (numero)</autore>
 	</domanda>
+	
+	<domanda>
+		<tipo>immagine</tipo>
+		<risorsa>immagini/angular.jpg</risorsa>
+		<risposta>(1, 90) | (1, 𝛑/2)</risposta>
+		<accuratezza>approssimata</accuratezza>
+		<indizio0>analogie</indizio0>
+		<indizio1>l'orso nero vive in un contesto rettangolare</indizio1>
+		<indizio2>il sistema cartesiano è detto anche rettangolare</indizio2>
+		<indizio3>l'orso bianco vive in un contesto polare</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>45</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>Calemme angular</autore>
+	</domanda>
+	
+	<domanda>
+		<tipo>immagine</tipo>
+		<risorsa>immagini/serpentone1.jpg</risorsa>
+		<risposta>manometro</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>rispondi con la parola che compare nel serpentone</indizio0>
+		<indizio1>--N----RO</indizio1>
+		<indizio2>--N-M--RO</indizio2>
+		<indizio3>M-N-M--RO</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs serpentone 1</autore>
+	</domanda>
 
 	<domanda>
 		<tipo>sequenza</tipo>
-		<risorsa>immagini/giusti.jpg</risorsa>
-		<risposta>rana</risposta>
+		<risorsa>immagini/word-puzzle1.jpg</risorsa>
+		<risposta>roma parigi budapest berlino copenaghen tallinn</risposta>
 		<accuratezza>elevata</accuratezza>
-		<indizio0>rispondi al quesito</indizio0>
+		<indizio0>individua le sei città presenti nel diagramma</indizio0>
 		<indizio1>sequenza</indizio1>
 		<indizio2>sequenza</indizio2>
 		<indizio3>sequenza</indizio3>
@@ -479,113 +477,42 @@ cosa richiama esplicitamente il video?</indizio0>
 		<attesa3>120</attesa3>
 		<bonus>0</bonus>
 		<tartaruga>0</tartaruga>
- 		<autore>bs indovinello botta</autore>
+ 		<autore>bs word puzzle città</autore>
 	</domanda>
-
-    <domanda>
-        <tipo>testo</tipo>
-        <risorsa>quando la luce non c'è non esiste e quando la luce c'è si nasconde</risorsa>
-        <risposta>ombra</risposta>
-		<accuratezza>elevata</accuratezza>
-        <indizio0>indovinello</indizio0>
-        <indizio1>chiedilo alla luna che sorge</indizio1>
-        <indizio2>alla meridiana quando segna le ore</indizio2>
-        <indizio3>o anche al pescatore di De André</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>30</tartaruga>
-        <autore>Guariglia indivinello luce</autore>
-    </domanda>	
-	
-    <domanda>
-        <tipo>testo</tipo>
-        <risorsa>nel 2018 qual è stato il nome maschile e quale il nome femminile più diffusi tra i bambini?</risorsa>
-        <risposta>leonardo sofia</risposta>
-		<accuratezza>elevata</accuratezza>
-        <indizio0>indovinello</indizio0>
-        <indizio1>fai attenzione all'anno</indizio1>
-        <indizio2>è un dato rilevato statisticamente</indizio2>
-        <indizio3>è una statistica ISTAT</indizio3>
-		<attesa1>60</attesa1> 
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>30</tartaruga>
-        <autore>bs indovinello istat</autore>
-    </domanda>	
-
-    <domanda>
-        <tipo>testo</tipo>
-        <risorsa>https://www.google.it/maps/@25.773401,-80.1854297,3a,75y,323.81h,79.89t/data=!3m6!1e1!3m4!1sAF1QipNQ4-KjN_ZgMYIILc_MlPvd16MLXxISk04Dog00!2e10!7i11000!8i5500</risorsa>
-        <risposta>john f. kennedy | john f kennedy | john kennedy | kennedy</risposta>
-		<accuratezza>elevata</accuratezza>
-        <indizio0>c'è una luce in sua memoria</indizio0>
-        <indizio1>una fiaccola</indizio1>
-        <indizio2>un monumento alla memoria</indizio2>
-        <indizio3>The Torch of Friendship</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
-        <autore>Sara maps</autore>
-    </domanda>		
 	
 	<domanda>
-		<tipo>immagine</tipo>
-		<risorsa>immagini/mastermind.jpg</risorsa>
-		<risposta>CVAB</risposta>
+		<tipo>sequenza</tipo>
+		<risorsa>immagini/alphabet.jpg</risorsa>
+		<risposta>vivalascuola | viva la scuola</risposta>
 		<accuratezza>elevata</accuratezza>
-		<indizio0>risolvi il gioco e manda la soluzione come sequenza di lettere 
-(ad esempio BGCR)</indizio0>
-		<indizio1>il Rosso e il Nero non compaiono</indizio1>
-		<indizio2>il Marrone e il Giallo non compaiono</indizio2>
-		<indizio3>il primo colore è il Ciano</indizio3>
+		<indizio0>un messaggio cifrato</indizio0>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
-		<bonus>0</bonus>
+		<bonus>15</bonus>
 		<tartaruga>0</tartaruga>
- 		<autore>bs mastermind 1</autore>
+ 		<autore>bs alphabet</autore>
 	</domanda>
 	
 	<domanda>
 		<tipo>immagine</tipo>
-		<risorsa>immagini/mastermind2.jpg</risorsa>
-		<risposta>NVRG</risposta>
+		<risorsa>immagini/english1.jpg</risorsa>
+		<risposta>The Blower's Daughter</risposta>
 		<accuratezza>elevata</accuratezza>
-		<indizio0>risolvi il gioco e manda la soluzione come sequenza di lettere 
-(ad esempio BGCR)</indizio0>
-		<indizio1>il Marrone non compare</indizio1>
-		<indizio2>l'Arancio non compare</indizio2>
-		<indizio3>il primo colore è il Nero</indizio3>
+		<indizio0>risolvi il rebus in lingua inglese</indizio0>
+		<indizio1>usa parole inglesi per le immagini</indizio1>
+		<indizio2>sostituisci la lettera indicata</indizio2>
+		<indizio3>aggiungi la lettera in corrispondenza del +</indizio3>
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
 		<bonus>0</bonus>
 		<tartaruga>0</tartaruga>
- 		<autore>bs mastermind 2</autore>
+ 		<autore>bs rebus english1</autore>
 	</domanda>
-
-    <domanda>
-        <tipo>testo</tipo>
-        <risorsa>il più piccolo numero primo per il quale la somma delle cifre è 31
-(ad esempio la somma delle cifre del numero primo 67 è 13)</risorsa>
-        <risposta>4999</risposta>
-		<accuratezza>elevata</accuratezza>
-        <indizio0>calcolo enigmatico</indizio0>
-        <indizio1>è un numero di 4 cifre</indizio1>
-        <indizio2>solo una cifra è pari</indizio2>
-        <indizio3>è minore di 5000</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>30</tartaruga>
-        <autore>bs numero primo</autore>
-    </domanda>
 	
 	<domanda>
 		<tipo>sequenza</tipo>
@@ -605,11 +532,64 @@ cosa richiama esplicitamente il video?</indizio0>
 	</domanda>
 	
 	<domanda>
+		<tipo>video</tipo>
+		<risorsa>video/tempo.mp4</risorsa>
+		<risposta>tecnica pomodoro</risposta>
+		<accuratezza>approssimata</accuratezza>
+		<indizio0>la gestione del tempo è un "ingrediente" importante per affrontare e vincere le sfide
+		
+cosa richiama esplicitamente il video?</indizio0>
+		<indizio1>nel video compare un timer</indizio1>
+		<indizio2>una tecnica per la gestione del tempo</indizio2>
+		<indizio3>il timer ha la durata di 25 minuti ed ha la forma di un pomodoro</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>50</bonus>
+		<tartaruga>0</tartaruga>
+		<autore>bs video apple</autore>
+    </domanda>
+	
+	<domanda>
 		<tipo>sequenza</tipo>
-		<risorsa>immagini/puzzle1.jpg</risorsa>
-		<risposta>david di michelangelo | david</risposta>
+		<risorsa>immagini/identikit1.jpg</risorsa>
+		<risposta>tony stark</risposta>
 		<accuratezza>elevata</accuratezza>
-		<indizio0>chi si cela tra i tasselli del puzzle?</indizio0>
+		<indizio0>il nome del personaggio</indizio0>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>30</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs identikit supereroe</autore>
+	</domanda>
+	
+	<domanda>
+		<tipo>sequenza</tipo>
+		<risorsa>immagini/collage2.jpg</risorsa>
+		<risposta>sette | 7</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>quale parola collega tutte le immagini del collage?</indizio0>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>30</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs collage di immagini (numero)</autore>
+	</domanda>
+	
+	<domanda>
+		<tipo>sequenza</tipo>
+		<risorsa>immagini/english2.jpg</risorsa>
+		<risposta>Have You Ever Seen The Rain?</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>risolvi il rebus in lingua inglese</indizio0>
 		<indizio1>sequenza</indizio1>
 		<indizio2>sequenza</indizio2>
 		<indizio3>sequenza</indizio3>
@@ -618,8 +598,25 @@ cosa richiama esplicitamente il video?</indizio0>
 		<attesa3>120</attesa3>
 		<bonus>0</bonus>
 		<tartaruga>0</tartaruga>
- 		<autore>Guariglia david</autore>
+ 		<autore>bs rebus english2</autore>
 	</domanda>
+	
+    <domanda>
+        <tipo>testo</tipo>
+        <risorsa>https://www.google.it/maps/@25.773401,-80.1854297,3a,75y,323.81h,79.89t/data=!3m6!1e1!3m4!1sAF1QipNQ4-KjN_ZgMYIILc_MlPvd16MLXxISk04Dog00!2e10!7i11000!8i5500</risorsa>
+        <risposta>john f. kennedy | john f kennedy | john kennedy | kennedy</risposta>
+		<accuratezza>elevata</accuratezza>
+        <indizio0>c'è una luce in sua memoria</indizio0>
+        <indizio1>una fiaccola</indizio1>
+        <indizio2>un monumento alla memoria</indizio2>
+        <indizio3>The Torch of Friendship</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>30</bonus>
+		<tartaruga>0</tartaruga>
+        <autore>Sara maps</autore>
+    </domanda>	
 	
 	<domanda>
 		<tipo>immagine</tipo>
@@ -640,106 +637,20 @@ cosa richiama esplicitamente il video?</indizio0>
 	
 	<domanda>
 		<tipo>immagine</tipo>
-		<risorsa>immagini/firenze.jpg</risorsa>
-		<risposta>rosso fiorentino | giovan battista di jacopo di gasparre </risposta>
+		<risorsa>immagini/mastermind.jpg</risorsa>
+		<risposta>CVAB</risposta>
 		<accuratezza>elevata</accuratezza>
-		<indizio0>pittore italiano del primo 500</indizio0>
-		<indizio1>era Fiorentino</indizio1>
-		<indizio2>un "eccentrico fiorentino"</indizio2>
-		<indizio3>concentrati sul colore</indizio3>
+		<indizio0>risolvi il gioco e manda la soluzione come sequenza di lettere 
+(ad esempio BGCR)</indizio0>
+		<indizio1>il Rosso e il Nero non compaiono</indizio1>
+		<indizio2>il Marrone e il Giallo non compaiono</indizio2>
+		<indizio3>il primo colore è il Ciano</indizio3>
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
-		<bonus>0</bonus>
+		<bonus>30</bonus>
 		<tartaruga>0</tartaruga>
- 		<autore>Guariglia Firenze</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>sequenza</tipo>
-		<risorsa>immagini/rebus.jpg</risorsa>
-		<risposta>fotosintesi clorofilliana</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>risolvi il rebus</indizio0>
-		<indizio1>sequenza</indizio1>
-		<indizio2>sequenza</indizio2>
-		<indizio3>sequenza</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>Vittorioso rebus</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>sequenza</tipo>
-		<risorsa>immagini/scacchi.jpg</risorsa>
-		<risposta>nerone</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>fai l'analisi della scacchiera per superare il livello</indizio0>
-		<indizio1>sequenza</indizio1>
-		<indizio2>sequenza</indizio2>
-		<indizio3>sequenza</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs scacchi e parola</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>immagine</tipo>
-		<risorsa>immagini/serie-cifre.jpg</risorsa>
-		<risposta>2+1+3+6=12 | 3+6+2+1=12 | 3+9=12 | 9+3=12</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>risolvi la serie numerica
-riporta, senza spazi, il calcolo che porta alla soluzione
-(ad esempio 3+2-5=0)</indizio0>
-		<indizio1>99-72=27 non porta a niente... infatti 21-13≠7</indizio1>
-		<indizio2>lavora sulle singole cifre</indizio2>
-		<indizio3>è una rappresentazione del puzzle di Nob Yoshigahara</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs serie di Yoshigahara</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>immagine</tipo>
-		<risorsa>immagini/eroi.jpg</risorsa>
-		<risposta>the boys</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>di cosa si tratta?</indizio0>
-		<indizio1>sono sette</indizio1>
-		<indizio2>è una serie tv</indizio2>
-		<indizio3>Prime Video</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>Sara the boys</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>immagine</tipo>
-		<risorsa>immagini/serpentone1.jpg</risorsa>
-		<risposta>manometro</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>rispondi con la parola che compare nel serpentone</indizio0>
-		<indizio1>--N----RO</indizio1>
-		<indizio2>--N-M--RO</indizio2>
-		<indizio3>M-N-M--RO</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs serpentone 1</autore>
+ 		<autore>bs mastermind 1</autore>
 	</domanda>
 	
 	<domanda>
@@ -756,75 +667,7 @@ riporta, senza spazi, il calcolo che porta alla soluzione
 		<attesa3>120</attesa3>
 		<bonus>0</bonus>
 		<tartaruga>0</tartaruga>
- 		<autore>bs serpentone 1</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>immagine</tipo>
-		<risorsa>immagini/serpentone3.jpg</risorsa>
-		<risposta>arcobalenodisegnato | arcobaleno disegnato</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>rispondi con il testo che compare nel serpentone</indizio0>
-		<indizio1>A--O----N---------O</indizio1>
-		<indizio2>A--OB---N---------O</indizio2>
-		<indizio3>A--OB---N---SE----O</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs serpentone 3</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>sequenza</tipo>
-		<risorsa>immagini/word-puzzle1.jpg</risorsa>
-		<risposta>roma parigi budapest berlino copenaghen tallinn</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>individua le sei città presenti nel diagramma</indizio0>
-		<indizio1>sequenza</indizio1>
-		<indizio2>sequenza</indizio2>
-		<indizio3>sequenza</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs word puzzle città</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>sequenza</tipo>
-		<risorsa>immagini/word-puzzle2.jpg</risorsa>
-		<risposta>cane gatto tartaruga delfino picchio capodoglio</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>individua i sei animali presenti nel diagramma</indizio0>
-		<indizio1>sequenza</indizio1>
-		<indizio2>sequenza</indizio2>
-		<indizio3>sequenza</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs word puzzle animali</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>immagine</tipo>
-		<risorsa>immagini/angular.jpg</risorsa>
-		<risposta>(1, 90) | (1, 𝛑/2)</risposta>
-		<accuratezza>approssimata</accuratezza>
-		<indizio0>analogie</indizio0>
-		<indizio1>l'orso nero vive in un contesto rettangolare</indizio1>
-		<indizio2>il sistema cartesiano è detto anche rettangolare</indizio2>
-		<indizio3>l'orso bianco vive in un contesto polare</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>Calemme angular</autore>
+ 		<autore>bs serpentone 2</autore>
 	</domanda>
 	
 	<domanda>
@@ -846,23 +689,6 @@ riporta, senza spazi, il calcolo che porta alla soluzione
 	
 	<domanda>
 		<tipo>sequenza</tipo>
-		<risorsa>immagini/alphabet.jpg</risorsa>
-		<risposta>vivalascuola | viva la scuola</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>un messaggio cifrato</indizio0>
-		<indizio1>sequenza</indizio1>
-		<indizio2>sequenza</indizio2>
-		<indizio3>sequenza</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs alphabet</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>sequenza</tipo>
 		<risorsa>immagini/libri.jpg</risorsa>
 		<risposta>Domanda Fondamentale sulla Vita Universo Tutto quanto</risposta>
 		<accuratezza>approssimata</accuratezza>
@@ -873,26 +699,9 @@ riporta, senza spazi, il calcolo che porta alla soluzione
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
-		<bonus>0</bonus>
+		<bonus>45</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>calemme autostoppisti</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>immagine</tipo>
-		<risorsa>immagini/dea.jpg</risorsa>
-		<risposta>aurora australis</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>you can see it at night and you have to travel a lot</indizio0>
-		<indizio1>sleeping beauty</indizio1>
-		<indizio2>the Roman goddess of the dawn</indizio2>
-		<indizio3>in the traditions of Aboriginal Australians, it is commonly associated with fire</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>Pina Russo aurora</autore>
 	</domanda>
 	
 	<domanda>
@@ -924,9 +733,94 @@ riporta, senza spazi, il calcolo che porta alla soluzione
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
-		<bonus>0</bonus>
+		<bonus>30</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>Calemme operazione militare</autore>
+	</domanda>
+	
+	<domanda>
+		<tipo>video</tipo>
+		<risorsa>video/proietti-mucca.mp4</risorsa>
+		<risposta>bice nina</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>come si chiamano la mucca bianca e la mucca nera?</indizio0>
+		<indizio1>la soluzione è nel video</indizio1>
+		<indizio2>guarda al secondo 12</indizio2>
+		<indizio3>...e al secondo 29</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+		<autore>bs proietti mucca</autore>
+    </domanda>
+	
+	<domanda>
+		<tipo>immagine</tipo>
+		<risorsa>immagini/firenze.jpg</risorsa>
+		<risposta>rosso fiorentino | giovan battista di jacopo di gasparre </risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>pittore italiano del primo 500</indizio0>
+		<indizio1>era Fiorentino</indizio1>
+		<indizio2>un "eccentrico fiorentino"</indizio2>
+		<indizio3>concentrati sul colore</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>Guariglia Firenze</autore>
+	</domanda>
+	
+	<domanda>
+		<tipo>immagine</tipo>
+		<risorsa>immagini/eroi.jpg</risorsa>
+		<risposta>the boys</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>di cosa si tratta?</indizio0>
+		<indizio1>sono sette</indizio1>
+		<indizio2>è una serie tv</indizio2>
+		<indizio3>Prime Video</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>Sara the boys</autore>
+	</domanda>
+	
+	<domanda>
+		<tipo>immagine</tipo>
+		<risorsa>immagini/serpentone3.jpg</risorsa>
+		<risposta>arcobalenodisegnato | arcobaleno disegnato</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>rispondi con il testo che compare nel serpentone</indizio0>
+		<indizio1>A--O----N---------O</indizio1>
+		<indizio2>A--OB---N---------O</indizio2>
+		<indizio3>A--OB---N---SE----O</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs serpentone 3</autore>
+	</domanda>
+	
+	<domanda>
+		<tipo>sequenza</tipo>
+		<risorsa>immagini/word-puzzle2.jpg</risorsa>
+		<risposta>cane gatto tartaruga delfino picchio capodoglio</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>individua i sei animali presenti nel diagramma</indizio0>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs word puzzle animali</autore>
 	</domanda>
 	
 	<domanda>
@@ -941,9 +835,63 @@ riporta, senza spazi, il calcolo che porta alla soluzione
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
-		<bonus>0</bonus>
+		<bonus>30</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>Calemme pasolo</autore>
+	</domanda>
+	
+    <domanda>
+        <tipo>testo</tipo>
+        <risorsa>il più piccolo numero primo per il quale la somma delle cifre è 31
+(ad esempio la somma delle cifre del numero primo 67 è 13)</risorsa>
+        <risposta>4999</risposta>
+		<accuratezza>elevata</accuratezza>
+        <indizio0>calcolo enigmatico</indizio0>
+        <indizio1>è un numero di 4 cifre</indizio1>
+        <indizio2>solo una cifra è pari</indizio2>
+        <indizio3>è minore di 5000</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>30</bonus>
+		<tartaruga>30</tartaruga>
+        <autore>bs numero primo</autore>
+    </domanda>
+	
+	<domanda>
+		<tipo>sequenza</tipo>
+		<risorsa>immagini/scacchi.jpg</risorsa>
+		<risposta>nerone</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>fai l'analisi della scacchiera per superare il livello</indizio0>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>30</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs scacchi e parola</autore>
+	</domanda>
+	
+	<domanda>
+		<tipo>immagine</tipo>
+		<risorsa>immagini/serie-cifre.jpg</risorsa>
+		<risposta>2+1+3+6=12 | 3+6+2+1=12 | 3+9=12 | 9+3=12</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>risolvi la serie numerica
+riporta, senza spazi, il calcolo che porta alla soluzione
+(ad esempio 3+2-5=0)</indizio0>
+		<indizio1>99-72=27 non porta a niente... infatti 21-13≠7</indizio1>
+		<indizio2>lavora sulle singole cifre</indizio2>
+		<indizio3>è una rappresentazione del puzzle di Nob Yoshigahara</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs serie di Yoshigahara</autore>
 	</domanda>
 	
 	<domanda>
@@ -958,7 +906,7 @@ riporta, senza spazi, il calcolo che porta alla soluzione
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
-		<bonus>0</bonus>
+		<bonus>30</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>Calemme resistenza</autore>
 	</domanda>
@@ -975,7 +923,7 @@ riporta, senza spazi, il calcolo che porta alla soluzione
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
-		<bonus>0</bonus>
+		<bonus>30</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>sara dalia nera</autore>
 	</domanda>
@@ -995,40 +943,6 @@ riporta, senza spazi, il calcolo che porta alla soluzione
 		<bonus>0</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>bs dima</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>immagine</tipo>
-		<risorsa>immagini/english1.jpg</risorsa>
-		<risposta>The Blower's Daughter</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>risolvi il rebus in lingua inglese</indizio0>
-		<indizio1>usa parole inglesi per le immagini</indizio1>
-		<indizio2>sostituisci la lettera indicata</indizio2>
-		<indizio3>aggiungi la lettera in corrispondenza del +</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs rebus english1</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>sequenza</tipo>
-		<risorsa>immagini/english2.jpg</risorsa>
-		<risposta>Have You Ever Seen The Rain?</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>risolvi il rebus in lingua inglese</indizio0>
-		<indizio1>sequenza</indizio1>
-		<indizio2>sequenza</indizio2>
-		<indizio3>sequenza</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs rebus english2</autore>
 	</domanda>
 	
 	<domanda>
@@ -1060,9 +974,95 @@ riporta, senza spazi, il calcolo che porta alla soluzione
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
-		<bonus>0</bonus>
+		<bonus>30</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>Calemme Ferrari</autore>
+	</domanda>
+	
+	<domanda>
+		<tipo>sequenza</tipo>
+		<risorsa>immagini/ghigliottina3.jpg</risorsa>
+		<risposta>bussola</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>trova la parola collegata alle altre</indizio0>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs ghigliottina3</autore>
+	</domanda>
+	
+	<domanda>
+		<tipo>sequenza</tipo>
+		<risorsa>immagini/identikit3.jpg</risorsa>
+		<risposta>zenone | zenone di elea</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>il nome del personaggio</indizio0>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs identikit storico</autore>
+	</domanda>
+
+	<domanda>
+		<tipo>immagine</tipo>
+		<risorsa>immagini/isola.jpg</risorsa>
+		<risposta>Robinson Crusoe</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>he wants to leave his country</indizio0>
+		<indizio1>he is very seldom idle</indizio1>
+		<indizio2>he thanks God for being there</indizio2>
+		<indizio3>Friday is not like any other day for him</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>Pina Russo isola</autore>
+	</domanda>
+	
+	<domanda>
+		<tipo>sequenza</tipo>
+		<risorsa>immagini/giusti.jpg</risorsa>
+		<risposta>rana</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>rispondi al quesito</indizio0>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs indovinello botta</autore>
+	</domanda>
+	
+	<domanda>
+		<tipo>immagine</tipo>
+		<risorsa>immagini/mastermind2.jpg</risorsa>
+		<risposta>NVRG</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>risolvi il gioco e manda la soluzione come sequenza di lettere 
+(ad esempio BGCR)</indizio0>
+		<indizio1>il Marrone non compare</indizio1>
+		<indizio2>l'Arancio non compare</indizio2>
+		<indizio3>il primo colore è il Nero</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>30</bonus>
+		<tartaruga>15</tartaruga>
+ 		<autore>bs mastermind 2</autore>
 	</domanda>
 	
 	<domanda>
@@ -1080,7 +1080,7 @@ riporta, senza spazi, il calcolo che porta alla soluzione
 		<attesa3>120</attesa3>
 		<bonus>0</bonus>
 		<tartaruga>0</tartaruga>
- 		<autore>Calemme Ferrari</autore>
+ 		<autore>bs grafi</autore>
 	</domanda>
 	
 	<domanda>
@@ -1097,26 +1097,9 @@ Dario Fo ne ha fatto grande uso</indizio3>
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
-		<bonus>0</bonus>
+		<bonus>30</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>bs gioco verbale</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>immagine</tipo>
-		<risorsa>immagini/isola.jpg</risorsa>
-		<risposta>Robinson Crusoe</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>he wants to leave his country</indizio0>
-		<indizio1>he is very seldom idle</indizio1>
-		<indizio2>he thanks God for being there</indizio2>
-		<indizio3>Friday is not like any other day for him</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>Pina Russo isola</autore>
 	</domanda>
 	
 	<domanda>
@@ -1171,23 +1154,6 @@ Dario Fo ne ha fatto grande uso</indizio3>
 	</domanda>
 	
 	<domanda>
-		<tipo>sequenza</tipo>
-		<risorsa>immagini/logo2.jpg</risorsa>
-		<risposta>campania | regione campania</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>riconosci questo logo?</indizio0>
-		<indizio1>sequenza</indizio1>
-		<indizio2>sequenza</indizio2>
-		<indizio3>sequenza</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>bs logo regione</autore>
-	</domanda>
-	
-	<domanda>
 		<tipo>immagine</tipo>
 		<risorsa>immagini/rosa.jpg</risorsa>
 		<risposta>peperoni america</risposta>
@@ -1217,7 +1183,7 @@ nel racconto c'è qualcosa che non quadra: perché?</indizio0>
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
-		<bonus>0</bonus>
+		<bonus>30</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>calemme qualificativi eccellenti</autore>
 	</domanda>
@@ -1251,7 +1217,7 @@ nel racconto c'è qualcosa che non quadra: perché?</indizio0>
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
-		<bonus>0</bonus>
+		<bonus>30</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>Calemme scienziate</autore>
 	</domanda>
@@ -1285,7 +1251,7 @@ nel racconto c'è qualcosa che non quadra: perché?</indizio0>
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
-		<bonus>0</bonus>
+		<bonus>30</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>bs speech berlino</autore>
 	</domanda>
@@ -1338,9 +1304,44 @@ nel racconto c'è qualcosa che non quadra: perché?</indizio0>
 		<attesa3>120</attesa3>
 		<bonus>0</bonus>
 		<tartaruga>0</tartaruga>
- 		<autore>ba in ucraino</autore>
+ 		<autore>bs in ucraino</autore>
 	</domanda>
 	
+	<domanda>
+		<tipo>immagine</tipo>
+		<risorsa>immagini/dolomiti.jpg</risorsa>
+		<risposta>altoadige | alto adige</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>il fascino delle Dolomiti: il paesaggio alpino crea intrecci come ricami che si riflettono nei laghi limpidi</indizio0>
+		<indizio1>le cime dei "monti pallidi", quando il sole le attraversa, si riflettono sul manto innevato con ombre che si allungano a dismisura</indizio1>
+		<indizio2>le ombre dei monti sono come tessere rovesciate, che raccontano del tempo che fugge via</indizio2>
+		<indizio3>affidati alla ragione e concentrati su una sola regione</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs dolomiti</autore>
+	</domanda>	
+	
+	<domanda>
+		<tipo>sequenza</tipo>
+		<risorsa>immagini/logo2.jpg</risorsa>
+		<risposta>campania | regione campania</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>riconosci questo logo?</indizio0>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>bs logo regione</autore>
+	</domanda>
+	
+
   	<domanda>
 		<tipo>chiusura</tipo>
 		<risorsa>immagini/forziere.png</risorsa>
