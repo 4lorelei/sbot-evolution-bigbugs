@@ -63,7 +63,7 @@ Tocca il pulsante "indizi" per continuare.
 
 	<domanda>
 		<tipo>link</tipo>
-		<risorsa>http://www.gioco.com</risorsa>
+		<risorsa>http://ec2-44-233-73-68.us-west-2.compute.amazonaws.com/</risorsa>
 		<risposta>x_____anno</risposta>
 		<accuratezza>indefinita</accuratezza>
 		<indizio0>gioca e vinci</indizio0>
