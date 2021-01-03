@@ -201,6 +201,24 @@ Tocca il pulsante "indizi" per continuare.
  		<autore>bs asserzioni</autore>
 	</domanda>	
 	
+    <domanda>
+        <tipo>testo</tipo>
+        <risorsa>you can see me in water, but I never get wet
+what am I?</risorsa>
+        <risposta>reflection | the reflection</risposta>
+		<accuratezza>elevata</accuratezza>
+        <indizio0>riddle</indizio0>
+        <indizio1>non è lo specchio né lo specchio d'acqua</indizio1>
+        <indizio2>lo specchio d'acqua consente di vederlo</indizio2>
+        <indizio3>la risposta è in inglese</indizio3>
+		<attesa1>60</attesa1> 
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+        <autore>Maria Ascione riddle1</autore>
+    </domanda>	
+	
 	<domanda>
 		<tipo>documento</tipo>
 		<risorsa>documenti/film.pdf</risorsa>
@@ -342,6 +360,24 @@ quale operazione ho fatto ogni volta?
 		<tartaruga>15</tartaruga>
  		<autore>bs calcolatrice</autore>
 	</domanda>	
+	
+    <domanda>
+        <tipo>testo</tipo>
+        <risorsa>I am always in front of you but yet I am never here
+what am I?</risorsa>
+        <risposta>THE FUTURE | FUTURE</risposta>
+		<accuratezza>elevata</accuratezza>
+        <indizio0>riddle</indizio0>
+        <indizio1>...una cosa che non si può mai raggiungere</indizio1>
+        <indizio2>è un concetto astratto</indizio2>
+        <indizio3>non è il presente</indizio3>
+		<attesa1>60</attesa1> 
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+        <autore>Maria Ascione riddle2</autore>
+    </domanda>	
 	
 	<domanda>
 		<tipo>sequenza</tipo>
@@ -995,6 +1031,23 @@ riporta, senza spazi, il calcolo che porta alla soluzione
 		<tartaruga>0</tartaruga>
  		<autore>bs ghigliottina3</autore>
 	</domanda>
+	
+    <domanda>
+        <tipo>testo</tipo>
+        <risorsa>what goes up and down without moving?</risorsa>
+        <risposta>temperature | the temperature</risposta>
+		<accuratezza>elevata</accuratezza>
+        <indizio0>riddle</indizio0>
+        <indizio1>può essere ambientale</indizio1>
+        <indizio2>si può misurare</indizio2>
+        <indizio3>si misura con il termometro</indizio3>
+		<attesa1>60</attesa1> 
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+        <autore>Maria Ascione riddle3</autore>
+    </domanda>	
 	
 	<domanda>
 		<tipo>sequenza</tipo>
