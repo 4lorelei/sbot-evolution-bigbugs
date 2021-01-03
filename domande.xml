@@ -67,9 +67,9 @@ Tocca il pulsante "indizi" per continuare.
 		<risposta>x_____anno</risposta>
 		<accuratezza>indefinita</accuratezza>
 		<indizio0>gioca e vinci</indizio0>
-		<indizio1>-----------------------</indizio1>
-		<indizio2>-----------------------</indizio2>
-		<indizio3>-----------------------</indizio3>
+		<indizio1>bonus=5000</indizio1>
+		<indizio2>bonus=10000</indizio2>
+		<indizio3>bonus=20000</indizio3>
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
