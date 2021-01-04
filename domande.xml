@@ -63,13 +63,15 @@ Tocca il pulsante "indizi" per continuare.
 
 	<domanda>
 		<tipo>link</tipo>
-		<risorsa>http://ec2-44-233-73-68.us-west-2.compute.amazonaws.com/</risorsa>
+		<risorsa>http://ec2-18-221-171-117.us-east-2.compute.amazonaws.com/</risorsa>
 		<risposta>x_____anno</risposta>
 		<accuratezza>indefinita</accuratezza>
-		<indizio0>gioca e vinci</indizio0>
-		<indizio1>bonus=5000</indizio1>
+		<indizio0>gioca e vinci totalizzando 20000 punti
+		(al posto degli indizi riceverai nuovi obiettivi di vincita sotto forma di bonus)
+		</indizio0>
+		<indizio1>bonus=15000</indizio1>
 		<indizio2>bonus=10000</indizio2>
-		<indizio3>bonus=20000</indizio3>
+		<indizio3>bonus=5000</indizio3>
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
