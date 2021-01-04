@@ -66,7 +66,7 @@ Tocca il pulsante "indizi" per continuare.
 		<risorsa>http://ec2-18-221-171-117.us-east-2.compute.amazonaws.com/</risorsa>
 		<risposta>x_____anno</risposta>
 		<accuratezza>indefinita</accuratezza>
-		<indizio0>gioca e vinci totalizzando 20000 punti
+		<indizio0>gioca e vinci totalizzando 20000 punti (browser consigliato Chrome)
 		(al posto degli indizi riceverai nuovi obiettivi di vincita sotto forma di bonus)
 		</indizio0>
 		<indizio1>bonus=15000</indizio1>
@@ -401,6 +401,23 @@ what am I?</risorsa>
 	
 	<domanda>
 		<tipo>immagine</tipo>
+		<risorsa>immagini/letteratura.jpg</risorsa>
+		<risposta>Pirandello</risposta>
+		<accuratezza>approssimata</accuratezza>
+		<indizio0>come è possibile collegare le sei immagini?</indizio0>
+		<indizio1>non sono oggetti</indizio1>
+		<indizio2>hanno un comune denominatore</indizio2>
+		<indizio3>ci piace raccontare...</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>15</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>Loredana Di Rosa letteratura</autore>
+	</domanda>	
+	
+	<domanda>
+		<tipo>immagine</tipo>
 		<risorsa>immagini/film-pasto.jpg</risorsa>
 		<risposta>cena con delitto | knives out</risposta>
 		<accuratezza>elevata</accuratezza>
@@ -675,6 +692,25 @@ cosa richiama esplicitamente il video?</indizio0>
 	
 	<domanda>
 		<tipo>immagine</tipo>
+		<risorsa>immagini/togata.jpg</risorsa>
+		<risposta>Giove Venere</risposta>
+		<accuratezza>approssimata</accuratezza>
+		<indizio0>"togata gens"
+chi pronuncia questa espressione e a chi si rivolge mentre la proferisce?
+		</indizio0>
+		<indizio1>è tratta da un'opera famosissima</indizio1>
+		<indizio2>si tratta di una profezia</indizio2>
+		<indizio3>Aspera Iuno fovebit romanos rerum dominos gentemque togatam</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>50</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>Loredana Di Rosa togata gens</autore>
+	</domanda>	
+	
+	<domanda>
+		<tipo>immagine</tipo>
 		<risorsa>immagini/mastermind.jpg</risorsa>
 		<risposta>CVAB</risposta>
 		<accuratezza>elevata</accuratezza>
@@ -826,6 +862,23 @@ cosa richiama esplicitamente il video?</indizio0>
 		<tartaruga>0</tartaruga>
  		<autore>Sara the boys</autore>
 	</domanda>
+	
+	<domanda>
+		<tipo>immagine</tipo>
+		<risorsa>immagini/zafferano.jpg</risorsa>
+		<risposta>colore | tingere | colorare</risposta>
+		<accuratezza>approssimata</accuratezza>
+		<indizio0>i fiori di campo dell'immagine cosa c'entrano con il matrimonio romano?</indizio0>
+		<indizio1>osserva con attenzione gli abiti</indizio1>
+		<indizio2>la sposa indossa il "flammeum"</indizio2>
+		<indizio3>i crochi sono fiori da cui si ricava lo zafferano</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>15</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>Loredana Di Rosa zafferano</autore>
+	</domanda>	
 	
 	<domanda>
 		<tipo>immagine</tipo>
