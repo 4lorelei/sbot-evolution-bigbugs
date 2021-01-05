@@ -3854,7 +3854,7 @@ if(strpos($text, '/team') !== false)
 		}
 		else 
 		{
-			$response = "sei associato al team " . $team . "\n\ncompisizione del team:\n";
+			$response = "sei associato al team " . $team . "\n\ncomposizione del team:\n";
 			foreach ($myVarsArr as $key => $value)
 			{
 				if ($myVarsArr[$key]["team"]==$team)
