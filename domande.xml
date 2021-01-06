@@ -567,25 +567,6 @@ what am I?</risorsa>
 	</domanda>
 	
 	<domanda>
-		<tipo>video</tipo>
-		<risorsa>video/tempo.mp4</risorsa>
-		<risposta>tecnica pomodoro</risposta>
-		<accuratezza>approssimata</accuratezza>
-		<indizio0>la gestione del tempo è un "ingrediente" importante per affrontare e vincere le sfide
-		
-cosa richiama esplicitamente il video?</indizio0>
-		<indizio1>nel video compare un timer</indizio1>
-		<indizio2>una tecnica per la gestione del tempo</indizio2>
-		<indizio3>il timer ha la durata di 25 minuti ed ha la forma di un pomodoro</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>50</bonus>
-		<tartaruga>0</tartaruga>
-		<autore>bs video apple</autore>
-    </domanda>
-	
-	<domanda>
 		<tipo>sequenza</tipo>
 		<risorsa>immagini/identikit1.jpg</risorsa>
 		<risposta>tony stark</risposta>
@@ -1171,6 +1152,25 @@ riporta, senza spazi, il calcolo che porta alla soluzione
 		<tartaruga>0</tartaruga>
  		<autore>bs indovinello botta</autore>
 	</domanda>
+	
+	<domanda>
+		<tipo>video</tipo>
+		<risorsa>video/tempo.mp4</risorsa>
+		<risposta>tecnica pomodoro</risposta>
+		<accuratezza>approssimata</accuratezza>
+		<indizio0>la gestione del tempo è un "ingrediente" importante per affrontare e vincere le sfide
+		
+cosa richiama esplicitamente il video?</indizio0>
+		<indizio1>nel video compare un timer</indizio1>
+		<indizio2>una tecnica per la gestione del tempo</indizio2>
+		<indizio3>il timer ha la durata di 25 minuti ed ha la forma di un pomodoro</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>50</bonus>
+		<tartaruga>0</tartaruga>
+		<autore>andrea video apple</autore>
+    </domanda>
 	
 	<domanda>
 		<tipo>immagine</tipo>
