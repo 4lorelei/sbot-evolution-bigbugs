@@ -60,26 +60,6 @@ Tocca il pulsante "indizi" per continuare.
 		<tartaruga>0</tartaruga>
  		<autore>bs coming soon</autore>
 	</domanda>
-
-	<domanda>
-		<tipo>link</tipo>
-		<risorsa>http://ec2-18-221-171-117.us-east-2.compute.amazonaws.com/</risorsa>
-		<risposta>x_____anno</risposta>
-		<accuratezza>indefinita</accuratezza>
-		<indizio0>gioca e vinci totalizzando 20000 punti (browser consigliato Chrome)
-		(al posto degli indizi riceverai nuovi obiettivi di vincita sotto forma di bonus)
-		</indizio0>
-		<indizio1>bonus=15000</indizio1>
-		<indizio2>bonus=10000</indizio2>
-		<indizio3>bonus=5000</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>0</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>lino gioco</autore>
-	</domanda>	
-	
 	
     <domanda>
         <tipo>testo</tipo>
@@ -841,7 +821,7 @@ chi pronuncia questa espressione e a chi si rivolge mentre la proferisce?
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
-		<bonus>0</bonus>
+		<bonus>15</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>Guariglia Firenze</autore>
 	</domanda>
@@ -1020,6 +1000,23 @@ riporta, senza spazi, il calcolo che porta alla soluzione
 	</domanda>
 	
 	<domanda>
+		<tipo>sequenza</tipo>
+		<risorsa>immagini/vita.jpg</risorsa>
+		<risposta>Jennifer Doudna Emmanuelle Charpentier | Doudna Charpentier </risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>siamo in due...</indizio0>
+		<indizio1>sequenza</indizio1>
+		<indizio2>sequenza</indizio2>
+		<indizio3>sequenza</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>30</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>Calemme scienziate</autore>
+	</domanda>
+	
+	<domanda>
 		<tipo>immagine</tipo>
 		<risorsa>immagini/dima.jpg</risorsa>
 		<risposta>2cani3gatti | 2 cani 3 gatti</risposta>
@@ -1104,6 +1101,26 @@ riporta, senza spazi, il calcolo che porta alla soluzione
         <autore>Maria Ascione riddle3</autore>
     </domanda>	
 	
+		<domanda>
+		<tipo>link</tipo>
+		<risorsa>http://ec2-18-221-171-117.us-east-2.compute.amazonaws.com/</risorsa>
+		<risposta>x_____anno</risposta>
+		<accuratezza>indefinita</accuratezza>
+		<indizio0>gioca e vinci totalizzando 20000 punti (browser consigliato Chrome)
+(al posto degli indizi riceverai nuovi obiettivi di vincita sotto forma di bonus)
+		</indizio0>
+		<indizio1>bonus=15000</indizio1>
+		<indizio2>bonus=10000</indizio2>
+		<indizio3>bonus=5000</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>0</bonus>
+		<tartaruga>0</tartaruga>
+ 		<autore>lino gioco</autore>
+	</domanda>	
+	
+	
 	<domanda>
 		<tipo>sequenza</tipo>
 		<risorsa>immagini/identikit3.jpg</risorsa>
@@ -1153,24 +1170,6 @@ riporta, senza spazi, il calcolo che porta alla soluzione
 		<bonus>0</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>bs indovinello botta</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>immagine</tipo>
-		<risorsa>immagini/mastermind2.jpg</risorsa>
-		<risposta>NVRG</risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>risolvi il gioco e manda la soluzione come sequenza di lettere 
-(ad esempio BGCR)</indizio0>
-		<indizio1>il Marrone non compare</indizio1>
-		<indizio2>l'Arancio non compare</indizio2>
-		<indizio3>il primo colore è il Nero</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>30</bonus>
-		<tartaruga>15</tartaruga>
- 		<autore>bs mastermind 2</autore>
 	</domanda>
 	
 	<domanda>
@@ -1274,7 +1273,7 @@ nel racconto c'è qualcosa che non quadra: perché?</indizio0>
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
-		<bonus>0</bonus>
+		<bonus>30</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>bs il nome della rosa</autore>
 	</domanda>
@@ -1297,6 +1296,24 @@ nel racconto c'è qualcosa che non quadra: perché?</indizio0>
 	</domanda>
 	
 	<domanda>
+		<tipo>immagine</tipo>
+		<risorsa>immagini/mastermind2.jpg</risorsa>
+		<risposta>NVRG</risposta>
+		<accuratezza>elevata</accuratezza>
+		<indizio0>risolvi il gioco e manda la soluzione come sequenza di lettere 
+(ad esempio BGCR)</indizio0>
+		<indizio1>il Marrone non compare</indizio1>
+		<indizio2>l'Arancio non compare</indizio2>
+		<indizio3>il primo colore è il Nero</indizio3>
+		<attesa1>60</attesa1>
+		<attesa2>90</attesa2>
+		<attesa3>120</attesa3>
+		<bonus>30</bonus>
+		<tartaruga>15</tartaruga>
+ 		<autore>bs mastermind 2</autore>
+	</domanda>
+	
+	<domanda>
 		<tipo>sequenza</tipo>
 		<risorsa>immagini/scheda.jpg</risorsa>
 		<risposta>hallo</risposta>
@@ -1311,23 +1328,6 @@ nel racconto c'è qualcosa che non quadra: perché?</indizio0>
 		<bonus>0</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>bs scheda perforata</autore>
-	</domanda>
-	
-	<domanda>
-		<tipo>sequenza</tipo>
-		<risorsa>immagini/vita.jpg</risorsa>
-		<risposta>Jennifer Doudna Emmanuelle Charpentier | Doudna Charpentier </risposta>
-		<accuratezza>elevata</accuratezza>
-		<indizio0>siamo in due...</indizio0>
-		<indizio1>sequenza</indizio1>
-		<indizio2>sequenza</indizio2>
-		<indizio3>sequenza</indizio3>
-		<attesa1>60</attesa1>
-		<attesa2>90</attesa2>
-		<attesa3>120</attesa3>
-		<bonus>30</bonus>
-		<tartaruga>0</tartaruga>
- 		<autore>Calemme scienziate</autore>
 	</domanda>
 	
 	<domanda>
@@ -1376,7 +1376,7 @@ nel racconto c'è qualcosa che non quadra: perché?</indizio0>
 		<attesa1>60</attesa1>
 		<attesa2>90</attesa2>
 		<attesa3>120</attesa3>
-		<bonus>0</bonus>
+		<bonus>15</bonus>
 		<tartaruga>0</tartaruga>
  		<autore>Calemme diagramma colore</autore>
 	</domanda>
@@ -1449,7 +1449,6 @@ nel racconto c'è qualcosa che non quadra: perché?</indizio0>
  		<autore>bs logo regione</autore>
 	</domanda>
 	
-
   	<domanda>
 		<tipo>chiusura</tipo>
 		<risorsa>immagini/forziere.png</risorsa>
